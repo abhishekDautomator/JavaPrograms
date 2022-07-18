@@ -1,0 +1,15 @@
+package Java8.collection;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class TreeSetLambda {
+    public static void main(String[] args) {
+        Set<Integer> set = new TreeSet<>((a,b)->a>b?-1:a<b?1:0);
+        set.add(10);
+        set.add(4);
+        set.add(20);
+        set.add(2);
+        System.out.println(set);
+    }
+}
