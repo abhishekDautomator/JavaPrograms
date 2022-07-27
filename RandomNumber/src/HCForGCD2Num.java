@@ -1,12 +1,12 @@
 import java.util.Scanner;
 
-public class HCForGCD {
+public class HCForGCD2Num {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the 2 numbers of which GCD is required");
         int fNum = scanner.nextInt();
         int sNum = scanner.nextInt();
-        System.out.println("GCD/HCF of the numbers " + fNum + " and " + sNum + " is " + HCForGCD.getGCD(fNum, sNum));
+        System.out.println("GCD/HCF of the numbers " + fNum + " and " + sNum + " is " + HCForGCD2Num.getGCD(fNum, sNum));
     }
 
     public static int getGCD(int a, int b) {
