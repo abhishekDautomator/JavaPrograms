@@ -12,7 +12,7 @@ public class FunctionExample {
         list.add("A Narayan");
         Function<String, Integer> f = s -> s.trim().replaceAll(" ","").length();
         Function<String, Integer> numSpaces = s -> s.length() - s.trim().replaceAll(" ","").length();
-        System.out.println("Length of characters in people name");
+        System.out.println("Length of the characters in the people name is : ");
         for (String s:
              list) {
             System.out.println("Length : "+f.apply(s));
