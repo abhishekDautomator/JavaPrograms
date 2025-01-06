@@ -1,0 +1,53 @@
+Generics in Java are a feature that allows you to define classes, interfaces, and methods with a placeholder for types, enabling you to create more flexible and reusable code. By using generics, you can specify a type parameter when defining a class or method, which can then be replaced with a specific type when you use it. This helps ensure type safety at compile time and reduces the need for casting.
+
+Benefits of Generics
+Type Safety: Generics help catch type-related errors at compile time rather than at runtime.
+Code Reusability: You can write a single class or method that works with different data types without duplicating code.
+Elimination of Casting: When you retrieve elements from a generic collection,
+you don’t need to cast them to the desired type.
+
+How to Declare Generics
+Here's how you can declare and use generics in Java:
+
+Generic Class: To declare a generic class, use angle brackets (<>) to define type parameters.
+
+public class Box<T> {
+    private T item;
+
+    public void setItem(T item) {
+        this.item = item;
+    }
+
+    public T getItem() {
+        return item;
+    }
+}
+In this example, Box is a generic class with a type parameter T. You can use any type as T when creating an instance of Box.
+
+Generic Method: You can also create generic methods within non-generic or generic classes.
+
+public class Utils {
+    public static <T> void printArray(T[] array) {
+        for (T element : array) {
+            System.out.println(element);
+        }
+    }
+}
+Here, printArray is a generic method that can accept an array of any type.
+
+Using Generics: When you create an instance of a generic class or call a generic method, you specify the actual type you want to use.
+
+public class Main {
+    public static void main(String[] args) {
+        // Using a generic class
+        Box<String> stringBox = new Box<>();
+        stringBox.setItem("Hello");
+        System.out.println(stringBox.getItem());
+
+        // Using a generic method
+        Integer[] numbers = {1, 2, 3};
+        Utils.printArray(numbers);
+    }
+}
+Summary
+In summary, generics in Java allow you to create classes, methods, and interfaces that can operate on different types while providing type safety and reducing code duplication. You declare generics by using angle brackets to define type parameters, making your code more flexible and easier to maintain.

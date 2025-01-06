@@ -1,0 +1,277 @@
+1. Which Data Structure does HashMap represent?
+Ans. A HashMap in Java represents an associative array or dictionary data structure. It is specifically designed to store key-value pairs, allowing for efficient retrieval, insertion, and deletion of values based on their associated keys.
+
+Characteristics of HashMap:
+Key-Value Pairs: Each entry in a HashMap consists of a unique key and its corresponding value. This allows for quick lookups based on the key.
+
+Hashing Mechanism: It uses a hash function to compute an index (bucket) based on the hash code of the key. This enables average-case constant time complexity (O(1)) for basic operations like get and put.
+
+Collision Handling: When two keys hash to the same index, HashMap handles collisions using techniques such as chaining (linked lists) or, in some implementations, by using balanced trees for buckets that exceed a certain threshold.
+
+Dynamic Resizing: As more entries are added, a HashMap dynamically resizes itself when a predefined load factor is exceeded, ensuring efficient space utilization.
+
+Unordered Collection: The order of the entries in a HashMap is not guaranteed, as it does not maintain any specific order of elements. If you need ordered key-value pairs, consider using a LinkedHashMap.
+
+2. Which Data Structures are used to implement HashMap?
+Ans. A HashMap in Java is implemented using a combination of several data structures that work together to provide efficient storage and retrieval of key-value pairs. The primary data structures involved are:
+
+     1. Array (Buckets)
+     The core of a HashMap is an array of buckets. Each element in the array can hold a reference to the head of a linked list or tree structure that contains entries (key-value pairs).
+     The size of this array is determined by the initial capacity specified when creating the HashMap.
+
+     2. Linked List
+     When multiple keys hash to the same index (a collision occurs), the entries are stored in a linked list at that index.
+     Each entry in the linked list is represented as an instance of an inner class (often named Entry), which contains the key, value, and a reference to the next entry in the list.
+
+     3. Balanced Tree (Optional)
+     In Java 8 and later, if the number of entries in a single bucket exceeds a certain threshold (typically 8), the linked list in that bucket is converted into a balanced tree (usually a red-black tree).
+     This conversion improves the performance of lookups in buckets with many collisions, reducing the time complexity from O(n) for a linked list to O(log n) for a balanced tree.
+
+     Summary of the Structure
+     Array: Serves as the primary storage for buckets.
+     Linked List: Used for collision resolution within each bucket.
+     Balanced Tree: An optional structure for improving performance in heavily populated buckets.
+
+3. Is HashMap thread safe in Java?
+Ans. No, HashMap is not thread-safe in Java. This means that if multiple threads access a HashMap concurrently and at least one of the threads modifies the map (by adding or removing entries), it can lead to unpredictable behavior, including data corruption, infinite loops, and other concurrency issues.
+
+     Key Points about HashMap and Thread Safety:
+
+     Non-Synchronized: HashMap does not provide any built-in synchronization mechanisms to ensure thread safety. As a result, multiple threads can read from and write to the map simultaneously without coordination, which can cause inconsistencies.
+     Concurrent Modifications: If one thread is iterating over a HashMap while another thread modifies it, the iterator may throw a ConcurrentModificationException, indicating that the structure of the map has changed unexpectedly.
+
+     Alternatives for Thread Safety:
+
+     Hashtable: A legacy class that provides thread-safe operations by synchronizing methods. However, it has performance overhead due to synchronization on every operation.
+     ConcurrentHashMap: Part of the java.util.concurrent package, this class offers better concurrency support with fine-grained locking. It allows multiple threads to read and write without blocking the entire map, improving performance in multi-threaded environments.
+
+4. How do you remove a mapping while iterating over a hashmap?
+Ans. Removing a mapping from a HashMap while iterating over it can lead to a ConcurrentModificationException if done directly using the iterator. To safely remove entries during iteration, you should use the Iterator's remove() method.
+
+5. What is a load factor in a HashMap?
+Ans. The load factor in a HashMap is a measure that determines how full the hash table can get before it needs to be resized. It is defined as the ratio of the number of entries (key-value pairs) in the hash table to the total number of buckets (or slots) in the table. The load factor helps maintain the performance of the HashMap by ensuring that there are enough buckets available to minimize collisions.
+
+    Key Concepts:
+    Load Factor Calculation: $ \text{Load Factor} = \frac{\text{Number of Entries}}{\text{Number of Buckets}} $ For example, if a HashMap has 10 entries and 16 buckets, the load factor would be $ \frac{10}{16} = 0.625 $.
+
+    Default Load Factor: The default load factor for a HashMap in Java is 0.75. This means that when the number of entries in the HashMap exceeds 75% of the current bucket size, the HashMap will resize itself (usually doubling the number of buckets) to maintain efficient access times.
+
+    Impact on Performance:
+
+    A low load factor (e.g., 0.5) results in more buckets and fewer collisions, leading to faster average access times. However, it also uses more memory.
+    A high load factor (e.g., 0.9) conserves memory but increases the likelihood of collisions, which can lead to longer search times as multiple entries may be stored in the same bucket.
+    Resizing: When the number of entries exceeds the product of the load factor and the current capacity (number of buckets), the HashMap is resized. During resizing, all existing entries are rehashed and redistributed into the new array of buckets.
+
+    Custom Load Factor: When creating a HashMap, you can specify an initial capacity and a custom load factor. This can be done using the constructor:
+
+    Map<Integer, String> map = new HashMap<>(initialCapacity, loadFactor);
+    Choosing an appropriate load factor can help optimize performance based on the expected number of entries.
+
+6. How many entries you can store in a HashMap? What is the maximum limit?
+Ans. The maximum number of entries that can be stored in a HashMap is primarily limited by two factors: the maximum size of an integer in Java and the available memory of the Java Virtual Machine (JVM).
+    Key Points:
+    Integer Limits:
+
+    The maximum size for an index in a Java array is $2^{31} - 1$ (or 2,147,483,647), which is the highest value for a 32-bit signed integer. This means that theoretically, a HashMap could hold up to $2^{31} - 1$ entries if there were enough memory available.
+    Memory Constraints:
+
+    In practice, the actual limit on how many entries you can store in a HashMap is often less than $2^{31} - 1$ due to the amount of heap memory allocated to your Java application. The JVM has a maximum heap size that can be configured with options like -Xmx when starting the JVM.
+    If you try to add more entries than the available memory can handle, you will encounter an OutOfMemoryError.
+    HashMap Resizing:
+
+    As you add entries to a HashMap, it dynamically resizes itself when the number of entries exceeds the product of its current capacity and load factor (default load factor is 0.75). This helps maintain efficient access times but also means that the internal structure requires memory overhead.
+    Practical Considerations:
+
+    While you can theoretically create a very large HashMap, practical limitations such as system memory, performance implications, and garbage collection behavior should be considered. It's essential to monitor performance and memory usage when dealing with large datasets.
+    Summary
+    In summary, while a HashMap can theoretically store up to $2^{31} - 1$ entries, the actual limit is constrained by available memory and JVM settings. In practice, you should consider both memory usage and performance when working with large collections.
+
+7. Difference between size and capacity of HashMap?
+Ans. Summary of Differences
+     Feature	                Size	                         Capacity
+     Definition	        Number of entries in the map	    Number of buckets available
+     Measurement	    Dynamic, changes with add/remove	Static, but can increase on resize
+     Method	            size()	                            Not directly accessible
+     Default            Value	                            Varies with entries	Default is 16
+     Purpose	        Indicates how many elements exist	Determines when to resize
+
+     Conclusion
+     Understanding the difference between size and capacity is crucial for effectively using a HashMap. The size reflects the current number of entries, while capacity indicates how many entries can be accommodated before resizing occurs. Properly managing these aspects can help optimize memory usage and performance in your applications.
+
+8. Explain ConcurrentHashMap.
+Ans. ConcurrentHashMap is a thread-safe variant of HashMap in Java, designed to allow concurrent access and updates by multiple threads without the need for external synchronization. It is part of the java.util.concurrent package and provides a high-performance, scalable way to manage key-value pairs in a multi-threaded environment.
+    Key Features
+    Thread Safety:
+
+    ConcurrentHashMap allows multiple threads to read and write to the map simultaneously without corrupting its state.
+    Unlike Hashtable, which synchronizes all operations, ConcurrentHashMap only locks portions of the map, allowing for greater concurrency.
+
+    Segmented Locking:
+    Internally, ConcurrentHashMap divides the map into segments (or buckets) and uses a locking mechanism that allows threads to operate on different segments simultaneously.
+    This segmented approach reduces contention and improves performance compared to fully synchronized collections.
+
+    Non-Blocking Reads:
+    Read operations are non-blocking and can be performed concurrently without acquiring locks. This means that multiple threads can read from the map without waiting for each other.
+    Atomic Operations:
+
+    It supports atomic operations such as putIfAbsent, remove, and replace, which allow for safe updates based on the current state of the map.
+    These methods ensure that the operation is performed only if certain conditions are met, making it easier to implement complex algorithms without explicit locking.
+    Performance:
+
+    ConcurrentHashMap is designed for high concurrency and performs better than synchronized collections in scenarios with many threads accessing the map simultaneously.
+    It achieves high throughput while minimizing contention among threads.
+
+    Iteration:
+    Iterators returned by ConcurrentHashMap are weakly consistent. They reflect the state of the map at the time of creation and may not reflect subsequent changes made to the map.
+    However, they will not throw ConcurrentModificationException.
+
+9. Difference between ConcurrentMap and HashTable?
+Ans. ConcurrentMap and Hashtable are both data structures used for storing key-value pairs in Java, but they serve different purposes and have distinct characteristics. Here’s a detailed comparison of the two:
+
+     1. Interface vs. Implementation
+     ConcurrentMap:
+
+     ConcurrentMap is an interface that extends Map and is part of the java.util.concurrent package.
+     It provides additional methods for atomic operations, such as putIfAbsent, remove, and replace.
+     Common implementations of ConcurrentMap include ConcurrentHashMap.
+     Hashtable:
+
+     Hashtable is a concrete implementation of the Map interface.
+     It was part of the original Java 1.0 and has been retrofitted to implement the Map interface but is not designed for modern concurrent use cases.
+     2. Synchronization and Thread Safety
+     ConcurrentMap:
+
+     Designed specifically for concurrent access, allowing multiple threads to read and write without blocking each other excessively.
+     Provides finer-grained locking (segmented locking) compared to Hashtable, which improves performance in multi-threaded environments.
+     Hashtable:
+
+     Fully synchronized, meaning all its methods are thread-safe but can lead to contention and reduced performance under high concurrency.
+     Locks the entire table for every operation, which can become a bottleneck when multiple threads attempt to access it simultaneously.
+     3. Performance
+     ConcurrentMap:
+
+     Generally offers better performance than Hashtable in multi-threaded scenarios due to its non-blocking reads and segmented locking approach.
+     Allows for higher throughput since multiple threads can operate on different segments concurrently.
+     Hashtable:
+
+     Performance can degrade significantly under heavy load due to its global locking mechanism.
+     In single-threaded scenarios, it may perform adequately, but it is not optimized for concurrent access.
+     4. Null Keys and Values
+     ConcurrentMap:
+
+     Does not allow null keys or null values. Attempting to insert a null key or value will result in a NullPointerException.
+     Hashtable:
+
+     Also does not allow null keys or null values. Similar to ConcurrentMap, trying to use null will throw a NullPointerException.
+     5. Modern Alternatives
+     ConcurrentMap:
+
+     Recommended for new applications requiring concurrent access. ConcurrentHashMap is the most commonly used implementation.
+     Hashtable:
+
+     Considered legacy code and generally discouraged for new development. If thread safety is needed, ConcurrentHashMap or other collections from the java.util.concurrent package are preferred.
+     Summary
+     Feature	                ConcurrentMap	                    Hashtable
+     Type	                     Interface	                   Concrete Implementation
+     Synchronization	        Fine-grained locking	        Fully synchronized
+     Performance	        Better concurrency performance	    Can be a bottleneck
+     Null Handling	        No null keys/values	            No null keys/values
+     Modern Usage	       Preferred for concurrent access	   Legacy collection
+
+     Conclusion
+     ConcurrentMap (specifically through implementations like ConcurrentHashMap) is the recommended choice for concurrent programming in Java due to its design for scalability and performance. Hashtable, while still available, is largely considered outdated and not suitable for new applications where concurrency is a concern.
+
+10. Can you store a duplicate key in HashMap?
+Ans. No.
+
+11. Can you store a duplicate value in HashMap?
+Ans. Yes.
+
+12. In which orders mapping are stored in HashMap?
+Ans. Unordered. It doesn't follow any adding order and add elements based on key hash index.
+
+13. How collisions are handled in Hashmap if two different keys having same hash index is added?
+Ans. If two different keys in a HashMap produce the same hash index (also known as a hash collision), the HashMap handles this situation using a technique called chaining. Here's how it works:
+
+     Handling Hash Collisions in HashMap
+     Hash Function: When a key-value pair is added to the HashMap, the hash function computes the hash code of the key and then determines the index in the underlying array where the entry will be stored.
+
+     Collision Occurrence: If two keys produce the same index in the array, a collision occurs. For example, if both key1 and key2 hash to the same index, both entries cannot occupy the same slot directly.
+
+     Chaining: To manage collisions, HashMap uses a linked list (or a balanced tree for larger buckets) at each index of the array:
+
+     When a collision occurs, the new entry is added to the linked list (or tree) at that index.
+     Each entry in the linked list (or tree) contains the key, value, and a reference to the next entry in the chain.
+     Retrieval: When retrieving a value using a key:
+
+     The hash code is calculated, and the corresponding index is located.
+     The HashMap then traverses the linked list (or tree) at that index to find the entry with the matching key.
+     Because each key is unique, the search will eventually find the right entry or determine that the key is not present.
+     Performance Considerations
+     Average Case: In a well-distributed hash function, the average time complexity for operations (insertion, deletion, lookup) remains O(1), even with collisions.
+     Worst Case: If many keys collide and are chained together, the performance can degrade to O(n) for those operations. However, modern implementations of HashMap use balanced trees (like red-black trees) when the number of collisions exceeds a certain threshold (usually 8), which helps maintain efficiency.
+     Summary
+     In summary, when two different keys hash to the same index in a HashMap, the implementation uses a linked list (or tree structure for larger groups of entries) at that index to store both entries. This allows the HashMap to maintain unique keys and efficiently handle collisions.
+
+14. How does ConcurrentModificationException occurs in Java?
+Ans. ConcurrentModificationException is a runtime exception in Java that occurs when a collection is modified while it is being iterated over, and the iterator does not support concurrent modifications. This exception is primarily associated with the Java Collections Framework, particularly with classes like ArrayList, HashMap, and others that are not thread-safe.
+
+     How ConcurrentModificationException Occurs
+     Fail-Fast Iterators: Most collection classes in Java provide fail-fast iterators. These iterators detect if the collection has been structurally modified (i.e., elements added or removed) after the iterator was created. If such a modification is detected during iteration, a ConcurrentModificationException is thrown.
+
+     Example Scenario:
+
+     Consider the following example where we modify a list while iterating over it:
+     import java.util.ArrayList;
+     import java.util.Iterator;
+
+     public class ConcurrentModificationExample {
+         public static void main(String[] args) {
+             ArrayList<String> list = new ArrayList<>();
+             list.add("A");
+             list.add("B");
+             list.add("C");
+
+             Iterator<String> iterator = list.iterator();
+
+             while (iterator.hasNext()) {
+                 String element = iterator.next();
+                 System.out.println(element);
+                 // Modifying the list during iteration
+                 if ("B".equals(element)) {
+                     list.remove(element); // This will cause ConcurrentModificationException
+                 }
+             }
+         }
+     }
+     In this example, when the iterator tries to continue after removing "B", it will throw a ConcurrentModificationException.
+
+     Modification Types: The modification can be any structural change to the collection:
+
+     Adding elements (e.g., add method)
+     Removing elements (e.g., remove method)
+     Clearing the collection (e.g., clear method)
+     Thread-Safety Considerations: In multi-threaded scenarios, if one thread is iterating over a collection while another thread modifies it, a similar exception can occur. However, this is not guaranteed, and the behavior can vary based on the implementation of the collection.
+
+     Avoiding ConcurrentModificationException
+     To avoid ConcurrentModificationException, you can use several approaches:
+
+     Use Iterators Remove Method: Instead of using the collection's remove method, use the iterator's remove method, which is safe during iteration.
+
+     while (iterator.hasNext()) {
+         String element = iterator.next();
+         if ("B".equals(element)) {
+             iterator.remove(); // Safe way to remove during iteration
+         }
+     }
+     Copy the Collection: Create a copy of the collection before iterating and modify the original collection as needed.
+
+     for (String element : new ArrayList<>(list)) {
+         if ("B".equals(element)) {
+             list.remove(element); // Modify original safely
+         }
+     }
+     Using Concurrent Collections: For concurrent modifications in multi-threaded environments, consider using thread-safe collections from the java.util.concurrent package, such as CopyOnWriteArrayList or ConcurrentHashMap, which are designed to handle concurrent modifications without throwing exceptions.
+
+     Summary
+     ConcurrentModificationException occurs when a collection is modified during iteration in a way that violates the fail-fast behavior of the iterator. To prevent this exception, use the iterator's own methods for modifications, create copies of collections before iteration, or utilize concurrent collections designed for safe multi-threaded use.

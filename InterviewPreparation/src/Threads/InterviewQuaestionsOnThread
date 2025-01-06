@@ -1,0 +1,41 @@
+1. What are the various ways to create a THread in Java?
+Ans. These are the primary ways to create threads in Java:
+
+     Extending the Thread class
+     Implementing the Runnable interface
+     Using lambda expressions (Java 8+)
+     Using ExecutorService
+     Using Callable with Future
+     Each method has its use cases, and choosing the right one depends on the specific requirements of your application,
+     such as whether you need to return results or manage multiple threads efficiently.
+
+2. run() vs start() method?
+Ans. In Java, the run() and start() methods are both associated with the Thread class, but they serve different purposes in the context of thread execution. Here’s a detailed comparison of the two:
+
+     run() Method
+     Purpose: The run() method contains the code that defines the behavior of the thread. When you create a thread, this is the method that will execute when the thread is started.
+
+     Invocation: The run() method can be called directly like any other method.
+     However, calling run() directly does not start a new thread; instead,
+     it executes the run() method in the current thread.
+
+     Usage:
+     If you call run() directly, it runs in the context of the calling thread.
+     It does not create a new thread of execution.
+
+     start() Method
+     Purpose: The start() method is used to initiate a new thread. When you call start(),
+     it allocates system resources for the new thread and invokes the run() method in that
+     new thread.
+
+     Invocation: Calling start() begins the thread's life cycle. It does not return until the thread has finished executing its run() method.
+
+     Usage:
+
+     It creates a new thread of execution.
+     The run() method is executed in the context of the new thread created by the start() method.
+
+
+    Conclusion
+    To execute code in a separate thread, always use the start() method. The run() method should only be overridden to define the
+    thread's behavior, and it should not be called directly if you want to achieve concurrent execution.
