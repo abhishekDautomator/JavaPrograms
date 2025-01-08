@@ -1,0 +1,20 @@
+1. What is a Record in Java?
+Ans. In Java, a record is a special kind of class introduced in Java 14 as a preview feature
+and made stable in Java 16. Records are designed to be a concise way to create data-carrying
+classes that are immutable by default. They simplify the process of creating classes whose
+primary purpose is to hold data, reducing boilerplate code significantly.
+
+Key Features of Records
+Compact Syntax: Records provide a more compact syntax for declaring classes. You can define a record in a single line, specifying its fields directly in the declaration.
+
+Immutable: All fields in a record are implicitly final, meaning their values cannot be changed after the record is created. This immutability is beneficial for thread safety and makes records easier to reason about.
+
+Automatic Implementations: When you declare a record, the Java compiler automatically generates several methods for you:
+
+Constructor: A compact constructor that initializes all the fields.
+Accessors(getters/setters): Public getter methods for each field, named the same as the field.
+toString(): A method that returns a string representation of the record, showing its field names and values.
+equals() and hashCode(): Methods that provide value-based equality checks and hash codes based on the record's fields.
+No Inheritance: Records cannot extend other classes (other than java.lang.Record), which enforces a simpler design model.
+
+Pattern Matching: Records can be used with pattern matching in switch expressions (introduced in later versions).

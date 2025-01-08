@@ -1,0 +1,33 @@
+1.What is Serialization?
+Serialization in Java is the process of converting an object into a byte stream, which can then be persisted to a file, sent over a network, or stored in a database. This is useful for saving the state of an object so that it can be reconstructed later. The reverse process, called deserialization, involves converting the byte stream back into a copy of the original object.
+
+2.Why Use Serialization?
+Persistence: Save object states to a file or database.
+Communication: Send objects over a network (e.g., RMI).
+Caching: Store objects for quick retrieval later.
+3.How to Serialize an Object in Java
+To serialize an object in Java, follow these steps:
+
+Implement Serializable Interface: Your class must implement the java.io.Serializable interface.
+Use ObjectOutputStream: Create an instance of ObjectOutputStream to write the object to a stream.
+
+4.How to Deserialize an Object in Java
+To deserialize an object, you need to:
+
+Use ObjectInputStream: Create an instance of ObjectInputStream to read the object from a stream.
+
+5. How to prevent an object field from getting serialized?
+Ans. The transient keyword is used to indicate that a particular field should not be
+serialized. When an object is serialized, transient fields are ignored, meaning they
+won't be saved in the serialized representation.
+
+6. What is serialVersionUID?
+Ans. This is a unique identifier for each Serializable class. It is used
+during the deserialization process to verify that the sender and receiver of a
+serialized object have loaded classes that are compatible with respect to serialization.
+If the serialVersionUID does not match, a InvalidClassException will be thrown.
+
+7. Deep Copy vs. Shallow Copy?
+Ans. Serialization can be used to create a deep copy (a complete clone) of an object by
+serializing and then deserializing it. In contrast, a shallow copy only copies the
+reference to the object, not the actual object itself.
