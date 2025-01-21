@@ -2,17 +2,17 @@ package DesignPatterns.CreationalPattern.Builder;
 
 public class User {
     //Builder Design Pattern offers several advantages in scenarios involving complex object
-    // construction, immutability, and readability, it's important to note that the Factory
+    // construction, immutability, and readability; it's important to note that the Factory
     // Design Pattern is still valuable for simpler object creation scenarios where the
     // overhead of a Builder is unnecessary. Choosing between them should be based on the
     // specific requirements of your application and the complexity of the objects being created.
 
-    private String userId;
-    private String userName;
-    private String age;
-    private String salary;
-    private String designation;
-    private String country;
+    private final String userId;
+    private final String userName;
+    private final String age;
+    private final String salary;
+    private final String designation;
+    private final String country;
 
     private User(UserBuilder userBuilder) { //builder design is mainly use to create immutable object so that's why private
         //initialize

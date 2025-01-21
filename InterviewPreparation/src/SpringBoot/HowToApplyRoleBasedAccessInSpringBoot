@@ -1,0 +1,129 @@
+how to provide role based access and how to implement it in the controller?
+
+Role-based access control (RBAC) in a Spring Boot application can be implemented using Spring Security. It allows you to restrict access to certain parts of your application based on user roles. Below is a step-by-step guide on how to set up RBAC and implement it in a controller.
+
+Step 1: Add Dependencies
+Make sure you have the following dependencies in your pom.xml if you're using Maven:
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-security</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-jpa</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.h2database</groupId>
+    <artifactId>h2</artifactId>
+    <scope>runtime</scope>
+</dependency>
+Step 2: Configure Spring Security
+Create a configuration class for Spring Security that sets up role-based security.
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .csrf().disable()
+            .authorizeRequests()
+                .antMatchers("/api/public/**").permitAll() // Public endpoints
+                .antMatchers("/api/admin/**").hasRole("ADMIN") // Admin endpoints
+                .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN") // User endpoints
+                .anyRequest().authenticated() // All other requests require authentication
+            .and()
+            .httpBasic(); // Use Basic Authentication
+    }
+}
+Step 3: Define User Roles
+You may have an User entity with roles defined. Here’s a simplified example:
+
+import javax.persistence.*;
+import java.util.Set;
+
+@Entity
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String username;
+    private String password;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    private Set<String> roles; // Store roles as strings
+
+    // Getters and Setters
+}
+Step 4: Implement the Controller
+Now, create a controller that uses role-based access control annotations.
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api")
+public class UserController {
+
+    // Public endpoint
+    @GetMapping("/public/hello")
+    public String publicHello() {
+        return "Hello from public API!";
+    }
+
+    // User endpoint
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
+    @GetMapping("/user/profile")
+    public String userProfile() {
+        return "User profile data";
+    }
+
+    // Admin endpoint
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin/dashboard")
+    public String adminDashboard() {
+        return "Admin dashboard data";
+    }
+}
+Step 5: Security Configuration for Users
+You need to provide a way to load users and their roles. You can do this by implementing UserDetailsService.
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CustomUserDetailsService implements UserDetailsService {
+
+    @Autowired
+    private UserRepository userRepository; // Assume you have a UserRepository to fetch users
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getRoles().stream()
+                        .map(role -> new SimpleGrantedAuthority("ROLE_" + role))
+                        .collect(Collectors.toList())
+        );
+    }
+}

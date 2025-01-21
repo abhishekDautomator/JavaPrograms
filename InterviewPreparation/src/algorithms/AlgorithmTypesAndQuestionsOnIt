@@ -1,0 +1,102 @@
+1. Prefix sum pattern:
+problem type -> query the sum of elements in a sub array.
+p[i] = A[0] + A[1] + ...... A[i]
+sum[i, j] = p[j] - p[i-1]
+    a. Range sum query
+    b. Contiguous array
+    c. Sub-array sum equals k
+
+2. Two pointers pattern:
+pointers i and j either move towards each other or away from each other.
+    a. Palindrome
+    b. Container with most water
+
+3. Sliding window:
+find sub-array or sub-string that meet a specific criteria
+    a. Find sub-array of size k with maximum sum.
+    b. find all such sub array having sum equal to N out of an array.
+    c. Maximum average sub-array
+    d. Longest substring without repeating characters.
+    e. Maximum window substring.
+
+4. Fast and slow pointers:
+Problems related to LinkedList and Arrays which involves cycles by moving two pointers
+at different speed slow pointer 1 node and fast pointer will move 2 nodes at a time.
+    a. To check if a linked list contains a cycle
+    b. To find the middle node of the linked list
+    (When fast node reaches the end, slow node will be at the middle)
+    c. Happy number
+    d. Find the duplicate number
+
+5. Linked list-place reversal
+Use three pointers (previous, current and next) in such questions
+    a. Reverse a linked list
+    b. Swap nodes in pairs
+
+6. Monotonic stack
+Uses a stack to find the next greater or next smaller element in an array.
+    a. Next greater element
+    b. Next smaller element
+    c. Daily temperatures
+
+7. Top K elements
+    a. k largest - min-heap
+    b. k smallest - max-heap
+    c. k most frequent
+
+8. Overlapping intervals
+problems involving intervals or ranges that may overlap
+    a. Merging intervals
+    b. Interval Intersection
+    c. Find minimum meeting rooms
+
+9. Modified Binary search pattern
+    a. Searching in a nearly sorted array
+    b. Searching in a rotated sorted array
+    c. Searching in an array with unknown length
+    d. Finding the first and last occurrence of a number
+
+10. Binary tree traversal
+Types of traversals:
+    1. Pre-order
+    2. Post-order
+    3. In-order
+    4. level-order
+
+    Problems:
+        a. To retrieve the values of binary search tree in sorted order - inorder traversal
+        b. To create a copy of tree(Serialization) - preorder traversal
+        c. Kth element in a BST
+        d. Binary tree maximum path sum
+
+11. DFS(Depth first search)
+To explore all paths and branches of a graph or tree
+    a. Finding a path between two nodes
+    b. check if a graph contains a cycle
+    c. clone graph
+
+12. BFS(Breadth first search)
+Explores nodes level by level in a tree or a graph
+    a. Finding the shortest path between the 2 nodes
+    b. Printing all nodes of a tree level by level
+    c. World leader
+
+13. Matrix traversal pattern
+    a. number of islands
+    b. Flood fill
+
+14. Backtracking
+Powerful technique to solve problems involving all potential solution
+paths and backtracking the paths that do not lead to a valid solution
+   a. Generate all possible permutations and combinations of a given set of numbers.
+   b. Solve sudoku
+   c. All possible paths from start to end in a maze
+   d. subsets
+
+15. DP (Dynamic programming)
+Powerful technique to solve optimization problems by breaking them down into smaller
+sub problems and storing their solutions to avoid repetitive works.
+    a. fibonacci numbers
+    b. longest common sub sequence
+    c. coin change
+    d. climbing stairs

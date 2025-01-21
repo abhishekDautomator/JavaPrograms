@@ -3,9 +3,8 @@ package DesignPatterns.CreationalPattern.Singleton;
 public class SingletonObjCreationInBestWay {
 
     private SingletonObjCreationInBestWay(){
-        if(SingletonHelper.obj!=null){ //To prevent singleton break using Reflection API
-            throw new RuntimeException("You are trying to break singleton obj");
-        }
+        //To prevent singleton break using Reflection API
+        throw new RuntimeException("You are trying to break singleton obj");
     }
 
     private static class SingletonHelper{
@@ -14,5 +13,14 @@ public class SingletonObjCreationInBestWay {
 
     public static SingletonObjCreationInBestWay getObj(){
         return SingletonHelper.obj;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        throw new CloneNotSupportedException("Cannot clone singleton instance");
+    }
+
+    private Object readResolve() {
+        return getObj();
     }
 }

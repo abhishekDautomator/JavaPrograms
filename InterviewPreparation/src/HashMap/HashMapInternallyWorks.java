@@ -7,7 +7,7 @@ public class HashMapInternallyWorks {
     // key-value pairs. It allows for efficient retrieval, insertion, and deletion of entries
     // based on keys. The internal workings of a HashMap rely on several key concepts:
     // hashing, buckets, and load factor.
-    //Default capacity is 16 and threshold is 12
+    //Default capacity is 16 and the threshold is 12
     //https://www.youtube.com/watch?v=sw-j_ETGBEo&list=PL0zysOflRCen9SPmMO2XN1I2S9m96G_dx&index=3
     //null key entries are added at 0th index.
 

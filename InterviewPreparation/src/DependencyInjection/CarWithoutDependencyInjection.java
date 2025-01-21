@@ -1,7 +1,7 @@
 package DependencyInjection;
 
 public class CarWithoutDependencyInjection {
-    private Engine engine;
+    private final Engine engine;
 
     public CarWithoutDependencyInjection() {
         this.engine = new Engine(); //tight coupling

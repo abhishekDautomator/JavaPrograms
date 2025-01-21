@@ -14,9 +14,7 @@ public class SingletonclassbreakusingDesirialization {
         System.out.println("De-serializing the serialized object");
         SingletonClass2 objDeserialized = (SingletonClass2) ois.readObject();
         System.out.println(objDeserialized.hashCode());
-
         //how to prevent from singleton break using de-serialization
-
     }
 
 

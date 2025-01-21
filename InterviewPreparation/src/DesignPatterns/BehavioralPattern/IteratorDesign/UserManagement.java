@@ -3,7 +3,7 @@ package DesignPatterns.BehavioralPattern.IteratorDesign;
 import java.util.ArrayList;
 
 public class UserManagement {
-    private ArrayList<User> userList;
+    private final ArrayList<User> userList;
 
     public UserManagement() {
         userList = new ArrayList<>();

@@ -50,4 +50,6 @@ public class Main {
     }
 }
 Summary
-In summary, generics in Java allow you to create classes, methods, and interfaces that can operate on different types while providing type safety and reducing code duplication. You declare generics by using angle brackets to define type parameters, making your code more flexible and easier to maintain.
+In summary, generics in Java allow you to create classes, methods, and interfaces that can operate on
+different types while providing type safety and reducing code duplication. You declare generics by using
+angle brackets to define type parameters, making your code more flexible and easier to maintain.

@@ -1,0 +1,20 @@
+1. Higher order functions?
+Ans. Higher-order functions are a fundamental concept in functional programming, and
+they refer to functions that can take other functions as parameters or return functions
+as results. In Java, higher-order functions can be implemented using interfaces,
+particularly with the introduction of lambda expressions in Java 8.
+
+     Key Characteristics of Higher-Order Functions
+     Accepting Functions as Parameters: A higher-order function can accept one or more functions as arguments.
+     Returning Functions: It can also return a function as its result.
+     Functional Interfaces: In Java, functional interfaces (interfaces with a single abstract method) are commonly used to represent functions.
+
+     Benefits of Higher-Order Functions
+     Code Reusability: Higher-order functions enable reusable code by allowing you to define generic operations that can work with different implementations.
+     Cleaner Code: They can lead to more concise and readable code by reducing boilerplate and promoting functional programming paradigms.
+     Flexibility: Higher-order functions provide flexibility in the behavior of your code, allowing you to easily switch between different functions at runtime.
+
+     Conclusion
+     Higher-order functions in Java enhance the language's expressiveness and allow for functional programming techniques.
+     With the use of functional interfaces and lambda expressions, Java developers can write more modular, reusable,
+     and maintainable code. By understanding and utilizing higher-order functions, you can leverage the full power of functional programming within the Java ecosystem.

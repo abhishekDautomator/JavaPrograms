@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MyIteratorImpl implements MyIterator{
-    private List<User> users;
-    private int length;
+    private final List<User> users;
+    private final int length;
     private int index = 0;
 
     public MyIteratorImpl(List<User> users){

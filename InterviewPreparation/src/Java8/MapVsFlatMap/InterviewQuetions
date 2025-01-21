@@ -1,0 +1,72 @@
+1. Map vs FlatMap in Java STream?
+Ans.
+
+Map vs Flat Map
+
+In Java, particularly in the context of streams and functional programming, map() and flatMap() are methods used to transform data. Although they are similar in purpose, they serve different functions and have distinct behaviors. Here’s a detailed comparison:
+
+map()
+Purpose: The map() method is used to transform each element of a stream into another object. It applies a function to each element and returns a new stream containing the results.
+
+Behavior: Each input element is transformed to a single output element. The size of the resulting stream is the same as the original stream.
+
+Usage:
+
+Commonly used when you want to perform a one-to-one transformation.
+For example, converting a list of strings to their lengths.
+Example:
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class MapExample {
+    public static void main(String[] args) {
+        List<String> names = List.of("Alice", "Bob", "Charlie");
+
+        // Using map to transform names to their lengths
+        List<Integer> nameLengths = names.stream()
+            .map(String::length)
+            .collect(Collectors.toList());
+
+        System.out.println(nameLengths); // Output: [5, 3, 7]
+    }
+}
+flatMap()
+Purpose: The flatMap() method is used when each input element can be transformed into multiple output elements. It flattens the resulting streams into a single stream.
+
+Behavior: Each input element can produce zero or more output elements, effectively "flattening" the structure. The size of the resulting stream can vary depending on the output of the transformation.
+
+Usage:
+
+Commonly used with collections or optional values that may contain nested structures.
+For example, when you have a list of lists and want to create a single list containing all elements.
+Example:
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+public class FlatMapExample {
+    public static void main(String[] args) {
+        List<List<String>> namesList = List.of(
+            List.of("Alice", "Ava"),
+            List.of("Bob"),
+            List.of("Charlie", "Chuck")
+        );
+
+        // Using flatMap to flatten the list of lists into a single list
+        List<String> allNames = namesList.stream()
+            .flatMap(List::stream)
+            .collect(Collectors.toList());
+
+        System.out.println(allNames); // Output: [Alice, Ava, Bob, Charlie, Chuck]
+    }
+}
+Key Differences
+Feature	map()	flatMap()
+Transformation Type	One-to-one transformation	One-to-many transformation (and flattening)
+Resulting Structure	Same number of elements as the input	Can have varying number of elements
+Use Cases	Simple transformations	Handling nested collections or optional values
+Summary
+map(): Use when each element of the stream maps to a single output element. It performs one-to-one transformations.
+flatMap(): Use when each element can map to multiple output elements, effectively flattening the resulting stream structure. It is suitable for handling collections within collections.
+Understanding the differences between map() and flatMap() is essential for effective data transformation in Java streams, especially when dealing with complex data structures.

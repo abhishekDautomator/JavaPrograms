@@ -22,7 +22,10 @@ public class Sort {
         System.out.println(students);
 
         //comparable sorting //single field sorting
-        Collections.sort(students);
+        students.sort(Comparator.naturalOrder());
+        System.out.println(students);
+
+        students.sort(Comparator.reverseOrder());
         System.out.println(students);
 
         //comparator sorting //multi field sorting

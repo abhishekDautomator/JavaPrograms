@@ -1,9 +1,16 @@
 The Strategy design pattern falls under the category of behavioral design patterns.
-Explanation: This is because the Strategy pattern allows you to choose different algorithms or behaviors at runtime, essentially defining a set of interchangeable behaviors within an object, making it a behavioral design pattern.
+Explanation: This is because the Strategy pattern allows you to choose different algorithms or behaviors
+at runtime, essentially defining a set of interchangeable behaviors within an object, making it a
+behavioral design pattern.
+
 Key points about the Strategy design pattern:
+
 Dynamic algorithm selection:
 The main feature is the ability to select which algorithm to use at runtime based on the situation.
+
 Encapsulation of algorithms:
 Different algorithms are encapsulated in separate classes, allowing for easy switching between them.
+
 Flexibility:
-This pattern promotes code flexibility by enabling you to change the behavior of an object without modifying its core logic.
+This pattern promotes code flexibility by enabling you to change the behavior of an object without modifying
+its core logic.

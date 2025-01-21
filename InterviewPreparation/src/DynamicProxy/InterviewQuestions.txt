@@ -18,7 +18,8 @@ Ans. Dynamic proxies in Java provide a flexible way to implement behaviors that 
     when methods are invoked. It has a single method:
 
     Object invoke(Object proxy, Method method, Object[] args) throws Throwable;
-    Proxy Creation: You can create a dynamic proxy using the Proxy class provided in the java.lang.reflect package.
+    Proxy Creation: You can create a dynamic proxy using the Proxy class provided in the
+    java.lang.reflect package.
 
     Steps to Create a Dynamic Proxy
     Define an Interface: Create an interface that the proxy will implement.

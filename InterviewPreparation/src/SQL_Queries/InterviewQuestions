@@ -1,0 +1,345 @@
+In SQL, the order of execution of clauses in a query is critical to understanding how
+queries process data and return results. Here’s a breakdown of the main clauses and their
+typical order of execution:
+Order of Execution of SQL Clauses
+
+FROM
+JOIN (if applicable)
+WHERE
+GROUP BY
+HAVING
+SELECT
+DISTINCT
+ORDER BY
+LIMIT / OFFSET
+
+Detailed Explanation of Each Clause
+
+
+FROM: This clause specifies the tables from which to retrieve data. It defines the data source.
+SELECT * FROM employees;
+
+
+
+JOIN: If you're combining data from multiple tables, this clause determines how those tables are joined (INNER JOIN, LEFT JOIN, RIGHT JOIN, etc.).
+SELECT e.name, d.department_name
+FROM employees e
+JOIN departments d ON e.department_id = d.id;
+
+
+
+WHERE: This clause filters records based on specified conditions, reducing the number of
+rows processed in subsequent steps.
+SELECT * FROM employees WHERE salary > 50000;
+
+
+
+GROUP BY: This clause groups rows that have the same values in specified columns into
+summary rows. Often used with aggregate functions like COUNT, SUM, AVG, etc.
+SELECT department_id, COUNT(*)
+FROM employees
+GROUP BY department_id;
+
+
+
+HAVING: This clause filters groups created by the GROUP BY clause based on a condition.
+It acts similarly to WHERE but is used for aggregated data.
+SELECT department_id, COUNT(*)
+FROM employees
+GROUP BY department_id
+HAVING COUNT(*) > 10;
+
+
+
+SELECT: This clause specifies the columns to be returned in the result set. It also allows for expressions and calculations.
+SELECT name, salary FROM employees;
+
+
+
+DISTINCT: This clause removes duplicate rows from the result set.
+SELECT DISTINCT department_id FROM employees;
+
+
+
+ORDER BY: This clause sorts the result set based on one or more columns, either in ascending or descending order.
+SELECT name, salary FROM employees ORDER BY salary DESC;
+
+
+
+LIMIT / OFFSET: These clauses are used to restrict the number of rows returned by the query. LIMIT specifies the maximum number of rows, while OFFSET specifies how many rows to skip before starting to return rows.
+SELECT * FROM employees LIMIT 5 OFFSET 10;
+
+
+
+Example Query
+Combining these clauses in a single query can illustrate their execution order:
+SELECT department_id, AVG(salary) as avg_salary
+FROM employees
+WHERE status = 'active'
+GROUP BY department_id
+HAVING AVG(salary) > 60000
+ORDER BY avg_salary DESC
+LIMIT 5;
+
+Execution Breakdown:
+
+FROM: The table employees is identified.
+WHERE: Filters rows where status is 'active'.
+GROUP BY: Groups the remaining rows by department_id.
+HAVING: Only includes groups where the average salary is greater than 60,000.
+SELECT: Selects department_id and calculates the average salary.
+ORDER BY: Sorts the results by avg_salary in descending order.
+LIMIT: Restricts the output to the top 5 results.
+
+Conclusion
+Understanding the order of execution of SQL clauses is essential for writing effective
+queries and optimizing performance. Each clause plays a specific role in filtering, grouping,
+and returning the desired results.
+
+ Key Differences between Unique key and composite key?
+ Feature	Unique Key	Composite Key
+ Definition	Ensures uniqueness for one or more columns	A primary key made up of two or more columns
+ Null Values	Can allow null values (only one null per column)	Cannot contain null values in any of the columns
+ Purpose	To enforce uniqueness across specified columns	To uniquely identify a record using multiple columns
+ Primary Key Status	Can be defined independently of primary keys	Must be defined as a primary key
+ Number of Keys	Multiple unique keys can exist in a table	Only one composite primary key per table
+ Summary
+ Unique Key: Used to ensure that specific columns have unique values, allowing for some flexibility with nulls.
+ Composite Key: Combines multiple columns into a single key to uniquely identify records when no single column suffices.
+ Understanding these concepts is crucial for designing database schemas that maintain data integrity and enforce appropriate relationships between different entities.
+
+
+ @Mock vs @InjectMOcks?
+ In the context of using Mockito for unit testing in Java, @Mock and @InjectMocks are annotations that serve different purposes. Here’s a detailed explanation of each and their differences:
+ @Mock
+
+
+ Purpose: The @Mock annotation is used to create mock instances of a class or an interface. These mocks simulate the behavior of real objects without executing their actual implementations.
+
+
+ Usage:
+
+ Mock objects are often used to isolate the class under test from its dependencies, allowing you to focus on testing the class's behavior.
+ When a method of a mocked object is called, it returns default values (e.g., null for objects, 0 for integers) unless otherwise specified.
+
+
+
+ Example:
+ import static org.mockito.Mockito.*;
+
+ public class MyServiceTest {
+
+     @Mock
+     private MyDependency myDependency; // Create a mock of MyDependency
+
+     @Test
+     public void testMyService() {
+         // Arrange
+         when(myDependency.someMethod()).thenReturn(someValue);
+
+         // Act
+         myService.callDependencyMethod();
+
+         // Assert
+         verify(myDependency).someMethod();
+     }
+ }
+
+
+
+ @InjectMocks
+
+
+ Purpose: The @InjectMocks annotation is used to create an instance of the class under test and automatically inject the mocked dependencies (created with @Mock) into it.
+
+
+ Usage:
+
+ It allows for easier testing of classes that have dependencies by automatically injecting the mocked objects into the class being tested, typically via constructor injection, setter injection, or field injection.
+ It reduces boilerplate code needed to set up the test environment.
+
+
+
+ Example:
+ import static org.mockito.Mockito.*;
+
+ public class MyServiceTest {
+
+     @Mock
+     private MyDependency myDependency; // Mock dependency
+
+     @InjectMocks
+     private MyService myService; // Instance of MyService with injected mocks
+
+     @Test
+     public void testMyService() {
+         // Arrange
+         when(myDependency.someMethod()).thenReturn(someValue);
+
+         // Act
+         myService.callDependencyMethod();
+
+         // Assert
+         verify(myDependency).someMethod();
+     }
+ }
+
+
+
+ Key Differences
+ Feature@Mock@InjectMocksPurposeCreates mock objectsCreates an instance of the class under test and injects mocksTypeCan be applied to any class or interfaceTypically used for the class being testedInjectionNo automatic injection, just creates mocksAutomatically injects mocks into the instance of the class under testUsageUsed to isolate dependenciesUsed to simplify testing of classes with dependencies
+ Summary
+
+ @Mock: Use this annotation to create mock objects for dependencies that your class under test interacts with.
+ @InjectMocks: Use this annotation to create an instance of the class you want to test and inject the mocked dependencies into it.
+
+ Together, these annotations facilitate effective unit testing by allowing you to isolate classes and their dependencies, ensuring that tests are focused and reliable.
+
+@JoinColumn
+
+The @JoinColumn annotation in Java is part of the Java Persistence API (JPA) and is used to specify a column for joining two entity classes in a relational database. It is commonly used in the context of defining relationships between entities, such as one-to-one, one-to-many, many-to-one, or many-to-many associations.
+
+Key Features of @JoinColumn
+Purpose: The primary purpose of @JoinColumn is to define the foreign key column that will be used to establish a relationship between two entities.
+
+Attributes:
+
+name: Specifies the name of the foreign key column in the database table.
+referencedColumnName: (Optional) Specifies the column name of the target entity that the foreign key references. If not specified, it defaults to the primary key of the target entity.
+nullable: (Optional) Indicates whether the foreign key column can accept null values. Defaults to true.
+unique: (Optional) Specifies whether the foreign key column must contain unique values. Defaults to false.
+insertable: (Optional) Indicates whether the foreign key column can be included in SQL INSERT statements. Defaults to true.
+updatable: (Optional) Indicates whether the foreign key column can be included in SQL UPDATE statements. Defaults to true.
+Usage Context: @JoinColumn is typically used alongside other JPA annotations such as @ManyToOne, @OneToMany, or @OneToOne to define relationships between entities.
+
+Example Usage
+Here’s an example of how @JoinColumn is used in a one-to-many relationship:
+
+import javax.persistence.*;
+
+@Entity
+public class Author {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    private List<Book> books;
+
+    // Getters and setters
+}
+
+@Entity
+public class Book {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String title;
+
+    @ManyToOne
+    @JoinColumn(name = "author_id", nullable = false) // Foreign key column
+    private Author author;
+
+    // Getters and setters
+}
+Explanation of the Example
+In this example, we have two entities: Author and Book.
+The Book entity has a many-to-one relationship with the Author entity, meaning that each book is associated with one author, while an author can have multiple books.
+The @JoinColumn annotation in the Book entity specifies that the author_id column in the Book table serves as the foreign key that references the id column in the Author table.
+The nullable = false attribute ensures that every book must be associated with an author.
+Summary
+The @JoinColumn annotation is a powerful tool in JPA for defining foreign key columns
+that manage relationships between entities. Its attributes allow for fine-tuning how these
+relationships are represented in the database, ensuring data integrity and proper
+association between related entities.
+
+How to select only selected columns in table in Spring JPA
+
+In Spring JPA, selecting specific columns from a table can be achieved in various ways, depending on the requirements and structure of your application. Here are some common methods to retrieve only selected columns:
+
+1. Using Projections
+Projections allow you to define an interface or a class that specifies the columns you want to retrieve. This is particularly useful when you want to fetch only a subset of attributes from an entity.
+
+Example with Interface Projection
+public interface AuthorProjection {
+    String getName();
+    String getEmail();
+}
+Then, in your repository, you can use this projection:
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+
+    @Query("SELECT a.name AS name, a.email AS email FROM Author a")
+    List<AuthorProjection> findAuthorNamesAndEmails();
+}
+2. Using DTO (Data Transfer Object)
+You can also create a DTO class to represent the data you want to retrieve.
+
+Define a DTO Class
+public class AuthorDTO {
+    private String name;
+    private String email;
+
+    public AuthorDTO(String name, String email) {
+        this.name = name;
+        this.email = email;
+    }
+
+    // Getters and setters
+}
+Use DTO in Repository
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+
+    @Query("SELECT new com.example.AuthorDTO(a.name, a.email) FROM Author a")
+    List<AuthorDTO> findAuthorDTOs();
+}
+3. Using @Query Annotation
+You can use the @Query annotation to write a custom JPQL or SQL query that selects specific columns.
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+
+public interface AuthorRepository extends JpaRepository<Author, Long> {
+
+    @Query(value = "SELECT a.name, a.email FROM Author a", nativeQuery = true)
+    List<Object[]> findAuthorNamesAndEmailsNative();
+}
+In this case, the result will be a list of Object[], where each array contains the selected column values.
+
+4. Using Spring Data JPA Specifications
+If you need more complex queries, you can use Spring Data JPA Specifications to build dynamic queries.
+
+Example Specification
+import org.springframework.data.jpa.domain.Specification;
+
+public class AuthorSpecifications {
+
+    public static Specification<Author> selectColumns() {
+        return (root, query, criteriaBuilder) -> {
+            query.multiselect(root.get("name"), root.get("email"));
+            return criteriaBuilder.conjunction(); // No filtering
+        };
+    }
+}
+Then, in your repository:
+
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
+
+public interface AuthorRepository extends JpaRepository<Author, Long>, JpaSpecificationExecutor<Author> {
+}
+And use it like this:
+
+List<Author> authors = authorRepository.findAll(AuthorSpecifications.selectColumns());
+Summary
+In Spring JPA, you can select specific columns from a table using projections, DTOs, custom queries with the @Query annotation, or specifications for more complex cases. Each method has its advantages, so the choice depends on the specific requirements of your application and how you want to handle the retrieved data.
