@@ -3,7 +3,8 @@ package Java8;
 import java.util.Base64;
 
 public class Base64Example {
-    //Java 8 introduces Base64 encoding and decoding utilities for encoding binary data (e.g., images) into strings and decoding them back into raw bytes.
+    //Java 8 introduces Base64 encoding and decoding utilities for encoding binary data (e.g., images)
+    // into strings and decoding them back into raw bytes.
     public static void main(String[] args) {
         String original = "Hello World";
 

@@ -1,4 +1,4 @@
-package CustomException;
+package exception.CustomException;
 
 public class Main {
     public static void main(String[] args) throws CustomException {

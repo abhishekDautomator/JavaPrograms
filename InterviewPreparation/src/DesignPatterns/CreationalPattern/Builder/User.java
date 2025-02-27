@@ -14,8 +14,8 @@ public class User {
     private final String designation;
     private final String country;
 
-    private User(UserBuilder userBuilder) { //builder design is mainly use to create immutable object so that's why private
-        //initialize
+    private User(UserBuilder userBuilder) { //builder design is mainly use to create immutable object
+        // so that's why private constructor
         this.userId = userBuilder.userId;
         this.age = userBuilder.age;
         this.userName = userBuilder.userName;

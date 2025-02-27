@@ -1,0 +1,237 @@
+1. Explain BST?
+Ans. Binary Search Tree (BST) Explained
+     A Binary Search Tree (BST) is a tree data structure that maintains sorted order among its elements,
+     allowing for efficient insertion, deletion, and lookup operations. It consists of nodes, where each
+     node has a maximum of two children referred to as the left child and the right child.
+
+     Key Properties of BST:
+     Node Structure:
+
+     Each node contains a value (data), a reference to the left child, and a reference to the right child.
+
+     Ordering Property:
+
+     For any given node:
+     All values in the left subtree are less than the node’s value.
+     All values in the right subtree are greater than the node’s value.
+     No Duplicates:
+
+     Typically, a BST does not allow duplicate values.
+     Height:
+
+     The height of a BST is the number of edges on the longest path from the root to a leaf.
+     A balanced BST has a height of O(log N), where N is the number of nodes.
+     An unbalanced BST can degrade to a linked list with a height of O(N).
+
+     Basic Operations on BST
+     Insertion: Add a new node to the BST while maintaining the ordering property.
+     Search: Find a node with a specific value.
+     Deletion: Remove a node from the BST while maintaining the ordering property.
+     Traversal: Visit all nodes in the tree in a specific order (in-order, pre-order, post-order).
+
+     Java Implementation of a BST
+     Let’s implement a simple BST in Java, covering the basic operations mentioned above.
+
+     class TreeNode {
+         int value;
+         TreeNode left, right;
+
+         public TreeNode(int value) {
+             this.value = value;
+             left = right = null;
+         }
+     }
+
+     class BinarySearchTree {
+         private TreeNode root;
+
+         // Insert a new value into the BST
+         public void insert(int value) {
+             root = insertRec(root, value);
+         }
+
+         // Recursive function to insert a new value
+         private TreeNode insertRec(TreeNode root, int value) {
+             // If the tree is empty, return a new node
+             if (root == null) {
+                 root = new TreeNode(value);
+                 return root;
+             }
+             // Otherwise, recur down the tree
+             if (value < root.value) {
+                 root.left = insertRec(root.left, value);
+             } else if (value > root.value) {
+                 root.right = insertRec(root.right, value);
+             }
+             // Return the unchanged node pointer
+             return root;
+         }
+
+         // Search for a value in the BST
+         public boolean search(int value) {
+             return searchRec(root, value);
+         }
+
+         // Recursive function to search for a value
+         private boolean searchRec(TreeNode root, int value) {
+             // Base case: root is null or value is present at root
+             if (root == null) {
+                 return false;
+             }
+             if (root.value == value) {
+                 return true;
+             }
+             // Value is greater than root's value
+             if (value > root.value) {
+                 return searchRec(root.right, value);
+             }
+             // Value is smaller than root's value
+             return searchRec(root.left, value);
+         }
+
+         // Delete a value from the BST
+         public void delete(int value) {
+             root = deleteRec(root, value);
+         }
+
+         // Recursive function to delete a value
+         private TreeNode deleteRec(TreeNode root, int value) {
+             // Base case: If the tree is empty
+             if (root == null) {
+                 return root;
+             }
+
+             // Recur down the tree
+             if (value < root.value) {
+                 root.left = deleteRec(root.left, value);
+             } else if (value > root.value) {
+                 root.right = deleteRec(root.right, value);
+             } else {
+                 // Node with only one child or no child
+                 if (root.left == null) {
+                     return root.right;
+                 } else if (root.right == null) {
+                     return root.left;
+                 }
+
+                 // Node with two children: Get the inorder successor (smallest in the right subtree)
+                 root.value = minValue(root.right);
+
+                 // Delete the inorder successor
+                 root.right = deleteRec(root.right, root.value);
+             }
+             return root;
+         }
+
+         // Function to find the minimum value in a subtree
+         private int minValue(TreeNode root) {
+             int minValue = root.value;
+             while (root.left != null) {
+                 minValue = root.left.value;
+                 root = root.left;
+             }
+             return minValue;
+         }
+
+         // In-order traversal of the BST
+         public void inorderTraversal() {
+             inorderRec(root);
+         }
+
+         // Recursive function for in-order traversal
+         private void inorderRec(Tree
+
+     please continue
+
+     Certainly! Let's continue with the in-order traversal function and complete the Java implementation of the Binary Search Tree (BST).
+
+     In-Order Traversal
+     In-order traversal visits the nodes of a BST in ascending order. The process is as follows:
+
+     Traverse the left subtree.
+     Visit the root node.
+     Traverse the right subtree.
+     Here’s how you can implement the in-order traversal in Java:
+
+         // Recursive function for in-order traversal
+         private void inorderRec(TreeNode root) {
+             if (root != null) {
+                 inorderRec(root.left);  // Visit left subtree
+                 System.out.print(root.value + " ");  // Visit node
+                 inorderRec(root.right); // Visit right subtree
+             }
+         }
+
+         // Main method to test the BST
+         public static void main(String[] args) {
+             BinarySearchTree bst = new BinarySearchTree();
+
+             // Insert values into the BST
+             bst.insert(50);
+             bst.insert(30);
+             bst.insert(20);
+             bst.insert(40);
+             bst.insert(70);
+             bst.insert(60);
+             bst.insert(80);
+
+             // Print in-order traversal of the BST
+             System.out.println("In-order traversal of the BST:");
+             bst.inorderTraversal(); // Output: 20 30 40 50 60 70 80
+             System.out.println();
+
+             // Search for a value
+             int searchValue = 40;
+             System.out.println("Searching for " + searchValue + ": " + bst.search(searchValue)); // Output: true
+
+             // Delete a value
+             System.out.println("Deleting value 20:");
+             bst.delete(20);
+             System.out.println("In-order traversal after deleting 20:");
+             bst.inorderTraversal(); // Output: 30 40 50 60 70 80
+             System.out.println();
+
+             // Delete a value with two children
+             System.out.println("Deleting value 50:");
+             bst.delete(50);
+             System.out.println("In-order traversal after deleting 50:");
+             bst.inorderTraversal(); // Output: 30 40 60 70 80
+             System.out.println();
+         }
+     }
+     Explanation of the Code
+     TreeNode Class:
+
+     Represents a single node in the tree, containing an integer value and references to its left and right children.
+     BinarySearchTree Class:
+
+     Contains the methods for inserting, searching, deleting, and traversing the tree.
+     Insert Method:
+
+     Recursively finds the correct position for the new value based on the properties of the BST and inserts it.
+     Search Method:
+
+     Recursively searches for a value in the tree, returning true if found and false otherwise.
+     Delete Method:
+
+     Removes a specified value from the tree. It handles three cases:
+     Node with no children (leaf node).
+     Node with one child.
+     Node with two children (finds the in-order successor).
+     In-Order Traversal Method:
+
+     Visits nodes in ascending order and prints their values.
+     Example Execution
+     When you run the main method, the following actions occur:
+
+     Values are inserted into the BST.
+     An in-order traversal displays the values in sorted order.
+     A search operation checks for the presence of a specific value.
+     Values are deleted, and in-order traversals are printed to show the updated structure of the tree.
+     Time Complexity
+     Insertion: O(h), where h is the height of the tree. In a balanced BST, this is O(log N), but in the worst case (unbalanced), it can be O(N).
+     Search: O(h) for the same reasons as insertion.
+     Deletion: O(h) as well.
+     In-Order Traversal: O(N), since every node must be visited.
+     Conclusion
+     A Binary Search Tree is a powerful data structure that allows for efficient data management, especially when dealing with dynamic datasets that require frequent insertions and deletions. Understanding BSTs is foundational for more advanced data structures and algorithms, making it a critical concept in computer science education.

@@ -3,7 +3,9 @@ package Java8;
 import java.util.Optional;
 
 public class OptionalExample {
-    //The `Optional` class was introduced in Java 8 to avoid null pointer exceptions and make code more readable when dealing with null values. It provides methods like `ifPresent`, `isPresent`, and `orElse` to handle null values gracefully
+    //The `Optional` class was introduced in Java 8 to avoid null pointer exceptions and make code more
+    // readable when dealing with null values. It provides methods like `ifPresent`, `
+    // isPresent`, and `orElse` to handle null values gracefully
     public static void main(String[] args) {
         // Define a nullable string value
         String name = "John";

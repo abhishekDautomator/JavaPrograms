@@ -1,10 +1,6 @@
 package Java8.datetimeapi;
 
-import javax.swing.text.DateFormatter;
-import java.text.DateFormat;
 import java.time.*;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
 
 public class DateAndTimeAPI {
     public static void main(String[] args) {

@@ -1,28 +1,28 @@
-1. Which Data Structure does HashMap represent?
-Ans. A HashMap in Java represents an associative array or dictionary data structure. It is specifically
+1. Which Data Structure does DataStructure.map.HashMap represent?
+Ans. A DataStructure.map.HashMap in Java represents an associative array or dictionary data structure. It is specifically
 designed to store key-value pairs, allowing for efficient retrieval, insertion, and deletion of values based
 on their associated keys.
 
-Characteristics of HashMap:
-Key-Value Pairs: Each entry in a HashMap consists of a unique key and its corresponding value. This allows
+Characteristics of DataStructure.map.HashMap:
+Key-Value Pairs: Each entry in a DataStructure.map.HashMap consists of a unique key and its corresponding value. This allows
 for quick lookups based on the key.
 
 Hashing Mechanism: It uses a hash function to compute an index (bucket) based on the hash code of the key.
 This enables average-case constant time complexity (O(1)) for basic operations like get and put.
 
-Collision Handling: When two keys hash to the same index, HashMap handles collisions using techniques such as chaining (linked lists) or, in some implementations, by using balanced trees for buckets that exceed a certain threshold.
+Collision Handling: When two keys hash to the same index, DataStructure.map.HashMap handles collisions using techniques such as chaining (linked lists) or, in some implementations, by using balanced trees for buckets that exceed a certain threshold.
 
-Dynamic Resizing: As more entries are added, a HashMap dynamically resizes itself when a predefined load factor is exceeded, ensuring efficient space utilization.
+Dynamic Resizing: As more entries are added, a DataStructure.map.HashMap dynamically resizes itself when a predefined load factor is exceeded, ensuring efficient space utilization.
 
-Unordered Collection: The order of the entries in a HashMap is not guaranteed, as it does not maintain any
+Unordered Collection: The order of the entries in a DataStructure.map.HashMap is not guaranteed, as it does not maintain any
 specific order of elements. If you need ordered key-value pairs, consider using a LinkedHashMap.
 
-2. Which Data Structures are used to implement HashMap?
-Ans. A HashMap in Java is implemented using a combination of several data structures that work together to provide efficient storage and retrieval of key-value pairs. The primary data structures involved are:
+2. Which Data Structures are used to implement DataStructure.map.HashMap?
+Ans. A DataStructure.map.HashMap in Java is implemented using a combination of several data structures that work together to provide efficient storage and retrieval of key-value pairs. The primary data structures involved are:
 
      1. Array (Buckets)
-     The core of a HashMap is an array of buckets. Each element in the array can hold a reference to the head of a linked list or tree structure that contains entries (key-value pairs).
-     The size of this array is determined by the initial capacity specified when creating the HashMap.
+     The core of a DataStructure.map.HashMap is an array of buckets. Each element in the array can hold a reference to the head of a linked list or tree structure that contains entries (key-value pairs).
+     The size of this array is determined by the initial capacity specified when creating the DataStructure.map.HashMap.
 
      2. Linked List
      When multiple keys hash to the same index (a collision occurs), the entries are stored in a linked list at that index.
@@ -39,17 +39,17 @@ Ans. A HashMap in Java is implemented using a combination of several data struct
      Linked List: Used for collision resolution within each bucket.
      Balanced Tree: An optional structure for improving performance in heavily populated buckets.
 
-3. Is HashMap thread safe in Java?
-Ans. No, HashMap is not thread-safe in Java. This means that if multiple threads access a HashMap concurrently
+3. Is DataStructure.map.HashMap thread safe in Java?
+Ans. No, DataStructure.map.HashMap is not thread-safe in Java. This means that if multiple threads access a DataStructure.map.HashMap concurrently
 and at least one of the threads modifies the map (by adding or removing entries), it can lead to unpredictable
 behavior, including data corruption, infinite loops, and other concurrency issues.
 
-     Key Points about HashMap and Thread Safety:
+     Key Points about DataStructure.map.HashMap and Thread Safety:
 
-     Non-Synchronized: HashMap does not provide any built-in synchronization mechanisms to ensure thread safety.
+     Non-Synchronized: DataStructure.map.HashMap does not provide any built-in synchronization mechanisms to ensure thread safety.
      As a result, multiple threads can read from and write to the map simultaneously without coordination,
      which can cause inconsistencies.
-     Concurrent Modifications: If one thread is iterating over a HashMap while another thread modifies it,
+     Concurrent Modifications: If one thread is iterating over a DataStructure.map.HashMap while another thread modifies it,
      the iterator may throw a ConcurrentModificationException, indicating that the structure of the map has
      changed unexpectedly.
 
@@ -62,22 +62,22 @@ behavior, including data corruption, infinite loops, and other concurrency issue
      entire map, improving performance in multi-threaded environments.
 
 4. How do you remove a mapping while iterating over a hashmap?
-Ans. Removing a mapping from a HashMap while iterating over it can lead to a ConcurrentModificationException
+Ans. Removing a mapping from a DataStructure.map.HashMap while iterating over it can lead to a ConcurrentModificationException
 if done directly using the iterator. To safely remove entries during iteration, you should use the Iterator's
 remove() method.
 
-5. What is a load factor in a HashMap?
-Ans. The load factor in a HashMap is a measure that determines how full the hash table can get before it
+5. What is a load factor in a DataStructure.map.HashMap?
+Ans. The load factor in a DataStructure.map.HashMap is a measure that determines how full the hash table can get before it
 needs to be resized. It is defined as the ratio of the number of entries (key-value pairs) in the hash table
 to the total number of buckets (or slots) in the table. The load factor helps maintain the performance of the
- HashMap by ensuring that there are enough buckets available to minimize collisions.
+ DataStructure.map.HashMap by ensuring that there are enough buckets available to minimize collisions.
 
     Key Concepts:
     Load Factor Calculation: $ \text{Load Factor} = \frac{\text{Number of Entries}}{\text{Number of Buckets}} $
-    For example, if a HashMap has 10 entries and 16 buckets, the load factor would be
+    For example, if a DataStructure.map.HashMap has 10 entries and 16 buckets, the load factor would be
     $ \frac{10}{16} = 0.625 $.
 
-    Default Load Factor: The default load factor for a HashMap in Java is 0.75. This means that when the number of entries in the HashMap exceeds 75% of the current bucket size, the HashMap will resize itself (usually doubling the number of buckets) to maintain efficient access times.
+    Default Load Factor: The default load factor for a DataStructure.map.HashMap in Java is 0.75. This means that when the number of entries in the DataStructure.map.HashMap exceeds 75% of the current bucket size, the DataStructure.map.HashMap will resize itself (usually doubling the number of buckets) to maintain efficient access times.
 
     Impact on Performance:
 
@@ -85,36 +85,36 @@ to the total number of buckets (or slots) in the table. The load factor helps ma
     access times. However, it also uses more memory.
     A high load factor (e.g., 0.9) conserves memory but increases the likelihood of collisions, which can lead to longer search times as multiple entries may be stored in the same bucket.
     Resizing: When the number of entries exceeds the product of the load factor and the current
-    capacity (number of buckets), the HashMap is resized. During resizing, all existing entries are rehashed
+    capacity (number of buckets), the DataStructure.map.HashMap is resized. During resizing, all existing entries are rehashed
     and redistributed into the new array of buckets.
 
-    Custom Load Factor: When creating a HashMap, you can specify an initial capacity and a custom load factor. This can be done using the constructor:
+    Custom Load Factor: When creating a DataStructure.map.HashMap, you can specify an initial capacity and a custom load factor. This can be done using the constructor:
 
-    Map<Integer, String> map = new HashMap<>(initialCapacity, loadFactor);
+    Map<Integer, String> map = new DataStructure.map.HashMap<>(initialCapacity, loadFactor);
     Choosing an appropriate load factor can help optimize performance based on the expected number of entries.
 
-6. How many entries you can store in a HashMap? What is the maximum limit?
-Ans. The maximum number of entries that can be stored in a HashMap is primarily limited by two factors:
+6. How many entries you can store in a DataStructure.map.HashMap? What is the maximum limit?
+Ans. The maximum number of entries that can be stored in a DataStructure.map.HashMap is primarily limited by two factors:
 the maximum size of an integer in Java and the available memory of the Java Virtual Machine (JVM).
     Key Points:
     Integer Limits:
 
     The maximum size for an index in a Java array is $2^{31} - 1$ (or 2,147,483,647), which is the highest
-    value for a 32-bit signed integer. This means that theoretically, a HashMap could hold up to $2^{31} - 1$ entries if there were enough memory available.
+    value for a 32-bit signed integer. This means that theoretically, a DataStructure.map.HashMap could hold up to $2^{31} - 1$ entries if there were enough memory available.
     Memory Constraints:
 
-    In practice, the actual limit on how many entries you can store in a HashMap is often less than $2^{31} - 1$ due to the amount of heap memory allocated to your Java application. The JVM has a maximum heap size that can be configured with options like -Xmx when starting the JVM.
+    In practice, the actual limit on how many entries you can store in a DataStructure.map.HashMap is often less than $2^{31} - 1$ due to the amount of heap memory allocated to your Java application. The JVM has a maximum heap size that can be configured with options like -Xmx when starting the JVM.
     If you try to add more entries than the available memory can handle, you will encounter an OutOfMemoryError.
-    HashMap Resizing:
+    DataStructure.map.HashMap Resizing:
 
-    As you add entries to a HashMap, it dynamically resizes itself when the number of entries exceeds the product of its current capacity and load factor (default load factor is 0.75). This helps maintain efficient access times but also means that the internal structure requires memory overhead.
+    As you add entries to a DataStructure.map.HashMap, it dynamically resizes itself when the number of entries exceeds the product of its current capacity and load factor (default load factor is 0.75). This helps maintain efficient access times but also means that the internal structure requires memory overhead.
     Practical Considerations:
 
-    While you can theoretically create a very large HashMap, practical limitations such as system memory, performance implications, and garbage collection behavior should be considered. It's essential to monitor performance and memory usage when dealing with large datasets.
+    While you can theoretically create a very large DataStructure.map.HashMap, practical limitations such as system memory, performance implications, and garbage collection behavior should be considered. It's essential to monitor performance and memory usage when dealing with large datasets.
     Summary
-    In summary, while a HashMap can theoretically store up to $2^{31} - 1$ entries, the actual limit is constrained by available memory and JVM settings. In practice, you should consider both memory usage and performance when working with large collections.
+    In summary, while a DataStructure.map.HashMap can theoretically store up to $2^{31} - 1$ entries, the actual limit is constrained by available memory and JVM settings. In practice, you should consider both memory usage and performance when working with large collections.
 
-7. Difference between size and capacity of HashMap?
+7. Difference between size and capacity of DataStructure.map.HashMap?
 Ans. Summary of Differences
      Feature	                Size	                         Capacity
      Definition	        Number of entries in the map	    Number of buckets available
@@ -124,10 +124,10 @@ Ans. Summary of Differences
      Purpose	        Indicates how many elements exist	Determines when to resize
 
      Conclusion
-     Understanding the difference between size and capacity is crucial for effectively using a HashMap. The size reflects the current number of entries, while capacity indicates how many entries can be accommodated before resizing occurs. Properly managing these aspects can help optimize memory usage and performance in your applications.
+     Understanding the difference between size and capacity is crucial for effectively using a DataStructure.map.HashMap. The size reflects the current number of entries, while capacity indicates how many entries can be accommodated before resizing occurs. Properly managing these aspects can help optimize memory usage and performance in your applications.
 
 8. Explain ConcurrentHashMap.
-Ans. ConcurrentHashMap is a thread-safe variant of HashMap in Java, designed to allow concurrent access and updates by multiple threads without the need for external synchronization. It is part of the java.util.concurrent package and provides a high-performance, scalable way to manage key-value pairs in a multi-threaded environment.
+Ans. ConcurrentHashMap is a thread-safe variant of DataStructure.map.HashMap in Java, designed to allow concurrent access and updates by multiple threads without the need for external synchronization. It is part of the java.util.concurrent package and provides a high-performance, scalable way to manage key-value pairs in a multi-threaded environment.
     Key Features
     Thread Safety:
 
@@ -211,40 +211,40 @@ Ans. ConcurrentMap and Hashtable are both data structures used for storing key-v
      Conclusion
      ConcurrentMap (specifically through implementations like ConcurrentHashMap) is the recommended choice for concurrent programming in Java due to its design for scalability and performance. Hashtable, while still available, is largely considered outdated and not suitable for new applications where concurrency is a concern.
 
-10. Can you store a duplicate key in HashMap?
+10. Can you store a duplicate key in DataStructure.map.HashMap?
 Ans. No.
 
-11. Can you store a duplicate value in HashMap?
+11. Can you store a duplicate value in DataStructure.map.HashMap?
 Ans. Yes.
 
-12. In which orders mapping are stored in HashMap?
+12. In which orders mapping are stored in DataStructure.map.HashMap?
 Ans. Unordered. It doesn't follow any adding order and add elements based on key hash index.
 
 13. How collisions are handled in Hashmap if two different keys having same hash index is added?
-Ans. If two different keys in a HashMap produce the same hash index (also known as a hash collision), the HashMap handles this situation using a technique called chaining. Here's how it works:
+Ans. If two different keys in a DataStructure.map.HashMap produce the same hash index (also known as a hash collision), the DataStructure.map.HashMap handles this situation using a technique called chaining. Here's how it works:
 
-     Handling Hash Collisions in HashMap
-     Hash Function: When a key-value pair is added to the HashMap, the hash function computes the hash code of the key and then determines the index in the underlying array where the entry will be stored.
+     Handling Hash Collisions in DataStructure.map.HashMap
+     Hash Function: When a key-value pair is added to the DataStructure.map.HashMap, the hash function computes the hash code of the key and then determines the index in the underlying array where the entry will be stored.
 
      Collision Occurrence: If two keys produce the same index in the array, a collision occurs. For example, if both key1 and key2 hash to the same index, both entries cannot occupy the same slot directly.
 
-     Chaining: To manage collisions, HashMap uses a linked list (or a balanced tree for larger buckets) at each index of the array:
+     Chaining: To manage collisions, DataStructure.map.HashMap uses a linked list (or a balanced tree for larger buckets) at each index of the array:
 
      When a collision occurs, the new entry is added to the linked list (or tree) at that index.
      Each entry in the linked list (or tree) contains the key, value, and a reference to the next entry in the chain.
      Retrieval: When retrieving a value using a key:
 
      The hash code is calculated, and the corresponding index is located.
-     The HashMap then traverses the linked list (or tree) at that index to find the entry with the matching key.
+     The DataStructure.map.HashMap then traverses the linked list (or tree) at that index to find the entry with the matching key.
      Because each key is unique, the search will eventually find the right entry or determine that the key is not present.
      Performance Considerations
      Average Case: In a well-distributed hash function, the average time complexity for operations (insertion, deletion, lookup) remains O(1), even with collisions.
-     Worst Case: If many keys collide and are chained together, the performance can degrade to O(n) for those operations. However, modern implementations of HashMap use balanced trees (like red-black trees) when the number of collisions exceeds a certain threshold (usually 8), which helps maintain efficiency.
+     Worst Case: If many keys collide and are chained together, the performance can degrade to O(n) for those operations. However, modern implementations of DataStructure.map.HashMap use balanced trees (like red-black trees) when the number of collisions exceeds a certain threshold (usually 8), which helps maintain efficiency.
      Summary
-     In summary, when two different keys hash to the same index in a HashMap, the implementation uses a linked list (or tree structure for larger groups of entries) at that index to store both entries. This allows the HashMap to maintain unique keys and efficiently handle collisions.
+     In summary, when two different keys hash to the same index in a DataStructure.map.HashMap, the implementation uses a linked list (or tree structure for larger groups of entries) at that index to store both entries. This allows the DataStructure.map.HashMap to maintain unique keys and efficiently handle collisions.
 
 14. How does ConcurrentModificationException occurs in Java?
-Ans. ConcurrentModificationException is a runtime exception in Java that occurs when a collection is modified while it is being iterated over, and the iterator does not support concurrent modifications. This exception is primarily associated with the Java Collections Framework, particularly with classes like ArrayList, HashMap, and others that are not thread-safe.
+Ans. ConcurrentModificationException is a runtime exception in Java that occurs when a collection is modified while it is being iterated over, and the iterator does not support concurrent modifications. This exception is primarily associated with the Java Collections Framework, particularly with classes like ArrayList, DataStructure.map.HashMap, and others that are not thread-safe.
 
      How ConcurrentModificationException Occurs
      Fail-Fast Iterators: Most collection classes in Java provide fail-fast iterators. These iterators detect if the collection has been structurally modified (i.e., elements added or removed) after the iterator was created. If such a modification is detected during iteration, a ConcurrentModificationException is thrown.

@@ -9,30 +9,28 @@ import java.util.function.Supplier;
 
 public class SupplierExample {
     public static void main(String[] args) {
-        Supplier<Date> supplierToGetCurrentDate = () -> {
-            return new Date();
-        };
+        Supplier<Date> supplierToGetCurrentDate = Date::new;
 
         Supplier<Integer> supplierToGetRandom4DigitNum = () -> {
-            String result = "";
+            StringBuilder result = new StringBuilder();
             for (int i = 0; i < 4; i++) {
-                result+=(int)(Math.random()*9);
+                result.append((int) (Math.random() * 9));
             }
-            return Integer.parseInt(result);
+            return Integer.parseInt(result.toString());
         };
 
         Supplier<String> password = () -> {
-            String s = "";
+            StringBuilder s = new StringBuilder();
             for (int i = 1; i <=8; i++) {
                 if(i%2!=0) {
                     char rChar = (char) (new Random().nextInt(26) + 'A');
                     String rString = rChar+"@"+"#"+"$";
-                    s+=rString.charAt(new Random().nextInt(rString.length()));
+                    s.append(rString.charAt(new Random().nextInt(rString.length())));
                 }
                 else
-                    s+= (int)(Math.random()*9);
+                    s.append((int) (Math.random() * 9));
             }
-            return s;
+            return s.toString();
         };
 
         System.out.println("Current date : "+supplierToGetCurrentDate.get());

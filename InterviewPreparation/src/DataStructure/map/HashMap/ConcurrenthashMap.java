@@ -1,4 +1,4 @@
-package HashMap;
+package DataStructure.map.HashMap;
 
 import java.util.concurrent.ConcurrentHashMap;
 

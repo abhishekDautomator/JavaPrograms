@@ -1,9 +1,14 @@
-The @Transient and @JsonIgnore annotations serve different purposes in Java, particularly in the context of persistence with JPA (Java Persistence API) and serialization with JSON libraries like Jackson. Below is a comparison of the two annotations, highlighting their differences and use cases:
+@Transient vs @JsonIgnore
+The @Transient and @JsonIgnore annotations serve different purposes in Java, particularly in the context of
+persistence with JPA (Java Persistence API) and serialization with JSON libraries like Jackson.
+Below is a comparison of the two annotations, highlighting their differences and use cases:
 
 1. @Transient
 Purpose:
 
-The @Transient annotation is used to indicate that a specific field in a JPA entity should not be persisted to the database. It tells the persistence provider (like Hibernate) to ignore this field when generating SQL statements for storing or updating data.
+The @Transient annotation is used to indicate that a specific field in a JPA entity should not be persisted
+to the database. It tells the persistence provider (like Hibernate) to ignore this field when generating SQL
+statements for storing or updating data.
 Usage Context:
 
 Primarily used in the context of JPA/Hibernate for entities.
@@ -30,7 +35,10 @@ When the entity is saved or updated, the field annotated with @Transient will be
 2. @JsonIgnore
 Purpose:
 
-The @JsonIgnore annotation is used to indicate that a specific property of an object should be ignored during serialization and deserialization processes when converting Java objects to JSON and vice versa.
+The @JsonIgnore annotation is used to indicate that a specific property of an object
+should be ignored during serialization and deserialization processes when converting Java objects to JSON
+and vice versa.
+
 Usage Context:
 
 Primarily used in the context of JSON serialization/deserialization with libraries like Jackson.
@@ -49,7 +57,10 @@ public class User {
 }
 Behavior:
 
-When a User object is serialized to JSON using Jackson, the sensitiveData field will be omitted from the resulting JSON. Similarly, if JSON input includes this field, it will be ignored during deserialization.
+When a User object is serialized to JSON using Jackson, the sensitiveData field will be omitted
+from the resulting JSON. Similarly, if JSON input includes this field, it will be ignored during
+deserialization.
+
 Key Differences
 Feature	@Transient	@JsonIgnore
 Purpose	Prevents field from being persisted to the database	Prevents field from being included in JSON serialization/deserialization
@@ -63,50 +74,88 @@ These annotations help manage how data is handled in your application, ensuring 
 
 
 Explain usage of Kubernetes?
+Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform designed to automate
+the deployment, scaling, and operation of application containers. It has become a standard in managing
+containerized applications across various environments, from development to production.
 
-Kubernetes, often abbreviated as K8s, is an open-source container orchestration platform designed to automate the deployment, scaling, and operation of application containers. It has become a standard in managing containerized applications across various environments, from development to production. Here are some primary uses and benefits of Kubernetes:
+Here are some primary uses and benefits of Kubernetes:
 1. Container Orchestration
-Kubernetes manages clusters of containers, automating the deployment, scaling, and management of these containers. This enables organizations to run applications reliably and consistently across different environments.
+Kubernetes manages clusters of containers, automating the deployment, scaling, and management of these containers.
+This enables organizations to run applications reliably and consistently across different environments.
+
 2. Scaling Applications
-Kubernetes allows for dynamic scaling of applications based on demand. It can automatically increase or decrease the number of running instances of an application (pods) in response to traffic or resource utilization.
+Kubernetes allows for dynamic scaling of applications based on demand. It can automatically increase
+or decrease the number of running instances of an application (pods) in response to traffic or resource
+utilization.
+
 3. Load Balancing
-Kubernetes provides built-in load balancing capabilities. It distributes network traffic evenly across multiple instances of an application, ensuring optimal resource use and preventing any single instance from becoming a bottleneck.
+Kubernetes provides built-in load balancing capabilities. It distributes network traffic
+evenly across multiple instances of an application, ensuring optimal resource use and preventing any single
+instance from becoming a bottleneck.
+
 4. Self-Healing
-Kubernetes can automatically replace or restart containers that fail or become unresponsive. This self-healing feature helps maintain application availability and reliability without manual intervention.
+Kubernetes can automatically replace or restart containers that fail or become unresponsive. This self-healing
+feature helps maintain application availability and reliability without manual intervention.
+
 5. Service Discovery and Networking
-Kubernetes facilitates service discovery, allowing applications to communicate with one another seamlessly. It manages internal DNS and provides a way for services to find each other within the cluster.
+Kubernetes facilitates service discovery, allowing applications to communicate with one another
+seamlessly. It manages internal DNS and provides a way for services to find each other within the cluster.
+
 6. Declarative Configuration
-With Kubernetes, you can define the desired state of your applications using YAML or JSON configuration files. This declarative approach allows for version control, easier rollbacks, and reproducibility of environments.
+With Kubernetes, you can define the desired state of your applications using YAML or JSON configuration files.
+This declarative approach allows for version control, easier rollbacks, and reproducibility of environments.
+
 7. Rolling Updates and Rollbacks
-Kubernetes supports rolling updates, enabling you to update applications without downtime. If issues arise during an update, it can also roll back to a previous stable version automatically.
+Kubernetes supports rolling updates, enabling you to update applications without downtime.
+If issues arise during an update, it can also roll back to a previous stable version automatically.
+
 8. Multi-Cloud and Hybrid Deployments
-Kubernetes abstracts the underlying infrastructure, allowing applications to run consistently across different cloud providers or on-premises environments. This flexibility supports multi-cloud and hybrid cloud strategies.
+Kubernetes abstracts the underlying infrastructure, allowing applications to run consistently
+across different cloud providers or on-premises environments. This flexibility supports multi-cloud and
+
 9. Resource Management
-Kubernetes optimizes resource usage by scheduling containers on nodes based on available resources, constraints, and priorities. It helps ensure that applications have the necessary resources while maximizing efficiency.
+Kubernetes optimizes resource usage by scheduling containers on nodes based on available resources,
+constraints, and priorities. It helps ensure that applications have the necessary resources while maximizing
+efficiency.
+
 10. Extensibility and Ecosystem
-Kubernetes has a rich ecosystem with many tools and add-ons, such as Helm for package management, Istio for service mesh capabilities, and Prometheus for monitoring and alerting. Its extensibility allows users to customize their Kubernetes experience to fit specific needs.
+Kubernetes has a rich ecosystem with many tools and add-ons, such as Helm for package management,
+Istio for service mesh capabilities, and Prometheus for monitoring and alerting. Its extensibility allows
+users to customize their Kubernetes experience to fit specific needs.
+
 11. Security and Compliance
-Kubernetes provides various security features, including role-based access control (RBAC), network policies, and secrets management. These features help secure applications and comply with regulatory requirements.
+Kubernetes provides various security features, including role-based access control (RBAC), network policies,
+and secrets management.These features help secure applications and comply with regulatory requirements.
+
 Use Cases
 
 
-Microservices Architecture: Kubernetes is well-suited for deploying and managing microservices-based applications, where services are loosely coupled and independently deployable.
+Microservices Architecture: Kubernetes is well-suited for deploying and managing microservices-based applications,
+where services are loosely coupled and independently deployable.
 
 
-DevOps Practices: It supports DevOps practices by enabling continuous integration and continuous deployment (CI/CD) pipelines, facilitating faster development cycles and more reliable releases.
+DevOps Practices: It supports DevOps practices by enabling continuous integration and continuous deployment
+(CI/CD) pipelines, facilitating faster development cycles and more reliable releases.
 
 
-Big Data and Machine Learning: Kubernetes can manage big data and machine learning workloads, allowing for the orchestration of complex data processing tasks and model training jobs.
+Big Data and Machine Learning: Kubernetes can manage big data and machine learning workloads, allowing for
+the orchestration of complex data processing tasks and model training jobs.
 
 
-Web Applications: Many organizations use Kubernetes to host scalable web applications, leveraging its scaling and self-healing capabilities to handle variable traffic loads.
+Web Applications: Many organizations use Kubernetes to host scalable web applications, leveraging its scaling
+and self-healing capabilities to handle variable traffic loads.
 
 
-In summary, Kubernetes is a powerful platform that simplifies the management of containerized applications, enhances scalability, availability, and resilience, and supports modern development practices. Its wide adoption and robust ecosystem make it a critical tool for organizations looking to optimize their application lifecycle management.
+In summary, Kubernetes is a powerful platform that simplifies the management of containerized
+applications, enhances scalability, availability, and resilience, and supports modern development practices.
+Its wide adoption and robust ecosystem make it a critical tool for organizations looking to optimize their
+application lifecycle management.
 
 How can we prevent circular dependency in Spring?
 
-Circular dependencies in Spring occur when two or more beans depend on each other, creating a cycle that can lead to issues during bean initialization. Here are several strategies to prevent and resolve circular dependencies in Spring:
+Circular dependencies in Spring occur when two or more beans depend on each other, creating a cycle that can
+lead to issues during bean initialization. Here are several strategies to prevent and resolve circular
+dependencies in Spring:
 
 1. Setter Injection
 Instead of using constructor injection, you can use setter injection. This allows Spring to create the beans without needing all dependencies upfront. The dependencies can be injected later through setters.
@@ -132,8 +181,10 @@ public class B {
         this.a = a;
     }
 }
+
 2. Use @Lazy Annotation
-The @Lazy annotation can be applied to one or more beans to indicate that they should be initialized lazily, meaning that the bean will not be created until it is needed.
+The @Lazy annotation can be applied to one or more beans to indicate that they should be initialized lazily,
+meaning that the bean will not be created until it is needed.
 
 Example:
 
@@ -156,11 +207,13 @@ public class B {
         this.a = a;
     }
 }
+
 3. Refactor Code
 Consider refactoring your code to eliminate the circular dependency altogether. This could involve creating a new service class that encapsulates shared functionality or breaking down complex components into smaller, more manageable ones.
 
 4. Event Publishing
-Using an application event can decouple the beans. Instead of directly calling methods on each other, one bean can publish an event that the other bean listens to.
+Using an application event can decouple the beans. Instead of directly calling methods on each other,
+one bean can publish an event that the other bean listens to.
 
 Example:
 
@@ -192,4 +245,216 @@ You can also use factory beans to create instances of the beans. This way, you c
 If applicable, you can define different profiles for different configurations. This allows you to load only necessary beans based on the active profile, potentially avoiding circular dependencies.
 
 Summary
-Preventing circular dependencies often involves choosing the right type of dependency injection, refactoring the code structure, and leveraging Spring's features like lazy initialization and event handling. By applying these strategies, you can effectively manage and avoid circular dependencies in your Spring applications.
+Preventing circular dependencies often involves choosing the right type of dependency injection, refactoring the code structure, and leveraging Spring's
+features like lazy initialization and event handling. By applying these strategies, you can effectively
+manage and avoid circular dependencies in your Spring applications.
+
+List vs Array?
+
+lists and arrays are both used to store collections of elements, but they have distinct characteristics and use cases. Here’s a detailed comparison:
+
+1. Data Type Flexibility
+Array: An array in Java is a fixed-size data structure that can hold a specified number of elements of the same type (e.g., int[], String[]).
+ The size of an array is defined when it is created and cannot be changed.
+List: A list, typically implemented through the List interface (e.g., ArrayList, LinkedList), can hold elements of the same type but is dynamic in size. You can add or remove elements as needed.
+2. Initialization and Size
+Array: Arrays must be explicitly declared with a specific size. For example:
+int[] numbers = new int[5]; // Array of size 5
+List: Lists can be initialized without a predefined size. For example:
+List<Integer> numberList = new ArrayList<>(); // Dynamic size
+
+3. Performance
+Array: Arrays provide faster access to elements because they are stored in contiguous memory locations.
+However, resizing an array requires creating a new array and copying the elements, which can be inefficient.
+
+List: Lists may have overhead due to their dynamic nature, particularly with LinkedList, which has more
+complex memory management. However, ArrayList provides good performance for most operations due to its
+ underlying array structure.
+
+4. Functionality
+Array: Arrays have limited built-in functionality. You can access elements using an index, but they do not provide methods for common operations like adding or removing elements.
+List: Lists come with a rich set of methods (e.g., add(), remove(), size(), contains()) that make them easier to use for dynamic collections.
+5. Multidimensional Capability
+Array: Java supports multidimensional arrays (e.g., int[][]), which are essentially arrays of arrays. However, they are still fixed in size.
+List: While you can create a list of lists to simulate a multidimensional structure, this approach is more flexible and allows for varying sizes at each level.
+
+6. Type Safety
+Array: Arrays are type-safe and can enforce type checking at compile time. If you try to store a
+different type, it will result in a compile-time error.
+
+List: With generics, lists also provide type safety, allowing you to specify the type of elements they
+contain (e.g., List<String>).
+
+Summary
+In summary, use arrays when you need a fixed-size collection of elements of the same type and require
+fast access. Use lists when you need a flexible, dynamic collection that allows for easy modification of
+elements and provides a rich set of methods for manipulation. Each has its strengths and is suited to
+different programming scenarios in Java.
+
+
+Which types of methods can't be override?
+Ans:- In Java, certain types of methods cannot be overridden due to the rules of inheritance and method resolution.
+Here are the key types of methods that cannot be overridden:
+
+
+      Static Methods: Static methods belong to the class rather than any instance of the class.
+      They can be hidden (not overridden) in a subclass by defining a static method with the same name,
+      but this does not constitute overriding because the method is resolved based on the reference type,
+      not the object type.
+
+
+      Private Methods: Private methods are not accessible outside their own class, so they cannot be
+      overridden in subclasses. Each class has its own private methods, and they are not visible to
+      subclasses.
+
+
+      Final Methods: A method declared as final cannot be overridden. This is intended to prevent subclasses
+      from altering the behavior defined in the superclass.
+
+
+      Constructor Methods: Constructors cannot be overridden because they are not inherited. Each class has
+      its own constructor(s), and they are invoked when an object of that class is created.
+
+
+      Native Methods: While native methods (methods implemented in native code using JNI) can technically be overridden, the actual implementation details may prevent overriding in a meaningful way, depending on the context.
+
+
+      Methods from final Classes: If a class is declared as final, it cannot be subclassed, and thus, no methods can be overridden.
+
+
+      Understanding these restrictions is crucial for effective object-oriented programming in Java, especially when designing class hierarchies and ensuring intended behaviors.
+
+What are java solid principles?
+Ans:-
+    S:- Stands for single responsibility principle(SRP). It means that each class should have a single
+    responsibility to work on and not multiple details to handle thus keeping it loosely coupled and
+    easily maintainable.
+
+    O: Stands for Open/Closed principle (OCP). It means that every software entities(class, methods,
+    modules, etc) are available open to extend but closed for modification. It means that it's fine to
+    add new functionalities/features keeping the existing functionalities as it is.
+
+    L: Liskov substitute principle(LSP). It states that the parent classes object should be replaceable by
+    the child class object without affecting the program. Thus ensuring that the child class should stand
+    in for it's parent class, promoting correct inheritance and interface implementation.
+
+    I: Interface aggregation principle(IAP). It states that the client should not be forced to depend on an
+    interface which they do not use. This principle focus on creating smaller more emphasized interfaces
+    rather than creating a big interface with too many methods.
+
+    D: Dependency inversion principle(DIP). It suggests that the higher modules should not be dependent on
+    the lower modules. This principle advocates that both modules should depend on abstraction(Interfaces)
+    thus promoting loose coupling b/w software components.
+
+What do you mean by ACID  properties?
+Ans:- ACID is a set of properties that guarantee reliable processing of database transactions. The acronym
+stands for:
+
+    Atomicity: Ensures that all operations within a transaction are completed successfully. If any part of
+    the transaction fails, the entire transaction is rolled back, and the database remains unchanged.
+
+    Consistency: Ensures that a transaction brings the database from one valid state to another. Any data
+    written to the database must be valid according to any combination of rules, including cascades,
+    constraints, and any combination thereof.
+
+    Isolation: Ensures that transactions are executed in isolation from each other. This means that the
+    intermediate state of a transaction is invisible to other transactions, ensuring that concurrent
+    transactions do not interfere with each other.
+
+    Durability: Ensures that once a transaction has been committed, it will remain so, even in the event of
+    a system failure. This means that the changes made by a transaction are permanent and cannot be
+    undone.
+
+    Understanding and implementing ACID properties is crucial for maintaining data integrity and reliability
+    in database systems.
+
+What is the difference between JDBC and JPA?
+Ans:- JDBC (Java Database Connectivity) and JPA (Java Persistence API) are both used for database
+interaction in Java, but they serve different purposes and have distinct characteristics:
+
+    JDBC:
+        Low-level API: JDBC is a low-level API that provides a direct way to interact with a database using
+        SQL queries. It is part of the Java Standard Edition (Java SE) and is included in the java.sql
+        package.
+
+        SQL-centric: JDBC is SQL-centric, meaning that you write SQL queries to interact with the database.
+        This gives you fine-grained control over the database operations but requires more effort to
+        manage.
+
+        Manual mapping: With JDBC, you need to manually map database rows to Java objects, which can be
+        time-consuming and error-prone.
+
+        Performance: JDBC can be more performant for simple and straightforward database operations
+        because it bypasses the abstraction layer provided by higher-level APIs.
+
+    JPA:
+        High-level API: JPA is a high-level API that provides an abstraction layer over JDBC. It is part of
+        the Java Persistence API specification and is included in the javax.persistence package.
+
+        Object-oriented: JPA is object-oriented, meaning that you interact with the database using Java
+        objects rather than SQL queries. This makes it easier to work with and reduces the amount of
+
+IS-A vs HAS-A relationship?
+Ans:- IS-A and HAS-A are two fundamental concepts in object-oriented programming that describe
+relationships between classes. Understanding these relationships is crucial for designing robust and
+maintainable software.
+
+    IS-A Relationship (Inheritance):
+        Definition: The IS-A relationship is established through inheritance, where one class (subclass)
+        inherits properties and behaviors from another class (superclass).
+
+        Example: Consider a class hierarchy for animals. A Dog class can inherit from an Animal class.
+        This means that a Dog IS-A type of Animal.
+
+        Syntax: In Java, the IS-A relationship is established through inheritance. This is done using the
+        extends keyword.
+
+    HAS-A Relationship (Composition):
+        Definition: The HAS-A relationship is established through composition, where one class (subclass)
+        contains an instance of another class (superclass).
+
+        Example: Consider a class hierarchy for a Car. A Car class can have a HAS-A relationship with an
+        Engine class. This means that a Car HAS-A Engine.
+
+        Syntax: In Java, the HAS-A relationship is established through composition. This is done by
+        declaring an instance of the superclass within the subclass.
+
+In summary, the IS-A relationship is established through inheritance, while the HAS-A relationship is
+established through composition. Understanding these relationships helps in designing more modular and
+flexible software systems.
+
+What is the difference between Hibernate and JPA?
+Ans:- Hibernate and JPA (Java Persistence API) are both used for object-relational mapping (ORM) in Java,
+but they serve different purposes and have distinct characteristics:
+
+    JPA:
+        Specification: JPA is a specification that defines a standard API for accessing, persisting, and
+        managing data between Java objects and a relational database.
+
+        Abstraction: JPA provides an abstraction layer over the underlying database, allowing developers
+        to work with Java objects rather than SQL queries.
+
+        Portability: JPA is designed to be portable across different ORM frameworks, making it easier to
+        switch between different implementations if needed.
+
+        Standard: JPA is a standard defined by the Java Community Process (JCP), and it is part of the
+        Java EE (Enterprise Edition) specification.
+
+    Hibernate:
+        Specification: Hibernate is a framework that implements the JPA specification.
+
+        Abstraction: Hibernate provides a more comprehensive and feature-rich implementation of JPA,
+        offering additional functionality and optimizations.
+
+        Performance: Hibernate is known for its performance optimizations, such as caching, lazy loading,
+        and batch processing.
+
+        Extensions: Hibernate offers extensions and additional features beyond the JPA specification,
+        such as HQL (Hibernate Query Language) and Criteria API.
+
+        Community: Hibernate has a large and active community, which contributes to its development and
+        provides extensive documentation and support.
+
+In summary, JPA is a specification that defines a standard API for ORM, while Hibernate is a framework
+that implements the JPA specification. Hibernate provides a more comprehensive and feature-rich
+implementation of JPA, but JPA itself is a standard that can be implemented by other frameworks as well.

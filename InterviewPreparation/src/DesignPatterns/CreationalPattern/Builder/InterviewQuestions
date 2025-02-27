@@ -12,6 +12,7 @@ Answer: The Builder Design Pattern consists of the following components:
 Product: The complex object that is being built.
 Builder Interface: An interface that defines methods for creating parts of the product.
 Concrete Builder: A class that implements the Builder interface and constructs the parts of the product.
+
 It also provides a method to retrieve the final product.
 Director: A class that manages the construction process using the builder interface. It defines the order
 in which to call the builder methods.

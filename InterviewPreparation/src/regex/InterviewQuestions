@@ -1,0 +1,95 @@
+Basic Patterns
+Literal Characters:
+
+Matches the exact character(s).
+Example: cat matches "cat" in "catalog".
+Dot (.):
+
+Matches any single character except a newline.
+Example: c.t matches "cat", "cut", "c4t".
+Anchors:
+
+^ asserts position at the start of a string.
+Example: ^Hello matches "Hello" at the beginning.
+\$ asserts position at the end of a string.
+Example: world\$ matches "world" at the end.
+Character Classes
+Square Brackets ([]):
+
+Matches any one of the enclosed characters.
+Example: [aeiou] matches any vowel.
+
+Negated Character Classes ([^]):
+Matches any character not in the brackets.
+Example: [^0-9] matches any non-digit character.
+Ranges:
+
+Specifies a range of characters.
+Example: [a-z] matches any lowercase letter.
+
+Quantifiers
+Asterisk (*):
+Matches 0 or more repetitions of the preceding element.
+Example: go* matches "g", "go", "goo".
+
+Plus (+):
+Matches 1 or more repetitions of the preceding element.
+Example: go+ matches "go", "goo" but not "g".
+
+Question Mark (?):
+Matches 0 or 1 occurrence of the preceding element.
+Example: colou?r matches "color" and "colour".
+
+Braces ({n}):
+Matches exactly n occurrences of the preceding element.
+Example: a{3} matches "aaa".
+
+Braces with Ranges ({n,m}):
+
+Matches between n and m occurrences.
+
+Example: a{2,4} matches "aa", "aaa", or "aaaa".
+Groups and Alternation
+Parentheses (()):
+
+Groups patterns and captures the matched text.
+Example: (abc)+ matches "abc", "abcabc".
+Pipe (|):
+
+Acts as a logical OR.
+Example: cat|dog matches "cat" or "dog".
+
+Assertions
+Lookahead ((?=...)):
+
+Asserts that a pattern must follow.
+Example: \d(?= dollars) matches a digit followed by " dollars".
+
+Negative Lookahead ((?!...)):
+
+Asserts that a pattern must not follow.
+Example: \d(?! dollars) matches a digit not followed by " dollars".
+Lookbehind ((?<=...)):
+
+Asserts that a pattern must precede.
+Example: (?<=\$)\d+ matches digits preceded by "$".
+Negative Lookbehind ((?<!...)):
+
+Asserts that a pattern must not precede.
+Example: (?<!\$)\d+ matches digits not preceded by "$".
+Special Characters
+Escape Character (\):
+
+Escapes special characters to treat them as literals.
+Example: \. matches a literal dot.
+Word Boundary (\b):
+
+Asserts a position where a word character is next to a non-word character.
+Example: \bword\b matches "word" as a whole word.
+Non-Word Boundary (\B):
+
+Asserts a position where a word character is next to another word character.
+Example: \Bcat\B matches "scat" but not "cat".
+
+Conclusion
+These are just some common regex patterns and constructs. Regular expressions can be very powerful for text processing, validation, and searching, but they can also become quite complex depending on the requirements.

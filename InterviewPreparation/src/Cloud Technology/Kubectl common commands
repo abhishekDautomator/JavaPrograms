@@ -1,0 +1,62 @@
+Here are some common kubectl commands used to manage pods in Kubernetes:
+1. Creating a Pod
+To create a pod from a YAML file:
+kubectl apply -f pod-definition.yaml
+
+2. Listing Pods
+To list all pods in the current namespace:
+kubectl get pods
+
+To list pods in a specific namespace:
+kubectl get pods -n <namespace>
+
+3. Describing a Pod
+To get detailed information about a specific pod:
+kubectl describe pod <pod-name>
+
+4. Deleting a Pod
+To delete a specific pod:
+kubectl delete pod <pod-name>
+
+To delete all pods with a specific label:
+kubectl delete pod -l <label-selector>
+
+5. Viewing Pod Logs
+To view logs for a specific pod:
+kubectl logs <pod-name>
+
+To view logs for a specific container within a pod:
+kubectl logs <pod-name> -c <container-name>
+
+6. Executing Commands in a Pod
+To execute a command in a running pod:
+kubectl exec -it <pod-name> -- <command>
+
+For example, to open a shell in a pod:
+kubectl exec -it <pod-name> -- /bin/bash
+
+7. Scaling Pods
+To scale a deployment (which manages pods) to a specific number of replicas:
+kubectl scale deployment <deployment-name> --replicas=<number>
+
+8. Updating a Pod
+To update a pod's configuration, you typically modify the YAML file and reapply it:
+kubectl apply -f pod-definition.yaml
+
+9. Port Forwarding
+To access a pod's port locally:
+kubectl port-forward <pod-name> <local-port>:<pod-port>
+
+10. Get Pod Status
+To check the status of a specific pod:
+kubectl get pod <pod-name> -o jsonpath='{.status.phase}'
+
+11. Get Pods by Label
+To list pods with a specific label:
+kubectl get pods -l <label-key>=<label-value>
+
+12. Get Events Related to Pods
+To view events related to pods in the current namespace:
+kubectl get events --sort-by='.metadata.creationTimestamp'
+
+These commands provide a solid foundation for managing pods in a Kubernetes environment. They can be adapted to fit various use cases depending on your specific needs.

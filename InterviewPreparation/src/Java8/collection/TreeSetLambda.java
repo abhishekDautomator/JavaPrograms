@@ -5,7 +5,7 @@ import java.util.TreeSet;
 
 public class TreeSetLambda {
     public static void main(String[] args) {
-        Set<Integer> set = new TreeSet<>((a,b)->a>b?-1:a<b?1:0);
+        Set<Integer> set = new TreeSet<>((a,b)-> b.compareTo(a));
         set.add(10);
         set.add(4);
         set.add(20);

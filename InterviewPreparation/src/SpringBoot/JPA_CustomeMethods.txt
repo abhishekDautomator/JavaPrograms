@@ -1,0 +1,48 @@
+To create a custom method in your UserRepository that extends JpaRepository, you can define a method that searches for users based on the specified criteria: isActive being true and region being "CO". Here's how you can do this:
+
+Define the User Entity (if not already defined):
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+@Entity
+public class User {
+    @Id
+    private Long userId;
+    private boolean isActive;
+    private String region;
+    // Getters and Setters
+}
+
+
+Create the UserRepository Interface:
+
+You will extend JpaRepository and define the custom query method. Spring Data JPA allows you to derive queries from method names.
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
+public interface UserRepository extends JpaRepository<User, Long> {
+    List<User> findByIsActiveTrueAndRegion(String region);
+}
+
+
+Using the Custom Method in Your Service:
+
+You can now use this method in your service class to retrieve active users from the specified region.
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import java.util.List;
+@Service
+public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+    public List<User> getActiveUsersInRegion() {
+        return userRepository.findByIsActiveTrueAndRegion("CO");
+    }
+}
+
+Explanation:
+
+Method Naming Convention: The method findByIsActiveTrueAndRegion follows the Spring Data JPA naming conventions. findBy indicates a retrieval operation, IsActiveTrue specifies that we want only those entries where isActive is true, and AndRegion allows us to filter by the region column.
+Return Type: The method returns a List<User>, which will contain all users matching the criteria.
+Service Layer: In the service class, we inject the UserRepository and call the custom method to fetch the desired users.
+
+This setup allows you to efficiently query the database for users who are active and belong to the specified region without writing any additional SQL or JPQL queries, taking advantage of Spring Data JPA's method query derivation feature.

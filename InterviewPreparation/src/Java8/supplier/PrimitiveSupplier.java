@@ -6,11 +6,11 @@ import java.util.function.IntSupplier;
 public class PrimitiveSupplier {
     public static void main(String[] args) {
         IntSupplier randomIntSupplier = () -> {
-            String s = "";
+            StringBuilder s = new StringBuilder();
             for (int i = 0; i < 6; i++) {
-                s+=new Random().nextInt(10);
+                s.append(new Random().nextInt(10));
             }
-            return Integer.parseInt(s);
+            return Integer.parseInt(s.toString());
         };
         System.out.println("OTP generated is "+randomIntSupplier.getAsInt());
     }

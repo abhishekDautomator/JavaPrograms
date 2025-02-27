@@ -1,0 +1,92 @@
+To enable synchronous communication between two microservices in Java using HTTP calls, you can follow these steps:
+1. Set Up the Microservices
+Assume you have two microservices: Service A and Service B. Each service will expose RESTful endpoints.
+Example Setup:
+
+Service A (Client)
+Service B (Server)
+
+2. Create Service B (REST API)
+This service will expose an endpoint that Service A can call.
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class ServiceBController {
+    @GetMapping("/api/data")
+    public String getData() {
+        return "Data from Service B";
+    }
+}
+
+3. Create Service A (HTTP Client)
+Service A will make an HTTP GET request to Service B.
+Using RestTemplate
+
+Add Dependencies: Ensure you have the necessary dependencies in your pom.xml for Spring Web.
+
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+
+Create a Service to Call Service B:
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+@Service
+public class ServiceA {
+    private final RestTemplate restTemplate;
+    @Autowired
+    public ServiceA(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+    public String fetchDataFromServiceB() {
+        String url = "http://localhost:8081/api/data"; // Assuming Service B is running on port 8081
+        return restTemplate.getForObject(url, String.class);
+    }
+}
+
+
+Configure RestTemplate Bean:
+
+You need to configure RestTemplate as a Spring bean so it can be injected into your service.
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.client.RestTemplate;
+@Configuration
+public class AppConfig {
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
+}
+
+4. Make the Call from Service A:
+You can now use the fetchDataFromServiceB() method in a controller or another service within Service A to fetch data from Service B.
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class ServiceAController {
+    @Autowired
+    private ServiceA serviceA;
+    @GetMapping("/api/fetch-data")
+    public String fetchData() {
+        return serviceA.fetchDataFromServiceB();
+    }
+}
+
+5. Run the Microservices:
+
+Start Service B (make sure it's running on port 8081).
+Start Service A (make sure it's running on port 8080).
+
+6. Testing the Communication:
+You can test the setup by making a GET request to Service A's endpoint:
+GET http://localhost:8080/api/fetch-data
+
+This should trigger the call to Service B, which will respond with "Data from Service B".
+Conclusion
+By following these steps, you establish synchronous communication between two microservices using HTTP calls in Java. The RestTemplate allows Service A to make HTTP requests to Service B seamlessly. In a production environment, consider error handling, timeouts, and circuit breaker patterns for better resilience.

@@ -1,0 +1,99 @@
+Object-Oriented Programming (OOP) Concepts
+Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data and code that manipulates that data. The four fundamental principles of OOP are:
+
+Encapsulation:
+
+Encapsulation is the bundling of data (attributes) and methods (functions) that operate on the data into a
+single unit called a class.
+It restricts direct access to some of an object's components, which is a means of preventing unintended interference and misuse of the methods and data.
+In Java, encapsulation is achieved using access modifiers.
+
+Inheritance:
+
+Inheritance is a mechanism where one class (subclass or derived class) inherits the properties and
+behaviors (methods) of another class (superclass or base class).
+This promotes code reusability and establishes a hierarchical relationship between classes.
+In Java, inheritance is implemented using the extends keyword.
+
+Polymorphism:
+
+Polymorphism allows objects to be treated as instances of their parent class, enabling a single interface to represent different underlying forms (data types).
+There are two types of polymorphism in Java:
+
+Compile-time polymorphism (method overloading): Same method name with different parameters.
+Run-time polymorphism (method overriding): Subclass provides a specific implementation of a method that is already defined in its superclass.
+
+Abstraction:
+
+Abstraction is the concept of hiding complex implementation details and exposing only the necessary parts of
+an object.
+It helps in reducing programming complexity and increases efficiency.
+In Java, abstraction can be achieved using abstract classes and interfaces. An abstract class can have both
+abstract methods (without implementation) and concrete methods (with implementation), while an interface can
+only declare abstract methods (from Java 8 onwards, it can also have default and static methods).
+
+Types of classes which cannot be instantiated?
+Ans:
+1.Abstract classes (cannot be instantiated directly).
+2.Interfaces (cannot be instantiated).
+3.Classes with private constructors (instantiation is restricted).
+4.Enum types (cannot be instantiated directly).
+5.Classes with all constructors private (no external instantiation allowed).
+
+These design choices help enforce specific behavior and patterns in Java programming, promoting better software architecture and design principles.
+
+
+Keywords in Java
+Java has a set of reserved keywords that have predefined meanings in the language. Some important keywords include:
+
+class: Defines a new class.
+interface: Defines a new interface.
+extends: Indicates inheritance from a superclass.
+implements: Indicates that a class implements an interface.
+public, private, protected: Access specifiers that control visibility.
+static: Indicates that a member belongs to the class rather than any instance.
+void: Specifies that a method does not return a value.
+abstract: Declares a class that cannot be instantiated or a method without an implementation.
+final: Indicates that a variable's value cannot be changed, a method cannot be overridden, or a class cannot be subclassed.
+try, catch, finally: Used for exception handling.
+
+Access Specifiers (Modifiers)
+Access specifiers (also known as access modifiers) in Java determine the visibility or accessibility
+of classes, methods, and variables. There are four main access specifiers:
+
+
+Public:
+
+Members declared as public are accessible from any other class in any package.
+Example:
+public class MyClass {
+    public int myPublicVar;
+}
+
+Protected:
+Members declared as protected are accessible within the same package and by subclasses in different packages.
+Example:
+public class MyClass {
+    protected int myProtectedVar;
+}
+
+Default (Package-Private):
+If no access modifier is specified, the default access level is applied. Members are accessible only within
+the same package.
+Example:
+class MyClass {
+    int myDefaultVar; // Default access
+}
+
+Private:
+Members declared as private are accessible only within the same class.
+Example:
+public class MyClass {
+    private int myPrivateVar;
+}
+
+Summary
+Understanding OOP concepts, keywords, and access specifiers is crucial for effective Java programming.
+OOP promotes modularity and reusability, while keywords and access specifiers help manage visibility and
+control over the components of your application. This foundational knowledge enables developers to write
+clean, maintainable, and efficient code.

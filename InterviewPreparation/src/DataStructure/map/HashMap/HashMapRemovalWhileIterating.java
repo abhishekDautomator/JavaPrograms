@@ -1,4 +1,4 @@
-package HashMap;
+package DataStructure.map.HashMap;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class HashMapRemovalWhileIterating {
     public static void main(String[] args) {
-        // Create a HashMap and populate it
+        // Create a DataStructure.map.HashMap and populate it
         Map<Integer, String> map = new HashMap<>();
         map.put(1, "One");
         map.put(2, "Two");

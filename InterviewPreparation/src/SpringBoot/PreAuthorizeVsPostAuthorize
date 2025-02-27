@@ -1,0 +1,79 @@
+@PreAuthorize and @PostAuthorize are annotations provided by Spring Security that are used to apply method-level security in a Spring application. They allow you to define access control rules based on the user's roles or permissions before or after the method execution, respectively.
+@PreAuthorize
+
+Purpose: This annotation is used to specify that the method can only be executed if the provided expression evaluates to true before the method is invoked.
+Usage: Typically used to check user permissions or roles before executing a method.
+Expression Language (SpEL): You can use Spring Expression Language (SpEL) to define complex expressions for access control.
+
+Example:
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteUser(Long userId) {
+        // Logic to delete a user
+    }
+}
+
+In this example, only users with the ADMIN role can execute the deleteUser method.
+
+@PostAuthorize
+
+Purpose: This annotation is used to specify that the method's result can only be accessed if the provided
+expression evaluates to true after the method has been executed.
+Usage: Useful for checking permissions on the returned object after the method has completed its execution.
+Expression Language (SpEL): Similar to @PreAuthorize, you can use SpEL to define conditions based on the
+method's return value.
+
+Example:
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+
+    @PostAuthorize("returnObject.username == authentication.name")
+    public User getUser(Long userId) {
+        // Logic to fetch and return a user
+        return userRepository.findById(userId);
+    }
+}
+
+In this example, even though the method getUser can be executed by any authenticated user, the returned User
+ object can only be accessed if the username of the user matches the currently authenticated user's name.
+
+Key Differences
+
+
+Timing of Evaluation:
+
+@PreAuthorize: Checks permissions before the method execution.
+@PostAuthorize: Checks permissions after the method execution.
+
+
+
+Use Cases:
+
+Use @PreAuthorize for actions where you want to prevent unauthorized access to the method itself.
+Use @PostAuthorize for cases where you need to ensure the result of a method call is accessible based on
+user permissions, often used for returning entities or resources.
+
+
+Enabling Method Security
+To use these annotations, you must enable method security in your Spring configuration by adding the @EnableGlobalMethodSecurity annotation:
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SecurityConfig {
+    // Security configuration
+}
+
+This setup allows you to leverage @PreAuthorize and @PostAuthorize annotations effectively throughout your
+ Spring application.

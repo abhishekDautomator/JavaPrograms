@@ -74,7 +74,8 @@ public class StreamProcessingExample {
                 .toList();
         // skippedNumbers will contain [3, 4, 5]
 
-        // The reduce() method performs a reduction on the elements of the stream using an associative accumulation function.
+        // The reduce() method performs a reduction on the elements of the stream using an
+        // associative accumulation function.
         // It can be used to combine elements into a single result.
         List<Integer> numbers4 = Arrays.asList(1, 2, 3, 4);
         java.util.Optional<Integer> sum = numbers4.stream()
@@ -156,16 +157,35 @@ public class StreamProcessingExample {
         // The toArray() method is used to convert the stream into an array.
 // It can return an array of a specific type if specified.
         List<String> names10 = Arrays.asList("Alice", "Bob", "Charlie");
-        String[] namesArray = names10.stream()
-                .toArray(String[]::new);
+        String[] namesArray = names10.toArray(String[]::new);
 // namesArray will contain ["Alice", "Bob", "Charlie"]
 
         // The peek() method is an intermediate operation that allows you to perform an action
 // on each element of the stream without modifying it. It's often used for debugging purposes.
         List<String> names11 = Arrays.asList("Alice", "Bob", "Charlie");
         names11.stream()
-                .peek(name -> System.out.println("Processing: " + name))
-                .toList();
+                .peek(name -> System.out.println("Processing: " + name));
 // Outputs: Processing: Alice, Processing: Bob, Processing: Charlie
+
+        // Accumulate names into a List
+        // List<String> list = people.stream().map(Person::getName).collect(Collectors.toList());
+
+        // Accumulate names into a TreeSet
+        // Set<String> set = people.stream().map(Person::getName).collect(Collectors.toCollection(TreeSet::new));
+
+        // Convert elements to strings and concatenate them, separated by commas
+        // String joined = things.stream()   .map(Object::toString)   .collect(Collectors.joining(", "));
+
+        // Compute sum of salaries of employee
+        // int total = employees.stream()   .collect(Collectors.summingInt(Employee::getSalary));
+
+        // Group employees by department
+        // Map<Department,List<Employee>> byDept = employees.stream()   .collect(Collectors.groupingBy(Employee::getDepartment));
+
+        // Compute sum of salaries by department
+        // Map<Department,Integer> totalByDept = employees.stream()   .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.summingInt(Employee::getSalary)));
+
+        // Partition students into passing and failing
+        // Map<Boolean,List<Student>> passingFailing = students.stream().collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
     }
 }

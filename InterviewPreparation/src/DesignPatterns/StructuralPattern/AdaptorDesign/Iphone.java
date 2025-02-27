@@ -1,7 +1,7 @@
 package DesignPatterns.StructuralPattern.AdaptorDesign;
 
 public class Iphone {
-    private AppleCharger appleCharger;
+    private final AppleCharger appleCharger;
 
     public Iphone(AppleCharger appleCharger) {
         this.appleCharger = appleCharger;

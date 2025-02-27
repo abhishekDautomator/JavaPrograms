@@ -13,7 +13,8 @@ public interface Drawable {
 }
 
 2. How do interfaces differ from abstract classes?
-Interfaces and abstract classes serve similar purposes in that they both allow you to define methods that must be implemented in derived classes. However, there are key differences:
+Interfaces and abstract classes serve similar purposes in that they both allow you to define
+methods that must be implemented in derived classes. However, there are key differences:
 
 Implementation:
 

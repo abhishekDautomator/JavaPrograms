@@ -1,0 +1,83 @@
+To enable synchronous communication between two microservices using FeignClient in Spring Boot, follow these steps:
+1. Add Dependencies
+Ensure you have the necessary dependencies in your pom.xml for Spring Cloud OpenFeign.
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-openfeign</artifactId>
+</dependency>
+
+Also, ensure you have the Spring Web dependency:
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+
+2. Enable Feign Clients
+In your main application class of Service A, enable Feign clients by adding the @EnableFeignClients annotation.
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+@SpringBootApplication
+@EnableFeignClients
+public class ServiceAApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ServiceAApplication.class, args);
+    }
+}
+
+3. Create Feign Client Interface
+Define a Feign client interface that specifies how to communicate with Service B.
+import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.web.bind.annotation.GetMapping;
+@FeignClient(name = "service-b", url = "http://localhost:8081")
+public interface ServiceBClient {
+    @GetMapping("/api/data")
+    String getDataFromServiceB();
+}
+
+4. Use the Feign Client in Service A
+Inject the Feign client into your service class and use it to call Service B.
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+@Service
+public class ServiceA {
+    private final ServiceBClient serviceBClient;
+    @Autowired
+    public ServiceA(ServiceBClient serviceBClient) {
+        this.serviceBClient = serviceBClient;
+    }
+    public String fetchDataFromServiceB() {
+        return serviceBClient.getDataFromServiceB();
+    }
+}
+
+5. Expose an Endpoint in Service A
+Create a controller in Service A to expose an endpoint that triggers the Feign client call.
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+@RestController
+public class ServiceAController {
+    private final ServiceA serviceA;
+    @Autowired
+    public ServiceAController(ServiceA serviceA) {
+        this.serviceA = serviceA;
+    }
+    @GetMapping("/api/fetch-data")
+    public String fetchData() {
+        return serviceA.fetchDataFromServiceB();
+    }
+}
+
+6. Run the Microservices
+
+Start Service B (make sure it's running on port 8081).
+Start Service A (make sure it's running on port 8080).
+
+7. Testing the Communication
+You can test the setup by making a GET request to Service A's endpoint:
+GET http://localhost:8080/api/fetch-data
+
+This should trigger the Feign client call to Service B and return the response from Service B.
+Conclusion
+By using FeignClient, you simplify the HTTP communication between microservices. It abstracts the boilerplate code needed for making REST calls and provides a declarative way to define how to call other services. This approach is beneficial for maintaining clean and readable code in microservice architectures.

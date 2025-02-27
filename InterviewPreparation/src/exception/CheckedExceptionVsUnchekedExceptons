@@ -1,0 +1,85 @@
+In Java, exceptions are categorized into two main types: checked exceptions and unchecked exceptions. Understanding the differences between them is crucial for effective error handling in your applications. Here’s a detailed comparison:
+Checked Exceptions
+
+Definition: Checked exceptions are exceptions that are checked at compile-time.
+The compiler requires that these exceptions be either caught or declared in the method signature using the throws
+keyword.
+Hierarchy: They are subclasses of the Exception class but not subclasses of RuntimeException.
+Examples:
+IOException: Thrown when an I/O operation fails or is interrupted.
+SQLException: Thrown when there is an error with database access.
+ClassNotFoundException: Thrown when an application tries to load a class through its string name but cannot find it.
+
+Handling: Since these exceptions are checked at compile-time, developers are forced to handle them explicitly, either by using try-catch blocks or by declaring them in the method signature.
+Use Case: Checked exceptions are typically used for recoverable conditions where the client code can potentially recover from the exception (e.g., trying to read a file that may or may not exist).
+
+Unchecked Exceptions
+
+Definition: Unchecked exceptions are exceptions that are not checked at compile-time. They occur at runtime and do not
+require explicit handling in the code.
+Hierarchy: They are subclasses of the RuntimeException class, which itself is a subclass of Exception.
+Examples:
+NullPointerException: Thrown when trying to use an object reference that has not been initialized.
+ArrayIndexOutOfBoundsException: Thrown when an array has been accessed with an illegal index.
+IllegalArgumentException: Thrown when a method receives an argument that is inappropriate.
+
+Handling: Developers are not required to catch or declare unchecked exceptions. However, it's generally good practice to handle them where appropriate to prevent application crashes.
+Use Case: Unchecked exceptions are used for programming errors that are usually not recoverable, such as logic errors or improper use of an API.
+
+Key Differences
+FeatureChecked ExceptionsUnchecked ExceptionsChecked atCompile-timeRuntimeInheritanceSubclass of Exception (not RuntimeException)Subclass of RuntimeExceptionHandling RequirementMust be caught or declaredNot required to be caught or declaredCommon ExamplesIOException, SQLExceptionNullPointerException, IllegalArgumentExceptionUse CaseFor recoverable conditionsFor programming errors
+Conclusion
+Understanding the distinction between checked and unchecked exceptions helps in designing robust error-handling strategies in Java applications. Use checked exceptions for conditions that a caller might want to catch and handle, while unchecked exceptions should indicate programming errors that should be fixed rather than handled.
+
+
+Here are additional examples of both checked and unchecked exceptions in Java:
+Checked Exceptions
+
+IOException: Thrown when an input-output operation fails or is interrupted.
+Example: Reading from a file that does not exist.
+
+SQLException: Thrown when there is an error accessing a database.
+Example: Executing a query on a database connection that has been closed.
+
+ClassNotFoundException: Thrown when an application tries to load a class through its string name but cannot find it.
+Example: Using Class.forName("com.example.MyClass") when MyClass is not in the classpath.
+
+FileNotFoundException: A subclass of IOException, thrown when an attempt to open a file denoted by a specified pathname has failed.
+Example: Trying to open a file that does not exist.
+
+ParseException: Thrown when parsing a string into a date format fails.
+Example: Using SimpleDateFormat to parse a date string that does not match the expected format.
+
+InterruptedException: Thrown when a thread is interrupted while it is waiting, sleeping, or otherwise occupied.
+Example: When using Thread.sleep() and the thread is interrupted.
+
+NoSuchMethodException: Thrown when a particular method cannot be found.
+Example: Using reflection to invoke a method that does not exist in the specified class.
+
+
+Unchecked Exceptions
+
+NullPointerException: Thrown when the application attempts to use null where an object is required.
+Example: Accessing a method or property of an object that is null.
+
+ArrayIndexOutOfBoundsException: Thrown when an array has been accessed with an illegal index (either negative or greater than or equal to the size of the array).
+Example: Trying to access array[10] when the array has only 5 elements.
+
+IllegalArgumentException: Thrown when a method receives an argument that is inappropriate or not valid.
+Example: Passing a negative number to a method that calculates the square root.
+
+ArithmeticException: Thrown when an exceptional arithmetic condition has occurred, such as division by zero.
+Example: Executing int result = 10 / 0;.
+
+ClassCastException: Thrown when an invalid cast is attempted.
+Example: Trying to cast an object of one class to another incompatible class.
+
+IndexOutOfBoundsException: Thrown when trying to access an invalid index of a list or other data structure.
+Example: Accessing list.get(5) when the list has only 3 elements.
+
+IllegalStateException: Thrown when a method has been invoked at an illegal or inappropriate time.
+Example: Calling next() on an iterator that has no more elements.
+
+
+Summary
+These examples illustrate the differences between checked and unchecked exceptions in Java. Checked exceptions typically represent conditions that a program can anticipate and recover from, while unchecked exceptions often indicate programming errors that should be corrected to ensure proper application behavior. Understanding and appropriately handling these exceptions is essential for building robust Java applications.

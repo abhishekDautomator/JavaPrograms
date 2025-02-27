@@ -1,11 +1,16 @@
 1. Explain Synchronization in Java with Example.
-Ans. Synchronization in Java is a mechanism that ensures that two or more concurrent threads do not simultaneously execute some particular program segment, which can lead to data inconsistency. It is crucial for managing access to shared resources, such as variables or objects, preventing race conditions.
+Ans. Synchronization in Java is a mechanism that ensures that two or more concurrent threads do not simultaneously
+execute some particular program segment, which can lead to data inconsistency. It is crucial for managing
+access to shared resources, such as variables or objects, preventing race conditions.
 
      Types of Synchronization
      Method Synchronization
      Block Synchronization
-     1. Method Synchronization - In method synchronization, you can declare a method as synchronized. This means that only one thread can access this method at a time for a specific object.
-     2. Block Synchronization - Block synchronization allows you to synchronize only a specific block of code rather than an entire method. This is done using the synchronized keyword with an object reference.
+     1. Method Synchronization - In method synchronization, you can declare a method as synchronized.
+     This means that only one thread can access this method at a time for a specific object.
+
+     2. Block Synchronization - Block synchronization allows you to synchronize only a specific block of code
+     rather than an entire method. This is done using the synchronized keyword with an object reference.
 
      Key Points
      Thread Safety: Synchronization helps ensure that shared resources are accessed safely by multiple threads.

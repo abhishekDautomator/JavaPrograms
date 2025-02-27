@@ -11,10 +11,11 @@ public class UniqueRandomNumbers {
                 .limit(3)
                 .boxed()
                 .collect(Collectors.toList());
+
         StringBuilder roomNumbersAsString = new StringBuilder();
         for (int n:
              roomNumbers) {
-            roomNumbersAsString.append(n).append(",");
+            roomNumbersAsString.append(n);
         }
         System.out.println(roomNumbersAsString.deleteCharAt(roomNumbersAsString.length()-1));
     }

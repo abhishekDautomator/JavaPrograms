@@ -46,6 +46,7 @@ public class NetworkConnection implements Cloneable{
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
+        Object o = super.clone();
         //custom logic for cloning //deep cloning or deep copying
         NetworkConnection networkConnection = new NetworkConnection();
         networkConnection.setIp(this.getIp());

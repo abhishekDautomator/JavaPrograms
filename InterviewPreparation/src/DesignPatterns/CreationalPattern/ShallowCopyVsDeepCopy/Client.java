@@ -13,7 +13,7 @@ public class Client {
 
         connection.getDomains().remove(0);
 
-        NetworkConnection networkConnection2 = (NetworkConnection) connection.clone();
+        NetworkConnection networkConnection2 = (NetworkConnection) connection.clone(); //deep copy
         System.out.println(networkConnection2);
     }
 }

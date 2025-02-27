@@ -3,7 +3,8 @@ package Java8;
 import java.util.Arrays;
 
 public class MethodReferenceExample {
-    //Method references are shorthand for lambda expressions when a specific method already exists for reuse. It improves code readability.
+    //Method references are shorthand for lambda expressions when a specific
+    // method already exists for reuse. It improves code readability.
     public static void main(String[] args) {
         String[] fruits = {"Apple", "Orange", "Banana"};
 

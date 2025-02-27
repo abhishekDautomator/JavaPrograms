@@ -2,7 +2,8 @@ Here are some common interview questions related to the Observer Design Pattern,
 1. What is the Observer Design Pattern?
 Answer: The Observer Design Pattern is a behavioral design pattern that defines a one-to-many dependency
 between objects. When one object (the subject) changes its state, all its dependents (observers) are
-notified and updated automatically. This pattern promotes loose coupling between the subject and its observers.
+notified and updated automatically. This pattern promotes loose coupling between the
+subject and its observers.
 
 2. Can you explain the components of the Observer Design Pattern?
 Answer: The Observer Design Pattern consists of the following components:

@@ -1,6 +1,9 @@
 package Java8.binaryoperator;
 
+import java.util.function.BiFunction;
 import java.util.function.DoubleBinaryOperator;
+import java.util.function.Function;
+import java.util.function.IntBinaryOperator;
 
 
 public class BinaryOperator {

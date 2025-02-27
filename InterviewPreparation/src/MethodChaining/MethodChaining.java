@@ -13,7 +13,7 @@ public class MethodChaining {
 class StringBuilderExample {
     private String str;
 
-    public StringBuilderExample(String str) {
+    StringBuilderExample(String str) {
         this.str = str;
     }
 

@@ -9,8 +9,8 @@ public class Main {
         pl.add("java");
         pl.add("python");
         ImmutableClassPerson immutableClassPerson = new ImmutableClassPerson("Abhishek", 30, pl);
-        System.out.println("name: "+immutableClassPerson.getName()+" | age: "+immutableClassPerson.getAge()+" | PL: "+immutableClassPerson.getProgrammingLaungaugaes());
+        System.out.println("name: "+immutableClassPerson.getName()+" | age: "+immutableClassPerson.getAge()+" | PL: "+immutableClassPerson.getProgrammingLanguages());
         pl.add("node");
-        System.out.println("PL: "+immutableClassPerson.getProgrammingLaungaugaes());
+        System.out.println("PL: "+immutableClassPerson.getProgrammingLanguages());
     }
 }

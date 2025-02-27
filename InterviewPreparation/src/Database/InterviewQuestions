@@ -21,7 +21,8 @@ SELECT * FROM employees;
 
 
 
-JOIN: If you're combining data from multiple tables, this clause determines how those tables are joined (INNER JOIN, LEFT JOIN, RIGHT JOIN, etc.).
+JOIN: If you're combining data from multiple tables, this clause determines how those tables are joined
+(INNER JOIN, LEFT JOIN, RIGHT JOIN, etc.).
 SELECT e.name, d.department_name
 FROM employees e
 JOIN departments d ON e.department_id = d.id;
@@ -51,7 +52,8 @@ HAVING COUNT(*) > 10;
 
 
 
-SELECT: This clause specifies the columns to be returned in the result set. It also allows for expressions and calculations.
+SELECT: This clause specifies the columns to be returned in the result set. It also allows for
+expressions and calculations.
 SELECT name, salary FROM employees;
 
 
@@ -66,7 +68,10 @@ SELECT name, salary FROM employees ORDER BY salary DESC;
 
 
 
-LIMIT / OFFSET: These clauses are used to restrict the number of rows returned by the query. LIMIT specifies the maximum number of rows, while OFFSET specifies how many rows to skip before starting to return rows.
+LIMIT / OFFSET: These clauses are used to restrict the number of rows returned by the query.
+LIMIT specifies the maximum number of rows,
+while OFFSET specifies how many rows to skip before starting to return rows.
+
 SELECT * FROM employees LIMIT 5 OFFSET 10;
 
 
@@ -110,17 +115,20 @@ and returning the desired results.
 
 
  @Mock vs @InjectMOcks?
- In the context of using Mockito for unit testing in Java, @Mock and @InjectMocks are annotations that serve different purposes. Here’s a detailed explanation of each and their differences:
+ In the context of using Mockito for unit testing in Java, @Mock and @InjectMocks are annotations that serve
+ different purposes. Here’s a detailed explanation of each and their differences:
+
  @Mock
-
-
- Purpose: The @Mock annotation is used to create mock instances of a class or an interface. These mocks simulate the behavior of real objects without executing their actual implementations.
+ Purpose: The @Mock annotation is used to create mock instances of a class or an interface.
+ These mocks simulate the behavior of real objects without executing their actual implementations.
 
 
  Usage:
 
- Mock objects are often used to isolate the class under test from its dependencies, allowing you to focus on testing the class's behavior.
- When a method of a mocked object is called, it returns default values (e.g., null for objects, 0 for integers) unless otherwise specified.
+ Mock objects are often used to isolate the class under test from its dependencies,
+ allowing you to focus on testing the class's behavior.
+ When a method of a mocked object is called, it returns default values
+ (e.g., null for objects, 0 for integers) unless otherwise specified.
 
 
 
@@ -150,12 +158,14 @@ and returning the desired results.
  @InjectMocks
 
 
- Purpose: The @InjectMocks annotation is used to create an instance of the class under test and automatically inject the mocked dependencies (created with @Mock) into it.
+ Purpose: The @InjectMocks annotation is used to create an instance of the class under test and
+ automatically inject the mocked dependencies (created with @Mock) into it.
 
 
  Usage:
 
- It allows for easier testing of classes that have dependencies by automatically injecting the mocked objects into the class being tested, typically via constructor injection, setter injection, or field injection.
+ It allows for easier testing of classes that have dependencies by automatically injecting the mocked objects
+ into the class being tested, typically via constructor injection, setter injection, or field injection.
  It reduces boilerplate code needed to set up the test environment.
 
 
@@ -187,20 +197,29 @@ and returning the desired results.
 
 
  Key Differences
- Feature@Mock@InjectMocksPurposeCreates mock objectsCreates an instance of the class under test and injects mocksTypeCan be applied to any class or interfaceTypically used for the class being testedInjectionNo automatic injection, just creates mocksAutomatically injects mocks into the instance of the class under testUsageUsed to isolate dependenciesUsed to simplify testing of classes with dependencies
+ Feature@Mock@InjectMocksPurposeCreates mock objectsCreates an instance of the class under test
+ and injects mocksTypeCan be applied to any class or interfaceTypically used for the class being
+ testedInjectionNo automatic injection, just creates mocksAutomatically injects mocks into the instance of
+ the class under testUsageUsed to isolate dependenciesUsed to simplify testing of classes with dependencies
+
+
  Summary
 
  @Mock: Use this annotation to create mock objects for dependencies that your class under test interacts with.
- @InjectMocks: Use this annotation to create an instance of the class you want to test and inject the mocked dependencies into it.
+ @InjectMocks: Use this annotation to create an instance of the class you want to test and inject the mocked
+ dependencies into it.
 
  Together, these annotations facilitate effective unit testing by allowing you to isolate classes and their dependencies, ensuring that tests are focused and reliable.
 
 @JoinColumn
 
-The @JoinColumn annotation in Java is part of the Java Persistence API (JPA) and is used to specify a column for joining two entity classes in a relational database. It is commonly used in the context of defining relationships between entities, such as one-to-one, one-to-many, many-to-one, or many-to-many associations.
+The @JoinColumn annotation in Java is part of the Java Persistence API (JPA) and is used to specify a column
+for joining two entity classes in a relational database. It is commonly used in the context of defining
+relationships between entities, such as one-to-one, one-to-many, many-to-one, or many-to-many associations.
 
 Key Features of @JoinColumn
-Purpose: The primary purpose of @JoinColumn is to define the foreign key column that will be used to establish a relationship between two entities.
+Purpose: The primary purpose of @JoinColumn is to define the foreign key column that will be used to
+establish a relationship between two entities.
 
 Attributes:
 
@@ -249,8 +268,10 @@ public class Book {
 }
 Explanation of the Example
 In this example, we have two entities: Author and Book.
-The Book entity has a many-to-one relationship with the Author entity, meaning that each book is associated with one author, while an author can have multiple books.
-The @JoinColumn annotation in the Book entity specifies that the author_id column in the Book table serves as the foreign key that references the id column in the Author table.
+The Book entity has a many-to-one relationship with the Author entity, meaning that each book is associated
+with one author, while an author can have multiple books.
+The @JoinColumn annotation in the Book entity specifies that the author_id column in the Book table serves as
+the foreign key that references the id column in the Author table.
 The nullable = false attribute ensures that every book must be associated with an author.
 Summary
 The @JoinColumn annotation is a powerful tool in JPA for defining foreign key columns
@@ -260,10 +281,13 @@ association between related entities.
 
 How to select only selected columns in table in Spring JPA
 
-In Spring JPA, selecting specific columns from a table can be achieved in various ways, depending on the requirements and structure of your application. Here are some common methods to retrieve only selected columns:
+In Spring JPA, selecting specific columns from a table can be achieved in various ways,
+depending on the requirements and structure of your application. Here are some common methods to retrieve only
+selected columns:
 
 1. Using Projections
-Projections allow you to define an interface or a class that specifies the columns you want to retrieve. This is particularly useful when you want to fetch only a subset of attributes from an entity.
+Projections allow you to define an interface or a class that specifies the columns you want to retrieve.
+ This is particularly useful when you want to fetch only a subset of attributes from an entity.
 
 Example with Interface Projection
 public interface AuthorProjection {
@@ -342,4 +366,14 @@ And use it like this:
 
 List<Author> authors = authorRepository.findAll(AuthorSpecifications.selectColumns());
 Summary
-In Spring JPA, you can select specific columns from a table using projections, DTOs, custom queries with the @Query annotation, or specifications for more complex cases. Each method has its advantages, so the choice depends on the specific requirements of your application and how you want to handle the retrieved data.
+In Spring JPA, you can select specific columns from a table using projections, DTOs, custom queries with
+the @Query annotation, or specifications for more complex cases. Each method has its advantages, so the
+choice depends on the specific requirements of your application and how you want to handle the retrieved
+data.
+
+5. How to find the third highest salary employee?
+Ans: SELECT DISTINCT salary
+     FROM employees
+     ORDER BY salary DESC
+     LIMIT 1 OFFSET 2;
+

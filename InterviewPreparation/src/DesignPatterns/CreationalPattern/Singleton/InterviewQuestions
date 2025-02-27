@@ -1,15 +1,22 @@
 1. What is the Singleton Design Pattern?
-Answer: The Singleton Design Pattern is a creation design pattern that ensures a class has only one instance and provides a global point of access to that instance. This pattern is useful when exactly one object is needed to coordinate actions across the system.
+Answer: The Singleton Design Pattern is a creation design pattern that ensures a class has only one instance
+and provides a global point of access to that instance. This pattern is useful when exactly one object is
+needed to coordinate actions across the system.
 
 2. Can you explain the components of the Singleton Design Pattern?
 Answer: The Singleton Design Pattern typically consists of the following components:
 
-Singleton Class: The class that implements the singleton pattern. It contains a private static instance of itself and a private constructor to prevent instantiation from outside.
-Static Method: A public static method that returns the instance of the singleton class, creating it if it does not already exist.
+Singleton Class: The class that implements the singleton pattern. It contains a private static instance
+of itself and a private constructor to prevent instantiation from outside.
+
+Static Method: A public static method that returns the instance of the singleton class,
+creating it if it does not already exist.
+
 3. What are the advantages of using the Singleton Design Pattern?
 Answer:
 
-Controlled Access: It provides controlled access to the sole instance, ensuring that no other instances can be created.
+Controlled Access: It provides controlled access to the sole instance, ensuring that no other instances can
+be created.
 Lazy Initialization: The instance can be created only when it is needed, which can help save resources.
 Global Point of Access: It offers a global point of access to the instance, making it easy to use throughout an application.
 4. How would you implement the Singleton Design Pattern in Java?

@@ -1,8 +1,15 @@
 Basic Understanding
 What is the difference between Comparable and Comparator in Java?
 
-Comparable is an interface that defines a natural ordering for objects of a class. It requires implementing the compareTo(T o) method, which compares the current object with the specified object. This is typically used for sorting a collection of the same type.
-Comparator, on the other hand, is used to define an external ordering for objects. It allows you to create multiple comparison strategies for different sorting criteria by implementing the compare(T o1, T o2) method. This is useful when you want to sort objects of different types or when you need multiple sorting orders for the same type.
+Comparable is an interface that defines a natural ordering for objects of a class.
+It requires implementing the compareTo(T o) method, which compares the current object with
+the specified object. This is typically used for sorting a collection of the same type.
+
+Comparator, on the other hand, is used to define an external ordering for objects.
+It allows you to create multiple comparison strategies for different sorting criteria by
+implementing the compare(T o1, T o2) method. This is useful when you want to sort objects of
+different types or when you need multiple sorting orders for the same type.
+
 How do you implement the Comparable interface? Provide an example.
 
 public class Person implements Comparable<Person> {
@@ -32,12 +39,16 @@ public class PersonNameComparator implements Comparator<Person> {
 Advanced Concepts
 Can you compare two objects of different classes using Comparator?
 
-Yes, a Comparator can be implemented to compare objects of different classes, but care must be taken to handle the comparisons properly. You would typically check the instance type and either throw an exception or define a specific comparison logic.
+Yes, a Comparator can be implemented to compare objects of different classes, but care must be taken to
+handle the comparisons properly. You would typically check the instance type and either throw an exception
+or define a specific comparison logic.
+
 What happens if you create multiple Comparator implementations for the same class? How do you manage them?
+You can have multiple Comparator implementations for the same class, each defining a different sorting order.
+To manage them, you can use descriptive names for the comparator classes or static methods in a utility
+class to provide clear access points for each comparator.
 
-You can have multiple Comparator implementations for the same class, each defining a different sorting order. To manage them, you can use descriptive names for the comparator classes or static methods in a utility class to provide clear access points for each comparator.
 Explain the significance of the compareTo method in the Comparable interface.
-
 The compareTo method is crucial as it defines the natural ordering of objects. It returns a negative integer, zero, or a positive integer if the current object is less than, equal to, or greater than the specified object, respectively. This method is used by sorting algorithms to determine the order of elements.
 What are the potential pitfalls when implementing Comparable?
 
@@ -48,7 +59,9 @@ Changing the sort order without updating the implementation, leading to unexpect
 Usage Scenarios
 When would you choose to use Comparator over Comparable? Provide a real-world scenario.
 
-Use Comparator when you need multiple ways to sort the same type of objects. For example, if you have a Person class and you want to sort by both age and name, you'd implement separate comparators for each criterion.
+Use Comparator when you need multiple ways to sort the same type of objects. For example,
+if you have a Person class and you want to sort by both age and name, you'd implement separate
+comparators for each criterion.
 How can you chain multiple Comparator instances?
 
 Comparator<Person> byAge = Comparator.comparingInt(Person::getAge);

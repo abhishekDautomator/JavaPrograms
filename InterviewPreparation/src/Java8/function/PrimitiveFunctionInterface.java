@@ -10,7 +10,7 @@ public class PrimitiveFunctionInterface {
 
         System.out.println();
 
-        ToIntFunction<String> wordLength = s -> s.length();
+        ToIntFunction<String> wordLength = String::length;
         System.out.println("Length of the word Abhishek is "+wordLength.applyAsInt("Abhishek"));
 
         

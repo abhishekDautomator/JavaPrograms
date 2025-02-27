@@ -14,9 +14,11 @@ Example: A simple Spring Boot application can be set up with just a few dependen
 </dependency>
 
 2. How does Spring Boot achieve auto-configuration?
-Explanation: Spring Boot uses the @EnableAutoConfiguration annotation to enable its auto-configuration feature. It automatically configures beans based on the dependencies present in the classpath.
+Explanation: Spring Boot uses the @EnableAutoConfiguration annotation to enable its auto-configuration
+feature. It automatically configures beans based on the dependencies present in the classpath.
 
-Example: If you include spring-boot-starter-data-jpa, Spring Boot will automatically configure a DataSource, EntityManagerFactory, and other necessary components for JPA.
+Example: If you include spring-boot-starter-data-jpa, Spring Boot will automatically configure a DataSource,
+EntityManagerFactory, and other necessary components for JPA.
 
 @SpringBootApplication
 public class MyApplication {
@@ -30,6 +32,7 @@ Explanation: Key advantages include:
 Rapid Development: Quick setup with minimal configuration.
 Embedded Servers: No need for external web server setup; it can run on embedded servers like Tomcat or Jetty.
 Production-Ready Features: Built-in support for metrics, health checks, and externalized configuration.
+
 4. What is the purpose of the application.properties file?
 Explanation: The application.properties (or application.yml) file is used to externalize configuration
 in Spring Boot applications. You can define various properties such as database connection details,
@@ -43,7 +46,8 @@ spring.datasource.username=root
 spring.datasource.password=password
 
 5. What is a Spring Boot Starter?
-Explanation: Starters are a set of convenient dependency descriptors that you can include in your application.
+Explanation: Starters are a set of convenient dependency descriptors that you can include in your
+application.
 They simplify dependency management by grouping commonly used libraries together.
 
 Example: spring-boot-starter-web includes all the necessary dependencies for building web applications,
@@ -55,7 +59,8 @@ such as Spring MVC, Tomcat, and Jackson.
 </dependency>
 
 6. Explain the concept of profiles in Spring Boot.
-Explanation: Profiles allow you to segregate parts of your application configuration and make it only available in certain environments (like development, testing, production).
+Explanation: Profiles allow you to segregate parts of your application configuration and make it only
+available in certain environments (like development, testing, production).
 
 Example: You can define different configurations in application-dev.properties, application-prod.properties, etc., and activate them using the spring.profiles.active property.
 
@@ -86,6 +91,7 @@ public class UserController {
         return user;
     }
 }
+
 8. What is Spring Data JPA, and how does it work with Spring Boot?
 Explanation: Spring Data JPA is a part of the Spring Data project that makes it easier to implement
 JPA-based data access layers. It simplifies the creation of repository interfaces and provides built-in
@@ -98,8 +104,10 @@ public interface UserRepository extends JpaRepository<User, Long> {
 }
 
 9. What is Spring Boot Actuator?
-Explanation: Spring Boot Actuator provides a set of production-ready features that help you monitor and manage your application.
-It exposes various endpoints that give insights into the application's health, metrics, environment, and more.
+Explanation: Spring Boot Actuator provides a set of production-ready features that help you monitor and
+manage your application.
+It exposes various endpoints that give insights into the application's health, metrics, environment, and
+more.
 
 Example: To use Spring Boot Actuator, you need to include the following dependency in your pom.xml:
 
@@ -116,7 +124,8 @@ management.endpoints.web.exposure.include=health,info,metrics
 
 10. How do you handle exceptions in Spring Boot?
 Explanation: Exception handling in Spring Boot can be managed using @ControllerAdvice along with
-@ExceptionHandler. This allows you to create global exception handling methods that will apply to all controllers.
+@ExceptionHandler. This allows you to create global exception handling methods that will apply
+to all controllers.
 
 Example:
 
@@ -133,6 +142,7 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + ex.getMessage());
     }
 }
+
 11. Explain the concept of Dependency Injection in Spring Boot.
 Explanation: Dependency Injection (DI) is a design pattern used in Spring Framework, including Spring Boot,
 to manage object creation and dependencies. It allows you to inject dependencies into a class rather than
@@ -157,7 +167,8 @@ public class UserService {
 In this example, UserRepository is injected into UserService through constructor injection.
 
 12. What are Spring Boot Starters?
-Explanation: Spring Boot Starters are a set of convenient dependency descriptors that simplify adding common libraries to your project. They group related dependencies together so you can include them with a single entry.
+Explanation: Spring Boot Starters are a set of convenient dependency descriptors that simplify adding
+common libraries to your project. They group related dependencies together so you can include them with a single entry.
 
 Example: Some commonly used starters include:
 
@@ -216,7 +227,7 @@ allowing for rapid development without manual restarts.
 
 15. How do you externalize configuration in Spring Boot?
 Explanation: Externalizing configuration in Spring Boot allows you to manage application settings
-outside of your codebase, making it easier to change configurations without modifying the source code.
+utside your codebase, making it easier to change configurations without modifying the source code.
 This can be done using properties files, YAML files, environment variables, or command-line arguments.
 
 Example:
@@ -331,8 +342,10 @@ each method with @ResponseBody.
 Ans. Core Annotations
      @SpringBootApplication:
 
-     Purpose: It serves as a convenience annotation that combines three annotations: @Configuration, @EnableAutoConfiguration, and @ComponentScan.
-     Usage: This annotation is typically placed on the main class to enable autoconfiguration and component scanning.
+     Purpose: It serves as a convenience annotation that combines three annotations:
+     @Configuration, @EnableAutoConfiguration, and @ComponentScan.
+     Usage: This annotation is typically placed on the main class to enable autoconfiguration and
+     component scanning.
      Why: It simplifies the setup of a Spring application by reducing boilerplate code.
      @SpringBootApplication
      public class MyApplication {
@@ -342,7 +355,7 @@ Ans. Core Annotations
      }
 
      @Configuration:
-     Purpose: Indicates that a class declares one or more @Bean methods.
+     Purpose: Indicates that the class declares one or more @Bean methods.
      Usage: Used to define beans in Java-based configuration.
      Why: It allows for more flexible and type-safe bean definitions compared to XML configuration.
      @Configuration

@@ -1,6 +1,7 @@
 Here are some common interview questions related to the Factory Design Pattern, along with detailed answers:
 1. What is the Factory Design Pattern?
-Answer: The Factory Design Pattern is a creation design pattern that provides an interface for creating objects
+Answer: The Factory Design Pattern is a creation design pattern that provides an interface
+for creating objects
 in a superclass but allows subclasses to alter the type of objects that will be created. This pattern promotes
 loose coupling by eliminating the need for the client code to instantiate specific classes directly.
 

@@ -1,4 +1,4 @@
-1. Map vs FlatMap in Java STream?
+1. Map vs FlatMap in Java Stream?
 Ans.
 
 Map vs Flat Map
@@ -32,9 +32,11 @@ public class MapExample {
     }
 }
 flatMap()
-Purpose: The flatMap() method is used when each input element can be transformed into multiple output elements. It flattens the resulting streams into a single stream.
+Purpose: The flatMap() method is used when each input element can be transformed into multiple output elements.
+It flattens the resulting streams into a single stream.
 
-Behavior: Each input element can produce zero or more output elements, effectively "flattening" the structure. The size of the resulting stream can vary depending on the output of the transformation.
+Behavior: Each input element can produce zero or more output elements, effectively "flattening"
+the structure. The size of the resulting stream can vary depending on the output of the transformation.
 
 Usage:
 
@@ -68,5 +70,6 @@ Resulting Structure	Same number of elements as the input	Can have varying number
 Use Cases	Simple transformations	Handling nested collections or optional values
 Summary
 map(): Use when each element of the stream maps to a single output element. It performs one-to-one transformations.
-flatMap(): Use when each element can map to multiple output elements, effectively flattening the resulting stream structure. It is suitable for handling collections within collections.
+flatMap(): Use when each element can map to multiple output elements, effectively flattening the resulting
+stream structure. It is suitable for handling collections within collections.
 Understanding the differences between map() and flatMap() is essential for effective data transformation in Java streams, especially when dealing with complex data structures.

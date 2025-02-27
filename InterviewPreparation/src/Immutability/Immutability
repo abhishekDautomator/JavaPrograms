@@ -40,7 +40,10 @@ public final class ImmutablePerson {
 }
 What is the difference between mutable and immutable objects?
 
-Answer: Mutable objects can have their state changed after creation (e.g., StringBuilder), while immutable objects cannot (e.g., String). Mutable objects require careful handling in multi-threaded environments, while immutable objects do not.
+Answer: Mutable objects can have their state changed after creation (e.g., StringBuilder), while
+immutable objects cannot (e.g., String). Mutable objects require careful handling in multi-threaded
+environments, while immutable objects do not.
+
 How do immutable objects affect memory management?
 
 Answer: Immutable objects can lead to increased memory usage since each modification results in the creation of a new object rather than modifying an existing one. However, they can also facilitate garbage collection because they are less likely to be referenced after use.
@@ -53,11 +56,12 @@ What is the role of the String class in Java concerning immutability?
 
 Answer: The String class in Java is immutable, meaning that once a String object is created, its value cannot be changed. Any operation that appears to modify a string actually creates a new String object. This design choice enhances security and performance, especially in multi-threaded applications.
 How would you implement a mutable version of an immutable class?
+Answer: You could provide a builder pattern or provide methods that return new instances of the
+object with modified values instead of altering the original instance. This approach maintains immutability while allowing for more flexible object creation.
 
-Answer: You could provide a builder pattern or provide methods that return new instances of the object with modified values instead of altering the original instance. This approach maintains immutability while allowing for more flexible object creation.
 Can you explain how the builder pattern can be used with immutable objects?
-
-Answer: The builder pattern allows for the gradual construction of an immutable object. It typically involves a static inner class with methods to set the desired properties, culminating in a build() method that creates the immutable object. This provides a clean and readable way to create complex immutable objects.
+Answer: The builder pattern allows for the gradual construction of an immutable object. It typically
+involves a static inner class with methods to set the desired properties, culminating in a build() method that creates the immutable object. This provides a clean and readable way to create complex immutable objects.
 Conclusion
 These questions cover various aspects of immutable objects, including their definition, advantages, implementation, and implications in software design. Preparing for these topics can help candidates articulate their understanding of immutability in Java and its practical applications in software development.
 
