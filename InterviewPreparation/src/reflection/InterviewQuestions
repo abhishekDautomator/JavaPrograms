@@ -1,16 +1,28 @@
-Reflection in Java is a powerful feature that allows developers to inspect and manipulate classes, interfaces, methods, and fields at runtime, even if they are private or protected. It is part of the java.lang.reflect package and provides a way to analyze and modify the properties of objects dynamically.
+Reflection in Java is a powerful feature that allows developers to inspect and manipulate classes,
+interfaces, methods, and fields at runtime, even if they are private or protected. It is part of the
+java.lang.reflect package and provides a way to analyze and modify the properties of objects dynamically.
+
 Key Features of Reflection:
 
-Class Inspection: You can retrieve metadata about classes, such as their names, methods, constructors, and fields.
-Dynamic Method Invocation: Reflection allows you to invoke methods on objects dynamically, which can be useful for frameworks that need to call methods without knowing them at compile time.
-Field Access: You can access and modify field values of objects, regardless of their visibility (public, private, etc.).
+Class Inspection: You can retrieve metadata about classes, such as their names, methods,
+constructors, and fields.
+
+Dynamic Method Invocation: Reflection allows you to invoke methods on objects dynamically, which can be
+useful for frameworks that need to call methods without knowing them at compile time.
+
+Field Access: You can access and modify field values of objects, regardless of their visibility
+(public, private, etc.).
+
 Creating Objects: Reflection enables you to create new instances of classes using their constructors.
 
 Common Use Cases:
 
-Framework Development: Many Java frameworks (like Spring) use reflection for dependency injection and configuration.
-Testing: Reflection can be used in testing libraries to access private fields and methods for unit testing purposes.
-Serialization/Deserialization: Libraries that convert objects to/from JSON or XML often use reflection to read/write object attributes.
+Framework Development: Many Java frameworks (like Spring) use reflection for dependency injection and
+configuration.
+Testing: Reflection can be used in testing libraries to access private fields and methods for unit
+testing purposes.
+Serialization/Deserialization: Libraries that convert objects to/from JSON or XML often use reflection
+to read/write object attributes.
 
 Example:
 Here’s a simple example demonstrating how to use reflection to inspect a class:
@@ -36,8 +48,11 @@ public class ReflectionExample {
 
 Considerations:
 
-Performance Overhead: Reflection can be slower than direct access because it involves type checking and method lookups at runtime.
-Security Restrictions: Certain security managers may restrict the use of reflection, especially when trying to access private members.
+Performance Overhead: Reflection can be slower than direct access because it involves type
+checking and method lookups at runtime.
+Security Restrictions: Certain security managers may restrict the use of reflection,
+especially when trying to access private members.
 Complexity and Maintainability: Code that heavily relies on reflection can become harder to understand and maintain.
 
-Reflection is a powerful tool, but it should be used judiciously due to its implications on performance and code clarity.
+Reflection is a powerful tool, but it should be used judiciously due to its implications on
+performance and code clarity.
