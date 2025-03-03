@@ -16,7 +16,6 @@ Concrete Factory: A class that implements the Factory interface and creates inst
 
 3. What are the advantages of using the Factory Design Pattern?
 Answer:
-
 Encapsulation: It encapsulates the instantiation logic, making it easier to manage and modify.
 Loose Coupling: The client code does not need to know the details of how products are created,
 reducing dependencies.

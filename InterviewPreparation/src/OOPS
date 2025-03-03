@@ -1,11 +1,15 @@
 Object-Oriented Programming (OOP) Concepts
-Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects," which can contain data and code that manipulates that data. The four fundamental principles of OOP are:
+Object-Oriented Programming (OOP) is a programming paradigm based on the concept of "objects,"
+which can contain data and code that manipulates that data.
+
+The four fundamental principles of OOP are:
 
 Encapsulation:
 
 Encapsulation is the bundling of data (attributes) and methods (functions) that operate on the data into a
 single unit called a class.
-It restricts direct access to some of an object's components, which is a means of preventing unintended interference and misuse of the methods and data.
+It restricts direct access to some of an object's components, which is a means of preventing
+unintended interference and misuse of the methods and data.
 In Java, encapsulation is achieved using access modifiers.
 
 Inheritance:

@@ -1,27 +1,30 @@
 1. Which Data Structure does DataStructure.map.HashMap represent?
-Ans. A DataStructure.map.HashMap in Java represents an associative array or dictionary data structure. It is specifically
-designed to store key-value pairs, allowing for efficient retrieval, insertion, and deletion of values based
-on their associated keys.
+Ans. A DataStructure.map.HashMap in Java represents an associative array or dictionary data structure.
+It is specifically designed to store key-value pairs, allowing for efficient retrieval, insertion,
+and deletion of values based on their associated keys.
 
 Characteristics of DataStructure.map.HashMap:
-Key-Value Pairs: Each entry in a DataStructure.map.HashMap consists of a unique key and its corresponding value. This allows
-for quick lookups based on the key.
+Key-Value Pairs: Each entry in a DataStructure.map.HashMap consists of a unique key and its corresponding
+value. This allows for quick lookups based on the key.
 
 Hashing Mechanism: It uses a hash function to compute an index (bucket) based on the hash code of the key.
 This enables average-case constant time complexity (O(1)) for basic operations like get and put.
 
 Collision Handling: When two keys hash to the same index, DataStructure.map.HashMap handles collisions using techniques such as chaining (linked lists) or, in some implementations, by using balanced trees for buckets that exceed a certain threshold.
 
-Dynamic Resizing: As more entries are added, a DataStructure.map.HashMap dynamically resizes itself when a predefined load factor is exceeded, ensuring efficient space utilization.
+Dynamic Resizing: As more entries are added, a DataStructure.map.HashMap dynamically resizes itself
+when a predefined load factor is exceeded, ensuring efficient space utilization.
 
-Unordered Collection: The order of the entries in a DataStructure.map.HashMap is not guaranteed, as it does not maintain any
+Unordered Collection: The order of the entries in a DataStructure.map.HashMap is not guaranteed,
+as it does not maintain any
 specific order of elements. If you need ordered key-value pairs, consider using a LinkedHashMap.
 
 2. Which Data Structures are used to implement DataStructure.map.HashMap?
 Ans. A DataStructure.map.HashMap in Java is implemented using a combination of several data structures that work together to provide efficient storage and retrieval of key-value pairs. The primary data structures involved are:
 
      1. Array (Buckets)
-     The core of a DataStructure.map.HashMap is an array of buckets. Each element in the array can hold a reference to the head of a linked list or tree structure that contains entries (key-value pairs).
+     The core of a DataStructure.map.HashMap is an array of buckets. Each element in the array
+     can hold a reference to the head of a linked list or tree structure that contains entries (key-value pairs).
      The size of this array is determined by the initial capacity specified when creating the DataStructure.map.HashMap.
 
      2. Linked List
@@ -41,7 +44,8 @@ Ans. A DataStructure.map.HashMap in Java is implemented using a combination of s
 
 3. Is DataStructure.map.HashMap thread safe in Java?
 Ans. No, DataStructure.map.HashMap is not thread-safe in Java. This means that if multiple threads access a DataStructure.map.HashMap concurrently
-and at least one of the threads modifies the map (by adding or removing entries), it can lead to unpredictable
+and at least one of the threads modifies the map (by adding or removing entries),
+ it can lead to unpredictable
 behavior, including data corruption, infinite loops, and other concurrency issues.
 
      Key Points about DataStructure.map.HashMap and Thread Safety:

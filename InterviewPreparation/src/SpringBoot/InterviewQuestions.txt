@@ -210,6 +210,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .httpBasic(); // Use basic authentication
     }
 }
+
+@Service
+public class UserService {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    public void deleteUser(Long userId) {
+        // Logic to delete a user
+    }
+}
+
+
 14. What is Spring Boot DevTools?
 Explanation: Spring Boot DevTools is a module that helps improve the development experience by providing features
 like automatic restarts, live reload, and configurations specifically for development.
@@ -273,7 +284,7 @@ and allows you to define beans in a Spring context.
 
 17. How do you implement caching in Spring Boot?
 Explanation: Spring Boot provides built-in support for caching with the @Cacheable, @CachePut,
-and @CacheEvict annotations. You can easily enable caching by adding the spring-boot-starter-cache dependency.
+and @CacheEvict annotations. You can enable caching by adding the spring-boot-starter-cache dependency.
 
 Example:
 

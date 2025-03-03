@@ -54,7 +54,12 @@ Incremental and Concurrent Collectors: These collectors aim to reduce pause time
 collection incrementally or concurrently with the application threads, allowing for more responsive
 applications.
 
-Java employs several garbage collection (GC) processes to manage memory automatically, allowing developers to focus on application logic rather than manual memory management. The Java Virtual Machine (JVM) provides different garbage collection algorithms, each with its own characteristics and use cases. Here’s an overview of the various garbage collection processes in Java:
+Java employs several garbage collection (GC) processes to manage memory automatically,
+allowing developers to focus on application logic rather than manual memory management.
+The Java Virtual Machine (JVM) provides different garbage collection algorithms,
+each with its own characteristics and use cases. Here’s an overview of the various garbage collection
+processes in Java:
+
 1. Serial Garbage Collector
 
 Description: The Serial GC uses a single thread for garbage collection, making it suitable for small applications or single-threaded environments.
@@ -66,36 +71,46 @@ Use Case: Ideal for applications with small heaps or those running on client mac
 
 2. Parallel Garbage Collector (Throughput Collector)
 
-Description: The Parallel GC uses multiple threads to perform garbage collection, aimed at maximizing throughput and minimizing pause times.
+Description: The Parallel GC uses multiple threads to perform garbage collection, aimed at maximizing
+throughput and minimizing pause times.
 How It Works:
-Like the Serial GC, it pauses all application threads during the young generation collection but utilizes multiple threads to perform the marking and sweeping phases.
+Like the Serial GC, it pauses all application threads during the young generation collection but
+utilizes multiple threads to perform the marking and sweeping phases.
 It is designed to work efficiently with multi-core processors.
 
-Use Case: Suitable for batch processing applications or server-side applications where throughput is critical.
+Use Case: Suitable for batch processing applications or server-side applications where throughput is
+critical.
 
 3. Concurrent Mark-Sweep (CMS) Collector
 
-Description: The CMS collector minimizes pause times by performing most of its work concurrently with the application threads.
+Description: The CMS collector minimizes pause times by performing most of its work concurrently with the
+application threads.
+
 How It Works:
-The CMS collector has several phases: initial marking (stop-the-world), concurrent marking (runs alongside application threads), remark (stop-the-world), and sweeping (concurrent).
+The CMS collector has several phases: initial marking (stop-the-world), concurrent marking
+(runs alongside application threads), remark (stop-the-world), and sweeping (concurrent).
 It primarily collects the old generation and is optimized for reducing pause times.
 
 Use Case: Best suited for applications that require low pause times and can tolerate some level of fragmentation.
 
 4. G1 Garbage Collector (Garbage-First Collector)
 
-Description: The G1 GC is designed for applications with large heaps and aims to provide predictable pause times while maintaining high throughput.
+Description: The G1 GC is designed for applications with large heaps and aims to provide predictable
+pause times while maintaining high throughput.
 How It Works:
-The heap is divided into regions, and G1 prioritizes which regions to collect based on the amount of garbage present (hence "Garbage-First").
+The heap is divided into regions, and G1 prioritizes which regions to collect based on the amount
+of garbage present (hence "Garbage-First").
 It performs both young and old generation collections, using a concurrent marking phase to identify live objects and a mixed collection phase to reclaim memory.
 
 Use Case: Suitable for applications requiring large heap sizes and predictable performance, such as big data processing and enterprise applications.
 
 5. Z Garbage Collector (ZGC)
 
-Description: ZGC is a low-latency garbage collector introduced in JDK 11 that aims to provide very short pause times, even with large heaps (up to multi-terabyte sizes).
+Description: ZGC is a low-latency garbage collector introduced in JDK 11 that aims to provide
+very short pause times, even with large heaps (up to multi-terabyte sizes).
 How It Works:
-ZGC uses a technique called "colored pointers" to track object references, allowing it to perform garbage collection concurrently without needing to stop the application threads for long periods.
+ZGC uses a technique called "colored pointers" to track object references, allowing it to perform
+garbage collection concurrently without needing to stop the application threads for long periods.
 It includes concurrent marking, relocation, and compaction phases.
 
 Use Case: Ideal for applications requiring extremely low latency, such as real-time processing systems and high-frequency trading platforms.

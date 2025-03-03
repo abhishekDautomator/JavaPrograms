@@ -1,6 +1,6 @@
 package DesignPatterns.CreationalPattern.Factory;
 
-import DesignPatterns.CreationalPattern.AbstractFactory.EmployeeAbstractFactory;
+import DesignPatterns.CreationalPattern.Factory.AbstractFactory.EmployeeAbstractFactory;
 
 public class EmployeeFactoryClass {
 

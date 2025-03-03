@@ -18,6 +18,7 @@ Make all fields private and final.
 Use a constructor to initialize all fields.
 Provide only getter methods without setters.
 If any field is a mutable object, return copies of those objects in the getters.
+
 Can you give an example of an immutable class?
 
 Answer:

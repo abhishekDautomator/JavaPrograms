@@ -1,9 +1,8 @@
 package DesignPatterns.CreationalPattern.Factory;
 
-import DesignPatterns.CreationalPattern.AbstractFactory.BackendDeveloperFactory;
-import DesignPatterns.CreationalPattern.AbstractFactory.EmployeeAbstractFactory;
-import DesignPatterns.CreationalPattern.AbstractFactory.ManagerFactory;
-import DesignPatterns.CreationalPattern.AbstractFactory.WebDeveloperFactory;
+import DesignPatterns.CreationalPattern.Factory.AbstractFactory.BackendDeveloperFactory;
+import DesignPatterns.CreationalPattern.Factory.AbstractFactory.ManagerFactory;
+import DesignPatterns.CreationalPattern.Factory.AbstractFactory.WebDeveloperFactory;
 
 public class ClientClass {
     public static void main(String[] args) {

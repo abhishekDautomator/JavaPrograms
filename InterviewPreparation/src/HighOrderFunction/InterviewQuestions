@@ -17,4 +17,5 @@ particularly with the introduction of lambda expressions in Java 8.
      Conclusion
      Higher-order functions in Java enhance the language's expressiveness and allow for functional programming techniques.
      With the use of functional interfaces and lambda expressions, Java developers can write more modular, reusable,
-     and maintainable code. By understanding and utilizing higher-order functions, you can leverage the full power of functional programming within the Java ecosystem.
+     and maintainable code. By understanding and utilizing higher-order functions, you can leverage the full power of
+     functional programming within the Java ecosystem.

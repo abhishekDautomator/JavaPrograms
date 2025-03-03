@@ -1,4 +1,4 @@
-package DesignPatterns.CreationalPattern.AbstractFactory;
+package DesignPatterns.CreationalPattern.Factory.AbstractFactory;
 
 import DesignPatterns.CreationalPattern.Factory.BackendDeveloper;
 import DesignPatterns.CreationalPattern.Factory.Employee;

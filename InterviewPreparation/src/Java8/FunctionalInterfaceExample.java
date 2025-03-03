@@ -1,5 +1,6 @@
 package Java8;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class FunctionalInterfaceExample {
@@ -10,6 +11,7 @@ public class FunctionalInterfaceExample {
     public static void main(String[] args) {
         // Using the Function interface to calculate the length of a string
         Function<String, Integer> lengthFunction = String::length;
+        BiFunction<Integer, Integer, Integer> sumFunction = Integer::sum;
 
         // Apply the Function to get the length of the string "Hello"
         int length = lengthFunction.apply("Hello");

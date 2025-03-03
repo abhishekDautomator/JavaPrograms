@@ -1,7 +1,7 @@
 package DependencyInjection;
 
 public class CarWithDependencyInjection {
-    private EngineInterface engine;
+    private final EngineInterface engine;
 
     // Constructor injection
     public CarWithDependencyInjection(EngineInterface engine) {

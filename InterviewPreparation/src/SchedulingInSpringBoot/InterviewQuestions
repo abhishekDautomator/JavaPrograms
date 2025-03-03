@@ -15,16 +15,21 @@ Make sure you include the necessary dependency in your pom.xml if you are using 
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter</artifactId>
 </dependency>
-2. Enable Scheduling
-Create a configuration class or use an existing one to enable scheduling:
+2. Enable Scheduling: Add the @EnableScheduling annotation to your main application class or any configuration class. This annotation is what tells Spring to look for methods annotated with @Scheduled.
 
-import org.springframework.context.annotation.Configuration;
+Example:
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
-
-@Configuration
+@SpringBootApplication
 @EnableScheduling
-public class SchedulerConfig {
+public class MyApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(MyApplication.class, args);
+    }
 }
+
 3. Create Scheduled Tasks
 You can create a scheduled task by defining a method and annotating it with @Scheduled. Here are some examples of how to use the @Scheduled annotation:
 

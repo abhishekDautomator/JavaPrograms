@@ -1,5 +1,6 @@
 Generics in Java are a feature that allows you to define classes, interfaces, and methods with a
-placeholder for types, enabling you to create more flexible and reusable code. By using generics,
+placeholder for types, enabling you to create more flexible and reusable code.
+By using generics,
 you can specify a type parameter when defining a class or method, which can then be replaced with a
 specific type when you use it. This helps ensure type safety at compile time and reduces the need for
 casting.

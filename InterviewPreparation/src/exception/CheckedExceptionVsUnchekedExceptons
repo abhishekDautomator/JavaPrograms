@@ -1,29 +1,35 @@
-In Java, exceptions are categorized into two main types: checked exceptions and unchecked exceptions. Understanding the differences between them is crucial for effective error handling in your applications. Here’s a detailed comparison:
-Checked Exceptions
+In Java, exceptions are categorized into two main types: checked exceptions and unchecked exceptions.
+Understanding the differences between them is crucial for effective error handling in your applications.
+Here’s a detailed comparison:
 
+Checked Exceptions
 Definition: Checked exceptions are exceptions that are checked at compile-time.
-The compiler requires that these exceptions be either caught or declared in the method signature using the throws
-keyword.
+The compiler requires that these exceptions be either caught or declared in the method signature
+using the throws keyword.
 Hierarchy: They are subclasses of the Exception class but not subclasses of RuntimeException.
 Examples:
 IOException: Thrown when an I/O operation fails or is interrupted.
 SQLException: Thrown when there is an error with database access.
 ClassNotFoundException: Thrown when an application tries to load a class through its string name but cannot find it.
 
-Handling: Since these exceptions are checked at compile-time, developers are forced to handle them explicitly, either by using try-catch blocks or by declaring them in the method signature.
-Use Case: Checked exceptions are typically used for recoverable conditions where the client code can potentially recover from the exception (e.g., trying to read a file that may or may not exist).
+Handling: Since these exceptions are checked at compile-time, developers are forced to
+handle them explicitly, either by using try-catch blocks or by declaring them in the method signature.
+Use Case: Checked exceptions are typically used for recoverable conditions where the client code can
+potentially recover from the exception (e.g., trying to read a file that may or may not exist).
 
 Unchecked Exceptions
 
-Definition: Unchecked exceptions are exceptions that are not checked at compile-time. They occur at runtime and do not
-require explicit handling in the code.
+Definition: Unchecked exceptions are exceptions that are not checked at compile-time.
+They occur at runtime and do not require explicit handling in the code.
+
 Hierarchy: They are subclasses of the RuntimeException class, which itself is a subclass of Exception.
 Examples:
 NullPointerException: Thrown when trying to use an object reference that has not been initialized.
 ArrayIndexOutOfBoundsException: Thrown when an array has been accessed with an illegal index.
 IllegalArgumentException: Thrown when a method receives an argument that is inappropriate.
 
-Handling: Developers are not required to catch or declare unchecked exceptions. However, it's generally good practice to handle them where appropriate to prevent application crashes.
+Handling: Developers are not required to catch or declare unchecked exceptions. However, it's generally
+good practice to handle them where appropriate to prevent application crashes.
 Use Case: Unchecked exceptions are used for programming errors that are usually not recoverable, such as logic errors or improper use of an API.
 
 Key Differences

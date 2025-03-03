@@ -1,4 +1,5 @@
 What is AOP?
+
 Aspect-Oriented Programming (AOP) is a programming paradigm that aims to increase modularity by allowing
 the separation of cross-cutting concerns. Cross-cutting concerns are aspects of a program that affect other
 parts of the program and can include logging, security, transaction management, error handling, and
