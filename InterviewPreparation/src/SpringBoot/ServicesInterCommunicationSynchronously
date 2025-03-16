@@ -43,8 +43,12 @@ public class ServiceA {
         this.restTemplate = restTemplate;
     }
     public String fetchDataFromServiceB() {
-        String url = "http://localhost:8081/api/data"; // Assuming Service B is running on port 8081
-        return restTemplate.getForObject(url, String.class);
+        String url = "http://localhost:8081/api/data";
+        try {
+            return restTemplate.getForObject(url, String.class);
+        } catch (RestClientException e) {
+            return "Error fetching data from Service B: " + e.getMessage();
+        }
     }
 }
 

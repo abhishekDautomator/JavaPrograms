@@ -7,7 +7,7 @@ public class StreamProcessingExample {
     //The Streams API was introduced in Java 8 to simplify working with data stored in collections or arrays.
     // It provides efficient, declarative, and readable methods for performing operations such as filtering,
     // mapping, and reducing.
-    public static <Optional> void main(String[] args) {
+    public static void main(String[] args) {
         // Create a list of integers
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 
@@ -159,7 +159,20 @@ public class StreamProcessingExample {
         List<String> names10 = Arrays.asList("Alice", "Bob", "Charlie");
         String[] namesArray = names10.toArray(String[]::new);
 // namesArray will contain ["Alice", "Bob", "Charlie"]
+        Department dept1 = new Department(1, "IT");
+        Department dept2 = new Department(2, "HR");
+        List<Department> deptList = new ArrayList<>();
+        deptList.add(dept1);
+        deptList.add(dept2);
 
+        Employee emp1 = new Employee(1, "Abhishek",  20000, dept1);
+        Employee emp2 = new Employee(2, "Raghu",  30000, dept1);
+        Employee emp3 = new Employee(3, "Abhishek",  40000, dept2);
+        List<Employee> empList = new ArrayList<>();
+
+        empList.add(emp1);
+        empList.add(emp2);
+        empList.add(emp3);
         // The peek() method is an intermediate operation that allows you to perform an action
 // on each element of the stream without modifying it. It's often used for debugging purposes.
         List<String> names11 = Arrays.asList("Alice", "Bob", "Charlie");
@@ -168,24 +181,108 @@ public class StreamProcessingExample {
 // Outputs: Processing: Alice, Processing: Bob, Processing: Charlie
 
         // Accumulate names into a List
-        // List<String> list = people.stream().map(Person::getName).collect(Collectors.toList());
-
+        List<String> list = empList.stream().map(Employee::getName).toList();
+        System.out.println(list);
         // Accumulate names into a TreeSet
-        // Set<String> set = people.stream().map(Person::getName).collect(Collectors.toCollection(TreeSet::new));
+        Set<String> set = empList.stream().map(Employee::getName).collect(Collectors.toCollection(TreeSet::new));
+        System.out.println(set);
 
         // Convert elements to strings and concatenate them, separated by commas
-        // String joined = things.stream()   .map(Object::toString)   .collect(Collectors.joining(", "));
+        String joined = empList.stream()   .map(Object::toString)   .collect(Collectors.joining(", "));
+        System.out.println(joined);
 
-        // Compute sum of salaries of employee
-        // int total = employees.stream()   .collect(Collectors.summingInt(Employee::getSalary));
+        // Compute a sum of salaries of employee
+        int total = empList.stream().mapToInt(Employee::getSalary).sum();
+        System.out.println(total);
 
         // Group employees by department
-        // Map<Department,List<Employee>> byDept = employees.stream()   .collect(Collectors.groupingBy(Employee::getDepartment));
+        Map<String,List<Employee>> byName = empList.stream().collect(Collectors.groupingBy(Employee::getName));
+        System.out.println(byName);
 
         // Compute sum of salaries by department
-        // Map<Department,Integer> totalByDept = employees.stream()   .collect(Collectors.groupingBy(Employee::getDepartment,Collectors.summingInt(Employee::getSalary)));
+        Map<Department,Integer> totalByDept = empList.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.summingInt(Employee::getSalary)));
+        System.out.println(totalByDept);
+        // Partition employee into salary > 30000
+        Map<Boolean,List<Employee>> salaryGreaterThan30000 = empList.stream().collect(Collectors.partitioningBy(s -> s.getSalary() >= 30000));
+        System.out.println(salaryGreaterThan30000);
 
-        // Partition students into passing and failing
-        // Map<Boolean,List<Student>> passingFailing = students.stream().collect(Collectors.partitioningBy(s -> s.getGrade() >= PASS_THRESHOLD));
+    }
+
+    static class Employee {
+        private int id;
+        private String name;
+        private int salary;
+        Department department;
+
+        public Department getDepartment() {
+            return department;
+        }
+
+        public void setDepartment(Department department) {
+            this.department = department;
+        }
+
+        public int getSalary() {
+            return salary;
+        }
+
+        public void setSalary(int salary) {
+            this.salary = salary;
+        }
+
+        public Employee(int id, String name, int salary, Department department) {
+            this.id = id;
+            this.name = name;
+            this.salary = salary;
+            this.department = department;
+        }
+
+        public Employee(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+    }
+
+    static class Department {
+        private int id;
+        private String name;
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public Department(int id, String name) {
+            this.id = id;
+            this.name = name;
+        }
     }
 }
+

@@ -6,9 +6,9 @@ public class UniqueRandomNumbers {
     public static void main(String[] args) {
         Random random = new Random();
         List<Integer> roomNumbers = random
-                .ints(0,100)
+                .ints(0,9)
                 .distinct()
-                .limit(3)
+                .limit(7)
                 .boxed()
                 .collect(Collectors.toList());
 

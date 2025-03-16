@@ -26,7 +26,7 @@ public class InsertionSort {
     }
 
     public static void insertionSortingRevision(int[] arr){
-        for(int i=1; i<arr.length;i++){
+        for(int i=0;i<arr.length;i++){
             int j=i;
             int v=arr[i];
             while(j>=1 && arr[j-1]>v){

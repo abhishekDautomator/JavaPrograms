@@ -45,13 +45,15 @@ Description: Each thread has its own program counter register that keeps track o
 being executed.
 
 Management:
-It stores the address of the JVM instruction currently being executed, allowing the thread to resume execution after a method call or return.
+It stores the address of the JVM instruction currently being executed, allowing the thread to resume
+execution after a method call or return.
 The memory used for the program counter is small and managed by the JVM automatically.
 
 
 5. Native Method Stack
 
-Description: This area is similar to the Java stack but is used for native methods written in languages like C or C++.
+Description: This area is similar to the Java stack but is used for native methods written
+in languages like C or C++.
 Management:
 Each thread has its own native method stack, which stores information related to native method calls.
 The size of the native method stack can also be configured using JVM options.
@@ -60,10 +62,32 @@ The size of the native method stack can also be configured using JVM options.
 Memory Management Techniques
 
 Automatic Memory Management:
-Java primarily relies on automatic memory management through garbage collection, which periodically identifies and reclaims memory occupied by objects that are no longer reachable.
+Java primarily relies on automatic memory management through garbage collection, which periodically
+identifies and reclaims memory occupied by objects that are no longer reachable.
 
 Garbage Collection Algorithms:
-Different algorithms and strategies are employed by the JVM for garbage collection, such as generational garbage collection, mark-and-sweep, and stop-and-copy, among others.
+Different algorithms and strategies are employed by the JVM for garbage collection, such as
+generational garbage collection, mark-and-sweep, and stop-and-copy, among others.
+
+Different garbage collection algorithms have varying strategies for managing memory.
+Some common types include:
+
+Generational Garbage Collection: This approach is based on the observation that most objects
+have a short lifespan. Memory is divided into generations (young, old, etc.), with frequent collections
+in the young generation where most objects die quickly, while collections in the old generation are
+less frequent.
+
+Stop-and-Copy: This method divides the heap into two halves. During garbage collection, reachable objects
+are copied from one half to the other, compacting them in the process. The unused half is then reclaimed
+for future allocations.
+
+Mark-and-Sweep: A straightforward technique that marks reachable objects and sweeps through the heap to
+collect unmarked objects. It does not compact memory, which can lead to fragmentation.
+
+Incremental and Concurrent Collectors: These collectors aim to reduce pause times by performing garbage
+collection incrementally or concurrently with the application threads, allowing for more responsive
+applications.
+
 
 Memory Configuration:
 Developers can configure memory settings for the JVM to optimize performance according to the application's needs, balancing between heap size, stack size, and garbage collection behavior.

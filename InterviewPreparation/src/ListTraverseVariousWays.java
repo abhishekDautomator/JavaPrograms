@@ -44,6 +44,6 @@ public class ListTraverseVariousWays {
 
         // 6. Using forEach() Method
         System.out.println("\nUsing forEach() Method:");
-        list.forEach(fruit -> System.out.println(fruit));
+        list.forEach(System.out::println);
     }
 }

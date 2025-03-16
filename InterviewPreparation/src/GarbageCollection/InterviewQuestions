@@ -25,7 +25,8 @@ How Garbage Collection Works
 Garbage collection typically involves several phases:
 
 Marking: The GC identifies which objects are still reachable by traversing the reference graph starting
-from the root objects (e.g., local variables, static fields). All reachable objects are marked.
+from the root objects (instance variables, static fields, etc.) and all instances of classes (objects),
+Arrays (both primitive and object types) and String objects. All reachable objects are marked.
 
 Sweeping: After the marking phase, the GC scans the heap for unmarked objects (those not reachable).
 These objects are deemed garbage and can be reclaimed.
@@ -34,7 +35,7 @@ Compacting: In some garbage collectors, after sweeping, the memory may become fr
 involves moving reachable objects together to eliminate gaps, making allocation of new objects more
 efficient.
 
-Types of Garbage Collectors
+Types of Garbage Collection algorithms:
 Different garbage collection algorithms have varying strategies for managing memory.
 Some common types include:
 
@@ -56,6 +57,7 @@ applications.
 
 Java employs several garbage collection (GC) processes to manage memory automatically,
 allowing developers to focus on application logic rather than manual memory management.
+
 The Java Virtual Machine (JVM) provides different garbage collection algorithms,
 each with its own characteristics and use cases. Here’s an overview of the various garbage collection
 processes in Java:
@@ -65,9 +67,11 @@ processes in Java:
 Description: The Serial GC uses a single thread for garbage collection, making it suitable for small applications or single-threaded environments.
 How It Works:
 During a young generation collection, it pauses all application threads (stop-the-world event).
-It performs marking and sweeping in the young generation, and if necessary, it can also collect the old generation.
+It performs marking and sweeping in the young generation, and if necessary, it can also collect the
+old generation.
 
-Use Case: Ideal for applications with small heaps or those running on client machines where low overhead is essential.
+Use Case: Ideal for applications with small heaps or those running on client machines where low
+overhead is essential.
 
 2. Parallel Garbage Collector (Throughput Collector)
 
@@ -91,7 +95,8 @@ The CMS collector has several phases: initial marking (stop-the-world), concurre
 (runs alongside application threads), remark (stop-the-world), and sweeping (concurrent).
 It primarily collects the old generation and is optimized for reducing pause times.
 
-Use Case: Best suited for applications that require low pause times and can tolerate some level of fragmentation.
+Use Case: Best suited for applications that require low pause times and can tolerate some level of
+fragmentation.
 
 4. G1 Garbage Collector (Garbage-First Collector)
 
@@ -100,7 +105,8 @@ pause times while maintaining high throughput.
 How It Works:
 The heap is divided into regions, and G1 prioritizes which regions to collect based on the amount
 of garbage present (hence "Garbage-First").
-It performs both young and old generation collections, using a concurrent marking phase to identify live objects and a mixed collection phase to reclaim memory.
+It performs both young and old generation collections, using a concurrent marking phase to identify
+live objects and a mixed collection phase to reclaim memory.
 
 Use Case: Suitable for applications requiring large heap sizes and predictable performance, such as big data processing and enterprise applications.
 
@@ -117,12 +123,15 @@ Use Case: Ideal for applications requiring extremely low latency, such as real-t
 
 6. Shenandoah Garbage Collector
 
-Description: Shenandoah is a concurrent garbage collector that aims to minimize pause times by performing garbage collection concurrently with the application.
+Description: Shenandoah is a concurrent garbage collector that aims to minimize pause times by performing
+garbage collection concurrently with the application.
 How It Works:
-Similar to ZGC, Shenandoah allows for concurrent marking and evacuation, aiming to keep pause times short regardless of heap size.
+Similar to ZGC, Shenandoah allows for concurrent marking and evacuation, aiming to keep pause
+times short regardless of heap size.
 It also implements a mechanism to relocate objects concurrently.
 
-Use Case: Suitable for applications that demand low pause times and can benefit from concurrent processing.
+Use Case: Suitable for applications that demand low pause times and can benefit from concurrent
+processing.
 
 Conclusion
 Java's garbage collection processes are designed to address various application requirements,
@@ -150,4 +159,5 @@ especially during full collections or compaction, which may cause noticeable pau
 Limited Control: Developers have less control over memory management compared to manual techniques,
 which can be a drawback in performance-critical applications.
 
-In summary, garbage collection is a vital component of memory management in modern programming languages, providing automated mechanisms to reclaim memory and enhance application stability. Understanding its workings and implications helps developers write efficient and effective code while leveraging the advantages of automated memory management.
+In summary, garbage collection is a vital component of memory management in modern programming languages,
+providing automated mechanisms to reclaim memory and enhance application stability. Understanding its workings and implications helps developers write efficient and effective code while leveraging the advantages of automated memory management.

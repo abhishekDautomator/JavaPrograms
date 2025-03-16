@@ -8,12 +8,13 @@ public final class ImmutableClassPerson {
     private final String name; //final fields
     private final int age;
     private final List<String> programmingLanguages;
+    private final Department department;
 
-
-    public ImmutableClassPerson(String name, int age, List<String> programmingLanguages) {
+    public ImmutableClassPerson(String name, int age, List<String> programmingLanguages, Department department) {
         this.name = name;
         this.age = age;
-        this.programmingLanguages = new ArrayList<>(programmingLanguages); //new copy of programmingLanguages
+        this.programmingLanguages = new ArrayList<>(programmingLanguages);
+        this.department = department;
     }
 
     public String getName(){
@@ -27,5 +28,10 @@ public final class ImmutableClassPerson {
     public List<String> getProgrammingLanguages() {
         return Collections.unmodifiableList(programmingLanguages);
     }
-    //No setters
+
+    public Department getDepartment() {
+        return department;
+    }
 }
+
+

@@ -1,9 +1,13 @@
+package Immutability;
 
-public class Employee {
+public class Department{
     private int id;
     private String name;
 
-    Employee(int id, String name){
+    public Department() {
+    }
+
+    public Department(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -24,5 +28,3 @@ public class Employee {
         this.name = name;
     }
 }
-
-
