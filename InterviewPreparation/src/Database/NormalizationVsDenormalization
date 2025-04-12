@@ -2,43 +2,56 @@ Normalization and de-normalization are two critical concepts in database managem
 (DBMS) that deal with the organization of data within a relational database. Each approach has its own
 advantages and disadvantages, and they serve different purposes.
 Normalization
-Definition: Normalization is the process of organizing data in a database to reduce redundancy and improve data integrity. It involves dividing large tables into smaller, related tables and defining relationships between them.
+Definition: Normalization is the process of organizing data in a database to reduce redundancy and
+improve data integrity. It involves dividing large tables into smaller, related tables and defining
+relationships between them.
+
 Objectives:
 
 Eliminate Redundancy: Reduce duplicate data by structuring the database appropriately.
-Improve Data Integrity: Ensure that data dependencies make sense and that changes to data are consistently applied.
+Improve Data Integrity: Ensure that data dependencies make sense and that changes to data are
+consistently applied.
 Simplify Data Maintenance: Make it easier to update, insert, or delete data without inconsistencies.
 
-Normal Forms: Data is organized into various normal forms (1NF, 2NF, 3NF, BCNF, etc.), each with specific rules regarding how data should be structured.
-Example: Consider a table storing customer orders. In a normalized form, you might have separate tables for customers, orders, and products, with foreign keys linking them together.
-Advantages:
+Normal Forms: Data is organized into various normal forms (1NF, 2NF, 3NF, BCNF, etc.), each with specific
+rules regarding how data should be structured.
+Example: Consider a table storing customer orders. In a normalized form, you might have separate tables
+for customers, orders, and products, with foreign keys linking them together.
 
+Advantages:
 Reduced data redundancy.
 Improved data integrity and consistency.
 Easier to maintain and update data.
 
 Disadvantages:
-
 Complex queries may require multiple joins, which can slow down performance.
 Increased number of tables can complicate database design and management.
 
 De-normalization
-Definition: De-normalization is the process of intentionally introducing redundancy into a database by merging tables or incorporating redundant data to optimize read performance.
+Definition: De-normalization is the process of intentionally introducing redundancy into a database by
+merging tables or incorporating redundant data to optimize read performance.
+
 Objectives:
+Improve Query Performance: By reducing the number of joins needed to retrieve data, queries can be
+executed faster.
+Simplify Queries: Fewer tables can lead to simpler SQL queries, making it easier for developers and
+analysts to work with.
 
-Improve Query Performance: By reducing the number of joins needed to retrieve data, queries can be executed faster.
-Simplify Queries: Fewer tables can lead to simpler SQL queries, making it easier for developers and analysts to work with.
+Example: In a denormalized structure, you might combine customer, order, and product information into a
+single table for faster retrieval, even if it means duplicating some customer or product data.
 
-Example: In a denormalized structure, you might combine customer, order, and product information into a single table for faster retrieval, even if it means duplicating some customer or product data.
 Advantages:
-
 Improved read performance due to fewer joins.
 Simpler queries that are easier to understand and use.
 
 Disadvantages:
-
 Increased data redundancy can lead to anomalies during data updates, inserts, or deletes.
 More complex data maintenance, as changes must be propagated to multiple locations.
 
 Conclusion
-In summary, normalization focuses on reducing redundancy and improving data integrity, while denormalization aims to enhance performance, particularly for read-heavy applications. The choice between normalization and denormalization depends on the specific requirements of the application, including data access patterns, performance needs, and the importance of data integrity. Often, a hybrid approach is used, where some parts of the database are normalized, and others are denormalized based on their usage.
+In summary, normalization focuses on reducing redundancy and improving data integrity, while
+denormalization aims to enhance performance, particularly for read-heavy applications. The choice
+between normalization and denormalization depends on the specific requirements of the application,
+including data access patterns, performance needs, and the importance of data integrity. Often, a
+hybrid approach is used, where some parts of the database are normalized, and others are denormalized
+based on their usage.

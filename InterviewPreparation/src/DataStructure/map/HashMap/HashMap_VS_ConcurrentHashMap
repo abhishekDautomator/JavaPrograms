@@ -1,0 +1,47 @@
+HashMap (Java 8 and later)
+"HashMap is a part of the Java Collection Framework and provides a key-value based data structure that allows constant-time performance for get() and put() in the average case."
+
+📌 Internal Implementation:
+Buckets and Hashing:
+It uses an array of buckets, where each bucket is a linked list or a tree (after threshold). The hash code of the key determines the bucket index.
+
+Handling Collisions:
+Initially uses a linked list, but if the number of entries in a bucket exceeds 8, it switches to a red-black tree for better performance (O(log n)).
+
+Resizing:
+When the number of entries exceeds capacity * loadFactor, the map resizes (typically doubling the array size), which rehashes all entries — a costly operation.
+
+Nulls:
+Allows one null key and multiple null values.
+
+Not Thread-safe:
+If multiple threads access a HashMap concurrently and at least one thread modifies it, you must synchronize externally, otherwise it may lead to data corruption.
+
+✅ ConcurrentHashMap
+"ConcurrentHashMap is a thread-safe alternative to HashMap, designed for high concurrency with minimal blocking."
+
+📌 Internal Implementation:
+Segmented Locking (Pre-Java 8):
+Originally used segments (like mini hash tables with their own locks) for better concurrency.
+
+Bucket-level Synchronization (Java 8+):
+Now uses lock striping with synchronized blocks and CAS (Compare-And-Swap) using low-level operations from the Unsafe class.
+
+No Full Locking:
+Read operations are lock-free, and writes lock only specific buckets, not the entire map.
+
+Handling Collisions:
+Similar to HashMap (linked list → red-black tree).
+
+Nulls Not Allowed:
+Doesn’t allow null keys or values — avoids ambiguity in concurrent scenarios.
+
+🔥 Key Differences
+Feature	HashMap	ConcurrentHashMap
+Thread-safe	❌ No	✅ Yes
+Performance	Fast (single-threaded)	Optimized for multithreading
+Null Keys	✅ 1 allowed	❌ Not allowed
+Data Structure	Array + LinkedList/Tree	Same, but with fine-grained locking
+Synchronization	External	Internal (bucket-level)
+🎯 How to Finish:
+“So overall, I’d choose HashMap for single-threaded or read-heavy scenarios where thread-safety isn't a concern. But for concurrent applications like caching, I'd go with ConcurrentHashMap due to its fine-grained locking and better performance under multi-threaded access.”

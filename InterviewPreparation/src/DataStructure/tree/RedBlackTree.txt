@@ -1,0 +1,24 @@
+1. What is a Red-Black Tree?
+Ans. A Red-Black Tree is a type of self-balancing binary search tree used to keep the tree height small for
+efficient search, insert, and delete operations — always in O(log n) time.
+
+2.  Why is it used in HashMap?
+Ans. In Java 8+, if a bucket in the HashMap has more than 8 entries, the linked list is converted into a
+red-black tree to speed up lookups — from O(n) to O(log n).
+
+3. Key Properties of a Red-Black Tree:
+Ans.
+   Every node is either red or black.
+
+   The root is always black.
+
+   No two red nodes can be adjacent (a red node can't have a red child).
+
+   Every path from a node to its leaf children must have the same number of black nodes
+   (called black-height).
+
+   Insertion and deletion operations include rebalancing (via rotation and recoloring) to maintain these
+   properties.
+
+
+

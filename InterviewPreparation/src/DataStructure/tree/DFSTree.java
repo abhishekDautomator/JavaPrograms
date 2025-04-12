@@ -1,9 +1,9 @@
 package DataStructure.tree;
 
-public class BFSTree {
+public class DFSTree {
     TreeNode root;
 
-    public BFSTree() {
+    public DFSTree() {
         root = null;
     }
 
@@ -37,7 +37,7 @@ public class BFSTree {
         root.right.right = new TreeNode(7);
         root.right.right.right = new TreeNode(8);
 
-        BFSTree bfs = new BFSTree();
+        DFSTree bfs = new DFSTree();
         System.out.print("pre-order traversal of BFS: ");
         bfs.preOrderDFS(root);
         System.out.println();

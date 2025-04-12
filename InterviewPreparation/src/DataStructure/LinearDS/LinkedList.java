@@ -32,6 +32,18 @@ public class LinkedList {
         }
     }
 
+    public void deleteDuplicateIfAny(){
+        if(head == null) return;
+        Node current = head;
+        while(current.next!=null){
+            if(current.value==current.next.value){
+                current.next = current.next.next;
+            }else{
+                current = current.next;
+            }
+        }
+    }
+
     public void display(){
         Node current = head;
         while(current!=null){
@@ -88,6 +100,30 @@ public class LinkedList {
 
         //20 -> 10 -> null
         //30 -> 40 -> null
+    }
+
+    public Node addTwoNumbers(Node l1, Node l2) {
+        Node dummyHead = new Node(0); // Dummy node to simplify the result list
+        Node current = dummyHead; // Pointer to construct the new list
+        int carry = 0; // Variable to store carry
+        // Traverse both lists
+        while (l1 != null || l2 != null || carry != 0) {
+            int sum = carry; // Start with the carry
+            // Add the value from the first list if available
+            if (l1 != null) {
+                sum += l1.value;
+                l1 = l1.next; // Move to the next node
+            }
+            // Add the value from the second list if available
+            if (l2 != null) {
+                sum += l2.value;
+                l2 = l2.next; // Move to the next node
+            }
+            carry = sum / 10; // Calculate the new carry
+            current.next = new Node(sum % 10); // Create a new node with the digit value
+            current = current.next; // Move to the next node in the result list
+        }
+        return dummyHead.next; // Return the next node of dummy head, which is the actual head of the result list
     }
 
     public static void main(String[] args) {

@@ -1,7 +1,18 @@
 package DataStructure.tree;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class BinarySearchTree {
     private TreeNode root;
+
+    BinarySearchTree(TreeNode root){
+        this.root = root;
+    }
+
+    BinarySearchTree(){
+        this.root = null;
+    }
 
     public void insert(int value){
         root = insertRecord(root, value);
@@ -104,6 +115,30 @@ public class BinarySearchTree {
 
     }
 
+    public void findPathToEachLeafNode(){
+        findPathToEachLeafNodeRecord(root, new ArrayList<>());
+    }
+
+    public void findPathToEachLeafNodeRecord(TreeNode node, List<Integer> path){
+        if (node == null) {
+            return;
+        }
+        // Append the current node's value to the path
+        path.add(node.value);
+
+        // Check if the current node is a leaf
+        if (node.left == null && node.right == null) {
+            // Print the path when a leaf is found
+            System.out.println(path.toString());
+        } else {
+            // Continue to traverse the left and right children
+            findPathToEachLeafNodeRecord(node.left, path);
+            findPathToEachLeafNodeRecord(node.right, path);
+        }
+        // Backtrack: remove the current node's value and separator
+        path.remove(path.size() - 1);
+    }
+
     public static void main(String[] args) {
         BinarySearchTree bst = new BinarySearchTree();
 
@@ -142,5 +177,16 @@ public class BinarySearchTree {
         System.out.println("In-order traversal after deleting 50:");
         bst.inorderTraverse(); // Output: 30 40 60 70 80
         System.out.println();
+
+        TreeNode root = new TreeNode(1);
+        root.left = new TreeNode(2);
+        root.right = new TreeNode(3);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(5);
+        root.right.left = new TreeNode(6);
+        root.right.right = new TreeNode(7);
+        BinarySearchTree bst1 = new BinarySearchTree(root);
+        System.out.println("Paths to leaf nodes:");
+        bst1.findPathToEachLeafNode();
     }
 }

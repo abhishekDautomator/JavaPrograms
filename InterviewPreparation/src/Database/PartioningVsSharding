@@ -11,13 +11,14 @@ Implementation:
 
 All partitions reside within a single database instance.
 The database management system (DBMS) handles the distribution of data across partitions.
-Types:
 
+Types:
 Range Partitioning: Divides data based on a range of values (e.g., dates).
 List Partitioning: Divides data based on a predefined list of values.
 Hash Partitioning: Uses a hashing algorithm to determine the partition for each row.
+
 Use Cases: Partitioning is beneficial for improving query performance, managing large tables,
-and maintaining data organization without needing multiple database instances.
+and maintaining organization data without needing multiple database instances.
 
 
 Advantages:
@@ -31,11 +32,10 @@ Definition: Sharding involves distributing data across multiple database instanc
 Each shard is essentially a separate database that holds a portion of the overall dataset.
 
 Implementation:
-
 Data is split horizontally (across rows) and stored in different database instances.
 The application layer typically manages which shard to access for a given request.
-Types:
 
+Types:
 Horizontal Sharding: Rows of a table are distributed across multiple databases.
 Vertical Sharding: Different tables are stored in different databases, though this is less common.
 Use Cases: Sharding is used to scale out a database horizontally, particularly for applications with
@@ -46,6 +46,7 @@ Advantages:
 Enables horizontal scaling to handle larger volumes of data and traffic.
 Reduces the load on any single database instance, improving performance and availability.
 Provides fault tolerance; if one shard fails, others may continue to operate.
+
 Key Differences
 Scope: Partitioning occurs within a single database instance,
 while sharding distributes data across multiple instances.
