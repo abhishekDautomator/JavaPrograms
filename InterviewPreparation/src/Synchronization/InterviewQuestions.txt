@@ -15,5 +15,7 @@ access to shared resources, such as variables or objects, preventing race condit
      Key Points
      Thread Safety: Synchronization helps ensure that shared resources are accessed safely by multiple threads.
      Performance: Overuse of synchronization can lead to performance bottlenecks, so it should be used judiciously.
-     Deadlock: Improper use of synchronization can lead to deadlocks, where two or more threads are waiting indefinitely for each other to release locks.
-     By using synchronization effectively, you can manage concurrent access to shared resources and maintain data consistency in multi-threaded applications.
+     Deadlock: Improper use of synchronization can lead to deadlocks, where two or more threads are waiting
+     indefinitely for each other to release locks.
+     By using synchronization effectively, you can manage concurrent access to shared resources and maintain
+     data consistency in multi-threaded applications.

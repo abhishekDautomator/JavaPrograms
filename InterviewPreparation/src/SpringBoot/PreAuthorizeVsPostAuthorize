@@ -1,7 +1,8 @@
 @PreAuthorize and @PostAuthorize are annotations provided by Spring Security that are used to apply method-level security in a Spring application. They allow you to define access control rules based on the user's roles or permissions before or after the method execution, respectively.
 @PreAuthorize
 
-Purpose: This annotation is used to specify that the method can only be executed if the provided expression evaluates to true before the method is invoked.
+Purpose: This annotation is used to specify that the method can only be executed if the provided
+expression evaluates to true before the method is invoked.
 Usage: Typically used to check user permissions or roles before executing a method.
 Expression Language (SpEL): You can use Spring Expression Language (SpEL) to define complex expressions for access control.
 

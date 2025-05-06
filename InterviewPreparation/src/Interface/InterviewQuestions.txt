@@ -34,14 +34,18 @@ Interfaces cannot have constructors since they cannot be instantiated.
 Abstract classes can have constructors, which can be called when a subclass is instantiated.
 
 3. Can an interface have instance variables?
-No, an interface cannot have instance variables. However, it can declare constants, which are implicitly public, static, and final. This means that any variable defined in an interface is a constant and cannot change its value. For example:
+No, an interface cannot have instance variables. However,
+it can declare constants, which are implicitly public, static, and final. This means that any variable
+defined in an interface is a constant and cannot change its value. For example:
 
 public interface Constants {
     int MAX_SIZE = 100; // This is a constant
 }
 
 4. What is the default method in an interface?
-A default method in an interface is a method that has a body and is marked with the default keyword. Introduced in Java 8, default methods allow developers to add new methods to interfaces without breaking existing implementations. This is particularly useful for evolving APIs.
+A default method in an interface is a method that has a body and is marked with the default keyword.
+Introduced in Java 8, default methods allow developers to add new methods to interfaces without breaking
+existing implementations. This is particularly useful for evolving APIs.
 
 Example of a default method:
 
@@ -56,7 +60,9 @@ In this example, any class implementing the Vehicle interface can use the honk m
 without needing to provide an implementation, unless it chooses to override it.
 
 5. What are static methods in interfaces, and how are they different from instance methods?
-Static methods in interfaces are methods that can be called on the interface itself rather than on instances of classes that implement the interface. They were introduced in Java 8 and can provide utility functions related to the interface.
+Static methods in interfaces are methods that can be called on the interface itself rather than on
+instances of classes that implement the interface. They were introduced in Java 8 and can provide
+utility functions related to the interface.
 
 Key differences between static methods and instance methods in interfaces:
 
@@ -66,7 +72,8 @@ Static methods are invoked using the interface name (e.g., InterfaceName.methodN
 Instance methods require an object of a class that implements the interface (e.g., object.methodName()).
 Context:
 
-Static methods cannot access instance variables or instance methods directly; they can only access static members of the interface.
+Static methods cannot access instance variables or instance methods directly; they can only access
+ members of the interface.
 Instance methods can access both static and instance members of the implementing class.
 Example of a static method in an interface:
 
@@ -101,9 +108,13 @@ intended to be a functional interface. While this annotation is not mandatory, i
 ensure that the interface adheres to the functional interface rules.
 
 7. How does multiple inheritance work with interfaces in Java?
-In Java, multiple inheritance refers to a class inheriting from more than one superclass. Java does not support multiple inheritance with classes to avoid ambiguity issues (the "diamond problem"). However, Java allows a class to implement multiple interfaces, thereby achieving a form of multiple inheritance.
+In Java, multiple inheritance refers to a class inheriting from more than one superclass. Java does not
+support multiple inheritance with classes to avoid ambiguity issues (the "diamond problem"). However,
+Java allows a class to implement multiple interfaces, thereby achieving a form of multiple inheritance.
 
-When a class implements multiple interfaces, it must provide implementations for all the abstract methods declared in those interfaces. If two interfaces declare methods with the same name and signature, the implementing class needs to provide a single implementation for that method.
+When a class implements multiple interfaces, it must provide implementations for all the abstract methods
+declared in those interfaces. If two interfaces declare methods with the same name and signature,
+the implementing class needs to provide a single implementation for that method.
 
 Example:
 
@@ -121,14 +132,19 @@ class C implements A, B {
         System.out.println("Display method implemented in class C");
     }
 }
-In this case, class C implements both interfaces A and B, and it provides a single implementation of the display method.
+In this case, class C implements both interfaces A and B, and it provides a single implementation of the
+display method.
 
 8. What is the significance of the @FunctionalInterface annotation?
-The @FunctionalInterface annotation in Java is used to declare that an interface is intended to be a functional interface. This annotation serves two main purposes:
+The @FunctionalInterface annotation in Java is used to declare that an interface is intended to be a
+functional interface. This annotation serves two main purposes:
 
-Compile-time Checking: The compiler checks that the interface meets the criteria of a functional interface (i.e., it contains exactly one abstract method). If the interface contains more than one abstract method, the compiler will generate an error.
+Compile-time Checking: The compiler checks that the interface meets the criteria of a functional
+interface (i.e., it contains exactly one abstract method). If the interface contains more than one
+abstract method, the compiler will generate an error.
 
-Documentation: It serves as documentation for developers, indicating that the interface is meant to be used with lambda expressions or method references. This makes the intent clearer when reading the code.
+Documentation: It serves as documentation for developers, indicating that the interface is meant to be
+used with lambda expressions or method references. This makes the intent clearer when reading the code.
 
 Example:
 
@@ -173,9 +189,13 @@ public class Main {
     }
 }
 10. How do you achieve polymorphism through interfaces?
-Polymorphism in Java allows objects to be treated as instances of their parent type. Interfaces facilitate polymorphism by allowing a variable of an interface type to refer to any object that implements that interface.
+Polymorphism in Java allows objects to be treated as instances of their parent type. Interfaces
+facilitate polymorphism by allowing a variable of an interface type to refer to any object that
+implements that interface.
 
-When a class implements an interface, it must provide implementations for the methods defined in the interface. This means you can use the interface type as a reference to any object of the implementing class, enabling dynamic method dispatch at runtime.
+When a class implements an interface, it must provide implementations for the methods defined in the
+interface. This means you can use the interface type as a reference to any object of the implementing
+class, enabling dynamic method dispatch at runtime.
 
 Example:
 

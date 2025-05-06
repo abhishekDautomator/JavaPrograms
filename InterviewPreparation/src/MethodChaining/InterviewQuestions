@@ -1,8 +1,12 @@
 1. Explain method chaining?
-Ans. Method chaining in Java is a programming technique that allows multiple method calls to be linked together in a single line of code. This is accomplished by having each method return the object itself (usually this), enabling subsequent method calls on the same object without needing to repeatedly reference it.
+Ans. Method chaining in Java is a programming technique that allows multiple method calls to be linked
+together in a single line of code. This is accomplished by having each method return the object itself
+(usually this), enabling subsequent method calls on the same object without needing to repeatedly
+reference it.
 
      Key Features of Method Chaining
-     Fluent Interface: Method chaining often leads to a more readable and expressive code, resembling natural language. This is commonly seen in libraries that implement a fluent interface.
+     Fluent Interface: Method chaining often leads to a more readable and expressive code, resembling
+     natural language. This is commonly seen in libraries that implement a fluent interface.
 
      Improved Readability: By chaining methods, you can reduce the number of lines of code and improve readability, making it easier to understand the sequence of operations being performed.
 

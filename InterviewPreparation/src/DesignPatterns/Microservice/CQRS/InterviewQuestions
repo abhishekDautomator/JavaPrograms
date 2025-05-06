@@ -1,8 +1,12 @@
-CQRS, or Command and Query Responsibility Segregation, is an architectural pattern that separates the handling of data modification operations (commands) from data retrieval operations (queries). This design pattern is particularly useful in microservices architecture where the complexity and scale of applications can lead to significant performance benefits.
+CQRS, or Command and Query Responsibility Segregation, is an architectural pattern that separates
+the handling of data modification operations (commands) from data retrieval operations (queries).
+This design pattern is particularly useful in microservices architecture where the complexity and scale of
+applications can lead to significant performance benefits.
 Key Concepts of CQRS:
 
 Separation of Concerns:
-Commands are responsible for changing the state of the application (e.g., creating, updating, or deleting data).
+Commands are responsible for changing the state of the application (e.g., creating, updating, or
+deleting data).
 Queries are responsible for reading data without causing any side effects.
 
 Read and Write Models:
@@ -20,10 +24,13 @@ The separation allows developers to optimize queries for performance, using tech
 or indexing on the read side without impacting the write side's performance.
 
 Event Sourcing:
-While not a requirement of CQRS, it often pairs well with event sourcing, where state changes are stored as a sequence of events. This can provide an audit trail and allow for reconstructing state at any point in time.
+While not a requirement of CQRS, it often pairs well with event sourcing, where state changes are stored
+as a sequence of events. This can provide an audit trail and allow for reconstructing state at any
+point in time.
 
 Complexity Management:
-CQRS is beneficial in complex domains where business logic may vary significantly between commands and queries. By separating these concerns, teams can manage complexity more effectively.
+CQRS is beneficial in complex domains where business logic may vary significantly between commands
+and queries. By separating these concerns, teams can manage complexity more effectively.
 
 
 Use Cases:
@@ -44,7 +51,9 @@ load patterns for reads and writes.
 
 Example:
 
-Let's consider an example of an e-commerce application that utilizes the CQRS design pattern. In this scenario, we will focus on a Product Management Microservice that handles both product data updates (commands) and product information retrieval (queries).
+Let's consider an example of an e-commerce application that utilizes the CQRS design pattern. In this
+scenario, we will focus on a Product Management Microservice that handles both product data updates
+(commands) and product information retrieval (queries).
 Example: Product Management Microservice
 Components:
 
@@ -55,7 +64,8 @@ UpdateProductCommand: Modifies details of an existing product.
 DeleteProductCommand: Removes a product from the catalog.
 
 Command Handler: Processes the commands, validates incoming data, and applies changes to the write model.
-Write Model: A simplified data structure optimized for handling writes, such as a relational database or NoSQL store.
+Write Model: A simplified data structure optimized for handling writes, such as a relational database or
+NoSQL store.
 
 Query Side:
 Queries: Operations that retrieve product data without modifying it.
@@ -72,7 +82,8 @@ Creating a Product:
 A client sends a CreateProductCommand to the command handler.
 The command handler validates the request (e.g., checks for required fields, uniqueness).
 If valid, it updates the write model (e.g., adds the product to the database).
-Optionally, it can publish an event (e.g., ProductCreatedEvent) to notify other services or update projections.
+Optionally, it can publish an event (e.g., ProductCreatedEvent) to notify other services or
+update projections.
 
 Retrieving Product Information:
 A client sends a GetProductByIdQuery to the query handler.
@@ -82,7 +93,8 @@ This operation is optimized for performance, potentially leveraging caching for 
 
 Benefits:
 
-Scalability: The microservice can scale the read and write sides independently. For example, if there’s a spike in product queries during a sale, additional read instances can be spun up.
+Scalability: The microservice can scale the read and write sides independently. For example, if there’s
+a spike in product queries during a sale, additional read instances can be spun up.
 Performance: The read side can be optimized specifically for fast data retrieval without impacting the write operations' performance.
 Flexibility: Different data stores can be used for reads and writes, allowing for optimizations tailored to each operation type.
 

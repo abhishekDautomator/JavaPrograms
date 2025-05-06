@@ -1,6 +1,9 @@
 Scheduling in SpringBoot?
 
-Scheduling in Spring Boot allows you to execute tasks at specific intervals or at certain times. This is useful for various scenarios, such as periodic data processing, sending notifications, or cleaning up resources. Spring provides a powerful and flexible scheduling mechanism using the @Scheduled annotation.
+Scheduling in Spring Boot allows you to execute tasks at specific intervals or at certain times.
+This is useful for various scenarios, such as periodic data processing, sending notifications, or
+cleaning up resources. Spring provides a powerful and flexible scheduling mechanism using the @Scheduled
+annotation.
 
 Key Components of Scheduling in Spring Boot
 Enable Scheduling: You need to enable scheduling in your Spring Boot application by adding the @EnableScheduling annotation to one of your configuration classes.

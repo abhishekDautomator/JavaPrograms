@@ -296,17 +296,14 @@ Which types of methods can't be override?
 Ans:- In Java, certain types of methods cannot be overridden due to the rules of inheritance and method resolution.
 Here are the key types of methods that cannot be overridden:
 
-
       Static Methods: Static methods belong to the class rather than any instance of the class.
       They can be hidden (not overridden) in a subclass by defining a static method with the same name,
       but this does not constitute overriding because the method is resolved based on the reference type,
       not the object type.
 
-
       Private Methods: Private methods are not accessible outside their own class, so they cannot be
       overridden in subclasses. Each class has its own private methods, and they are not visible to
       subclasses.
-
 
       Final Methods: A method declared as final cannot be overridden. This is intended to prevent subclasses
       from altering the behavior defined in the superclass.

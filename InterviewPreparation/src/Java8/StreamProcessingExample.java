@@ -201,7 +201,7 @@ public class StreamProcessingExample {
 
         // Compute sum of salaries by department
         Map<Department,Integer> totalByDept = empList.stream().collect(Collectors.groupingBy(Employee::getDepartment,Collectors.summingInt(Employee::getSalary)));
-        System.out.println(totalByDept);
+        System.out.println("totalByDept: "+totalByDept);
         // Partition employee into salary > 30000
         Map<Boolean,List<Employee>> salaryGreaterThan30000 = empList.stream().collect(Collectors.partitioningBy(s -> s.getSalary() >= 30000));
         System.out.println(salaryGreaterThan30000);

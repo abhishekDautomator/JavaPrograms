@@ -7,7 +7,7 @@ public class HigherOrderFunctonExample {
     }
 
     public static void main(String[] args) {
-        OperateFunctionalInterface calculateSum = (a , b) -> a+b;
+        OperateFunctionalInterface calculateSum = Integer::sum;
         OperateFunctionalInterface calculateMultiply = (a,b) -> a*b;
         OperateFunctionalInterface calculateSubtraction = (a,b) -> a-b;
 

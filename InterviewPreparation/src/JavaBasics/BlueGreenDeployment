@@ -1,11 +1,19 @@
-Blue-green deployment is a software release management strategy designed to minimize downtime and reduce risk when deploying new versions of applications. The approach involves maintaining two identical environments: one is the live production environment (the "blue" environment), while the other is a staging environment (the "green" environment).
+Blue-green deployment is a software release management strategy designed to minimize downtime
+and reduce risk when deploying new versions of applications. The approach involves maintaining two
+identical environments: one is the live production environment (the "blue" environment),
+while the other is a staging environment (the "green" environment).
 Here's how it works:
 
-Preparation: The new version of the application is deployed to the green environment, which is identical to the blue environment but not yet serving live traffic.
-Testing: Thorough testing is conducted in the green environment to ensure that the new version functions correctly and meets quality standards.
-Switching Traffic: Once testing is complete and the new version is verified, traffic is switched from the blue environment to the green environment. This can often be done with minimal disruption to users.
-Rollback Capability: If any issues arise after the switch, it's straightforward to revert back to the blue environment, allowing for quick recovery without significant downtime.
-Clean Up: After a successful deployment and once confidence in the new version is established, the old blue environment can be updated for the next deployment cycle.
+Preparation: The new version of the application is deployed to the green environment,
+which is identical to the blue environment but not yet serving live traffic.
+Testing: Thorough testing is conducted in the green environment to ensure that the new version functions
+correctly and meets quality standards.
+Switching Traffic: Once testing is complete and the new version is verified, traffic is switched from
+the blue environment to the green environment. This can often be done with minimal disruption to users.
+Rollback Capability: If any issues arise after the switch, it's straightforward to revert back to the
+blue environment, allowing for quick recovery without significant downtime.
+Clean Up: After a successful deployment and once confidence in the new version is established,
+the old blue environment can be updated for the next deployment cycle.
 
 This method enhances deployment safety and provides a clear rollback option, making it a popular choice for continuous delivery practices in modern software development.
 

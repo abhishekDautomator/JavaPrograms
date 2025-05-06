@@ -46,7 +46,8 @@ public class NetworkConnection implements Cloneable{
 
     @Override
     protected Object clone() throws CloneNotSupportedException {
-        return super.clone();
+        return super.clone(); // this will do shallow copy of the object
+        // if we want to do deep copy we need to do it manually
     }
 
     @Override

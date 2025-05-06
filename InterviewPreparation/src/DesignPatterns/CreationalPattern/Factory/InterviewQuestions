@@ -82,23 +82,33 @@ Logging Frameworks: Allowing different logging mechanisms (e.g., console, file, 
 instantiated based on configuration.
 
 6. How does the Factory Design Pattern promote the Open/Closed Principle?
-Answer: The Factory Design Pattern promotes the Open/Closed Principle by allowing new product types to be added without modifying the existing codebase. You can extend the factory with new concrete products while keeping the client code unchanged, adhering to the principle of being open for extension but closed for modification.
+Answer: The Factory Design Pattern promotes the Open/Closed Principle by allowing new product types to be
+added without modifying the existing codebase. You can extend the factory with new concrete products
+while keeping the client code unchanged, adhering to the principle of being open for extension but
+closed for modification.
+
 7. What is the difference between the Factory Method Pattern and the Abstract Factory Pattern?
 Answer:
 
 
-Factory Method Pattern: It defines an interface for creating a single product but allows subclasses to alter the type of product that will be created. It focuses on one product family.
+Factory Method Pattern: It defines an interface for creating a single product but allows
+subclasses to alter the type of product that will be created. It focuses on one product family.
 
 
-Abstract Factory Pattern: It provides an interface for creating families of related or dependent objects without specifying their concrete classes. It is used when there are multiple types of products that need to be created together.
+Abstract Factory Pattern: It provides an interface for creating families of related or dependent
+objects without specifying their concrete classes. It is used when there are multiple types of products
+that need to be created together.
 
 
 8. Can you discuss any potential downsides of using the Factory Design Pattern?
 Answer: Potential downsides include:
 
-Complexity: Introducing factories can add complexity to the code structure, especially for simple applications where direct instantiation might be sufficient.
-Overhead: The additional abstraction layers may lead to performance overhead in scenarios where object creation is frequent and performance-critical.
-Difficulty in Understanding: New developers may find it challenging to understand the flow of object creation through factories, particularly in large systems.
+Complexity: Introducing factories can add complexity to the code structure, especially for simple
+applications where direct instantiation might be sufficient.
+Overhead: The additional abstraction layers may lead to performance overhead in scenarios where object
+creation is frequent and performance-critical.
+Difficulty in Understanding: New developers may find it challenging to understand the flow of object
+ through factories, particularly in large systems.
 
 9. How do you handle the scenario where the factory needs to create a product based on varying input parameters?
 Answer: In such scenarios, you can either:

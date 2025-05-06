@@ -61,9 +61,11 @@ You don’t need to explicitly apply the aspect; Spring AOP will automatically a
 pointcuts. The aspect will intercept
 method calls to any method within the specified package (com.example.service in this case).
 Configuration:
-Ensure that component scanning is enabled in your Spring Boot application. This is usually done automatically if your main application class is in the root package.
+Ensure that component scanning is enabled in your Spring Boot application. This is usually done
+automatically if your main application class is in the root package.
 Testing the AOP:
-Once you have defined your aspect, you can test it by calling methods in the service layer. The logging aspect will log messages before and after the execution of the methods.
+Once you have defined your aspect, you can test it by calling methods in the service layer. The
+logging aspect will log messages before and after the execution of the methods.
 
 Benefits of Using Spring AOP in Microservices
 

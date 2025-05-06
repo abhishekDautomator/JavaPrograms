@@ -1,10 +1,8 @@
 1. What is Spring Boot?
-Explanation: Spring Boot is an extension of the Spring framework that simplifies
-the setup and development of new Spring applications.
+Explanation: Spring Boot is an extension of the Spring framework that simplifies the setup and
+development of new Spring applications.
 It provides a range of capabilities,
-including autoconfiguration,
-embedded servers, and
-production-ready features.
+including autoconfiguration, embedded servers, and production-ready features.
 
 Example: A simple Spring Boot application can be set up with just a few dependencies in the pom.xml file (for Maven) or build.gradle file (for Gradle).
 
@@ -26,6 +24,7 @@ public class MyApplication {
         SpringApplication.run(MyApplication.class, args);
     }
 }
+
 3. What are the advantages of using Spring Boot?
 Explanation: Key advantages include:
 
@@ -62,7 +61,8 @@ such as Spring MVC, Tomcat, and Jackson.
 Explanation: Profiles allow you to segregate parts of your application configuration and make it only
 available in certain environments (like development, testing, production).
 
-Example: You can define different configurations in application-dev.properties, application-prod.properties, etc., and activate them using the spring.profiles.active property.
+Example: You can define different configurations in application-dev.properties,
+application-prod.properties, etc., and activate them using the spring.profiles.active property.
 
 # application-dev.properties
 spring.datasource.url=jdbc:h2:mem:testdb

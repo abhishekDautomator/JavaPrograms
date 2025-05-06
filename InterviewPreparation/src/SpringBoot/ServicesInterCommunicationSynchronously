@@ -93,4 +93,25 @@ GET http://localhost:8080/api/fetch-data
 
 This should trigger the call to Service B, which will respond with "Data from Service B".
 Conclusion
-By following these steps, you establish synchronous communication between two microservices using HTTP calls in Java. The RestTemplate allows Service A to make HTTP requests to Service B seamlessly. In a production environment, consider error handling, timeouts, and circuit breaker patterns for better resilience.
+By following these steps, you establish synchronous communication between two microservices
+using HTTP calls in Java. The RestTemplate allows Service A to make HTTP requests to Service B seamlessly.
+In a production environment, consider error handling, timeouts, and circuit breaker patterns for better resilience.
+
+Also we can use RestTemplate exchange method to make HTTP calls with different HTTP methods like POST, PUT, DELETE etc.
+
+RestTemplate exchange method example:
+ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
+String responseBody = response.getBody();
+
+In this example, we are making a GET request to the specified URL and getting the response body as a String.
+We can also pass request headers, request body, and other parameters to the exchange method.
+
+RestTemplate exchange method with request body example:
+HttpHeaders headers = new HttpHeaders();
+headers.setContentType(MediaType.APPLICATION_JSON);
+HttpEntity<String> entity = new HttpEntity<>(requestBody, headers);
+ResponseEntity<String> response = restTemplate.exchange(url, HttpMethod.POST, entity, String.class);
+String responseBody = response.getBody();
+
+In this example, we are making a POST request to the specified URL with a JSON request body and getting the response
+body as a String.

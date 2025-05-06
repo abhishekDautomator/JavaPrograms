@@ -20,8 +20,7 @@ public class BinarySearchTree {
 
     public TreeNode insertRecord(TreeNode root, int value){ //recursive function to insert a new value
         if(root==null){
-            root = new TreeNode(value);
-            return root;
+            return new TreeNode(value);
         }
         if(value>root.value){
             root.right = insertRecord(root.right, value);

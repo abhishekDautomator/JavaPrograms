@@ -25,7 +25,8 @@ Segmented Locking (Pre-Java 8):
 Originally used segments (like mini hash tables with their own locks) for better concurrency.
 
 Bucket-level Synchronization (Java 8+):
-Now uses lock striping with synchronized blocks and CAS (Compare-And-Swap) using low-level operations from the Unsafe class.
+Now uses lock striping with synchronized blocks and CAS (Compare-And-Swap) using low-level operations
+from the Unsafe class.
 
 No Full Locking:
 Read operations are lock-free, and writes lock only specific buckets, not the entire map.
@@ -44,4 +45,7 @@ Null Keys	✅ 1 allowed	❌ Not allowed
 Data Structure	Array + LinkedList/Tree	Same, but with fine-grained locking
 Synchronization	External	Internal (bucket-level)
 🎯 How to Finish:
-“So overall, I’d choose HashMap for single-threaded or read-heavy scenarios where thread-safety isn't a concern. But for concurrent applications like caching, I'd go with ConcurrentHashMap due to its fine-grained locking and better performance under multi-threaded access.”
+“So overall, I’d choose HashMap for single-threaded or read-heavy scenarios where thread-safety isn't a
+concern.
+But for concurrent applications like caching, I'd go with ConcurrentHashMap due to its
+fine-grained locking and better performance under multi-threaded access.”

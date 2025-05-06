@@ -17,7 +17,7 @@ Ans.
    Every path from a node to its leaf children must have the same number of black nodes
    (called black-height).
 
-   Insertion and deletion operations include rebalancing (via rotation and recoloring) to maintain these
+   Insertion and deletion operations include re-balancing (via rotation and recoloring) to maintain these
    properties.
 
 

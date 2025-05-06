@@ -108,7 +108,8 @@ of garbage present (hence "Garbage-First").
 It performs both young and old generation collections, using a concurrent marking phase to identify
 live objects and a mixed collection phase to reclaim memory.
 
-Use Case: Suitable for applications requiring large heap sizes and predictable performance, such as big data processing and enterprise applications.
+Use Case: Suitable for applications requiring large heap sizes and predictable performance, such
+as big data processing and enterprise applications.
 
 5. Z Garbage Collector (ZGC)
 

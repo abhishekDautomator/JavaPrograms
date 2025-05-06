@@ -44,7 +44,8 @@ Ans:
 4.Enum types (cannot be instantiated directly).
 5.Classes with all constructors private (no external instantiation allowed).
 
-These design choices help enforce specific behavior and patterns in Java programming, promoting better software architecture and design principles.
+These design choices help enforce specific behavior and patterns in Java programming, promoting better software
+architecture and design principles.
 
 
 Keywords in Java

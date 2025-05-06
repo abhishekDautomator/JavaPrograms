@@ -2,16 +2,22 @@ The @RestController annotation in Spring is a specialized version of the @Contro
 Key Features of @RestController
 
 Combination of Annotations:
-@RestController is a convenience annotation that combines @Controller and @ResponseBody. This means that every method in a class annotated with @RestController will return data directly in the response body, rather than being interpreted as a view name.
+@RestController is a convenience annotation that combines @Controller and @ResponseBody. This means that
+every method in a class annotated with @RestController will return data directly in the response body,
+rather than being interpreted as a view name.
 
 Automatic Response Body Handling:
-When a method in a @RestController returns an object, Spring automatically serializes it to JSON (or XML, depending on the configuration) and writes it to the HTTP response body. This eliminates the need to annotate each method with @ResponseBody.
+When a method in a @RestController returns an object, Spring automatically serializes it to
+JSON (or XML, depending on the configuration) and writes it to the HTTP response body. This eliminates
+the need to annotate each method with @ResponseBody.
 
 RESTful API Development:
-@RestController is ideal for creating RESTful web services where you want to expose resources and handle HTTP requests (GET, POST, PUT, DELETE). It aligns with the principles of REST architecture.
+@RestController is ideal for creating RESTful web services where you want to expose resources and handle
+HTTP requests (GET, POST, PUT, DELETE). It aligns with the principles of REST architecture.
 
 Request Mapping:
-You can use various mapping annotations like @GetMapping, @PostMapping, @PutMapping, and @DeleteMapping in conjunction with @RestController to define endpoints for different HTTP methods.
+You can use various mapping annotations like @GetMapping, @PostMapping, @PutMapping, and @DeleteMapping
+in conjunction with @RestController to define endpoints for different HTTP methods.
 
 
 Example Usage

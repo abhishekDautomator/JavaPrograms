@@ -1,3 +1,48 @@
+An immutable class is one whose state cannot be modified after it's created. Here's how to create one:
+
+Key Requirements for Immutability
+Declare the class as final - Prevents subclassing and overriding methods
+
+Make all fields private and final - Ensures fields can't be accessed directly or modified
+
+Don't provide setter methods - No way to modify fields after construction
+
+Initialize all fields via constructor - All values must be set at creation time
+
+Perform deep copy for mutable objects - If your class contains mutable objects:
+
+Don't provide direct references in getters
+
+Don't store references passed from outside
+
+Example Implementation of Immutable Class in Java
+
+public final class ImmutablePerson {
+    private final String name;
+    private final int age;
+    private final Date birthDate;  // Date is mutable
+
+    public ImmutablePerson(String name, int age, Date birthDate) {
+        this.name = name;
+        this.age = age;
+        // Defensive copy for mutable field
+        this.birthDate = new Date(birthDate.getTime());
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public Date getBirthDate() {
+        // Return defensive copy
+        return new Date(birthDate.getTime());
+    }
+}
+
 What is an immutable object?
 
 Answer: An immutable object is an object whose state cannot be modified after it has been created.
