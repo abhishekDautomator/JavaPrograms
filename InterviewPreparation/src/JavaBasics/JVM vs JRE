@@ -13,7 +13,9 @@ Usage: Required by developers who need to create Java applications, libraries, o
 
 JRE (Java Runtime Environment)
 
-Purpose: The JRE is designed to provide a runtime environment to execute Java applications. It does not include development tools and is primarily intended for end-users who want to run Java applications.
+Purpose: The JRE is designed to provide a runtime environment to execute Java applications.
+It does not include development tools and is primarily intended for end-users who want to run
+Java applications.
 Components:
 Java Virtual Machine (JVM): The core component that enables Java bytecode execution on the host machine.
 Core Libraries: The standard Java libraries that provide essential functionality for running Java applications.
@@ -23,7 +25,8 @@ Usage: Suitable for users who only need to run Java applications without needing
 Summary
 
 JDK: For developers; includes tools for development and a JRE.
-JRE: For end-users; includes the JVM and libraries to run Java applications but lacks development tools.
+JRE: For end-users; includes the JVM and libraries to run Java applications
+but lacks development tools.
 
 In essence, if you are developing Java applications, you need the JDK. If you simply want to run Java applications, installing the JRE is sufficient.
 

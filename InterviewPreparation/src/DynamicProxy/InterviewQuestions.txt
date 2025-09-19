@@ -82,7 +82,8 @@ Ans. Dynamic proxies in Java provide a flexible way to implement behaviors that 
     Explanation of the Example
     Interface Definition: The HelloService interface defines a method sayHello.
 
-    Invocation Handler: The HelloInvocationHandler class implements the InvocationHandler interface. It overrides the invoke method to add behavior before and after calling the original method.
+    Invocation Handler: The HelloInvocationHandler class implements the InvocationHandler interface.
+    It overrides the invoke method to add behavior before and after calling the original method.
 
     Creating the Proxy: In the main method, we create an instance of HelloService and then create a dynamic proxy that wraps around this instance. The proxy instance is created using the Proxy.newProxyInstance() method, which requires the class loader, the interfaces to implement, and the invocation handler.
 

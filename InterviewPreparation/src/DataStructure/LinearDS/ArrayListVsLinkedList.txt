@@ -1,0 +1,41 @@
+ArrayList vs LinkedLIst?
+
+Great question, Abhishek! Since you're prepping for senior Java interviews, understanding the **differences between `ArrayList` and `LinkedList`**—and when to use each—is crucial. Here's a clear breakdown:
+
+---
+
+### ⚔️ ArrayList vs LinkedList in Java
+
+| Feature                     | `ArrayList`                                      | `LinkedList`                                      |
+|----------------------------|--------------------------------------------------|---------------------------------------------------|
+| **Underlying Structure**   | Dynamic array                                    | Doubly linked list                                |
+| **Access Time**            | Fast (O(1) for `get(index)`)                     | Slow (O(n) for `get(index)`)                      |
+| **Insertion/Deletion**     | Slow (O(n) due to shifting elements)             | Fast (O(1) if at head/tail; O(n) otherwise)       |
+| **Memory Usage**           | Less (stores only data)                         | More (stores data + pointers to next/prev nodes)  |
+| **Iteration Performance**  | Better cache locality, faster iteration          | Slower iteration due to node traversal            |
+| **Use Case**               | Best for frequent access/read operations         | Best for frequent insert/delete operations        |
+| **Implements**             | `List`                                           | `List`, `Deque`                                   |
+
+---
+
+### 🧠 When to Use What
+
+- ✅ Use **ArrayList** when:
+  - You need **fast random access**
+  - Insertions/deletions are **infrequent**
+  - Memory efficiency matters
+
+- ✅ Use **LinkedList** when:
+  - You need **frequent insertions/deletions**, especially at the beginning or middle
+  - You’re implementing **queues or stacks**
+  - You don’t need fast random access
+
+---
+
+### 🔍 Interview Tip
+
+If asked which one to use in a real-world scenario, always **justify based on access vs. mutation patterns**. For example:
+
+> “If I’m building a cache where I frequently access elements by index, I’d go with `ArrayList`. But for a messaging queue where I enqueue and dequeue often, `LinkedList` is more appropriate.”
+
+Want to dive into internal implementation or performance benchmarks next? I can walk you through how `ArrayList` resizes or how `LinkedList` nodes are structured in memory.

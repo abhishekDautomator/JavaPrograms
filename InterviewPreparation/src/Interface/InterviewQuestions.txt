@@ -18,18 +18,20 @@ methods that must be implemented in derived classes. However, there are key diff
 
 Implementation:
 
-An interface can only declare methods without providing an implementation (except for default and static methods).
-An abstract class can have both abstract methods (without implementation) and concrete methods (with implementation).
-Inheritance:
+An interface can only declare methods without providing an implementation
+(except for default and static methods).
+An abstract class can have both abstract methods (without implementation)
+and concrete methods (with implementation).
 
+Inheritance:
 A class can implement multiple interfaces, allowing for a form of multiple inheritance.
 A class can extend only one abstract class (single inheritance).
-Fields:
 
+Fields:
 Interfaces cannot have instance variables; they can only have public static final constants.
 Abstract classes can have instance variables, which can be private, protected, or public.
-Constructor:
 
+Constructor:
 Interfaces cannot have constructors since they cannot be instantiated.
 Abstract classes can have constructors, which can be called when a subclass is instantiated.
 
@@ -44,8 +46,8 @@ public interface Constants {
 
 4. What is the default method in an interface?
 A default method in an interface is a method that has a body and is marked with the default keyword.
-Introduced in Java 8, default methods allow developers to add new methods to interfaces without breaking
-existing implementations. This is particularly useful for evolving APIs.
+Introduced in Java 8, default methods allow developers to add new methods to interfaces
+without breaking existing implementations. This is particularly useful for evolving APIs.
 
 Example of a default method:
 

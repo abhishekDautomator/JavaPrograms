@@ -1,7 +1,9 @@
-CQRS, or Command and Query Responsibility Segregation, is an architectural pattern that separates
+CQRS, or Command and Query Responsibility Segregation, is an architectural pattern that
+separates
 the handling of data modification operations (commands) from data retrieval operations (queries).
-This design pattern is particularly useful in microservices architecture where the complexity and scale of
-applications can lead to significant performance benefits.
+This design pattern is particularly useful in microservices architecture where the
+complexity and scale of applications can lead to significant performance benefits.
+
 Key Concepts of CQRS:
 
 Separation of Concerns:

@@ -14,7 +14,8 @@ public class User {
     private final String designation;
     private final String country;
 
-    private User(UserBuilder userBuilder) { //builder design is mainly use to create immutable object
+    private User(UserBuilder userBuilder) {
+        //builder design is mainly use to create an immutable object
         // so that's why private constructor
         this.userId = userBuilder.userId;
         this.age = userBuilder.age;
@@ -60,7 +61,7 @@ public class User {
                 '}';
     }
 
-    //inner class to create object
+    //inner static class to create object
     static class UserBuilder{
         private String userId;
         private String userName;

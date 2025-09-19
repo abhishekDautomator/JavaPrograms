@@ -1,4 +1,6 @@
-In Java, the order of execution for different components within a class is crucial to understand, particularly when dealing with static blocks, instance initializer blocks, constructors, and methods. Here's the order of execution:
+In Java, the order of execution for different components within a class is crucial to understand,
+particularly when dealing with static blocks, instance initializer blocks, constructors, and methods.
+Here's the order of execution:
 
 Static Blocks:
 Static blocks are executed when the class is loaded into memory. This happens only once,

@@ -1,4 +1,5 @@
-An immutable class is one whose state cannot be modified after it's created. Here's how to create one:
+An immutable class is one whose state cannot be modified after it's created.
+Here's how to create one:
 
 Key Requirements for Immutability
 Declare the class as final - Prevents subclassing and overriding methods

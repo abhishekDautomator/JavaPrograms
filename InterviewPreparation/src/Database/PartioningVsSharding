@@ -4,8 +4,8 @@ the two:
 
 Partitioning
 Definition: Partitioning refers to dividing a single database into smaller, more manageable pieces
-called partitions. Each partition holds a subset of the data based on specific criteria (e.g., range,
-list, hash).
+called partitions. Each partition holds a subset of the data based on specific criteria
+(e.g., range,list, hash).
 
 Implementation:
 
@@ -27,7 +27,10 @@ Simplifies management of large datasets.
 Can improve performance for certain queries by allowing the DBMS to scan only relevant partitions.
 Easier to maintain and backup since all partitions are within one database.
 
-Sharding
+
+
+SHARDING
+
 Definition: Sharding involves distributing data across multiple database instances or servers.
 Each shard is essentially a separate database that holds a portion of the overall dataset.
 
@@ -54,7 +57,8 @@ while sharding distributes data across multiple instances.
 Management: Partitioning is managed by the DBMS,
 whereas sharding often requires application-level logic to determine which shard to query.
 
-Purpose: Partitioning primarily enhances performance and manageability of data within a single instance,
+Purpose: Partitioning primarily enhances performance and manageability of data within a
+single instance,
 while sharding aims at scaling out to accommodate larger datasets and higher traffic.
 
 In summary, while both partitioning and sharding aim to improve database performance and manageability,

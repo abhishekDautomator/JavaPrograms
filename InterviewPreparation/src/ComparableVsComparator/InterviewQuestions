@@ -1,4 +1,80 @@
+Comparable vs Comparator?
+
+Great topic, Abhishek! Understanding the difference between `Comparable` and `Comparator` is essential for writing flexible and efficient sorting logic in Java—especially for interviews at companies like EPAM.
+
+---
+
+### 🔍 Comparable vs. Comparator in Java
+
+| Feature              | `Comparable`                                      | `Comparator`                                      |
+|---------------------|---------------------------------------------------|---------------------------------------------------|
+| **Purpose**          | Defines **natural ordering** of objects           | Defines **custom ordering** externally            |
+| **Method**           | `compareTo(Object o)`                             | `compare(Object o1, Object o2)`                   |
+| **Location**         | Implemented **inside the class** being sorted     | Implemented **outside the class** or via lambda   |
+| **Flexibility**      | Only **one sorting logic** per class              | Can define **multiple sorting strategies**        |
+| **Package**          | `java.lang`                                       | `java.util`                                       |
+| **Usage**            | `Collections.sort(list)`                          | `Collections.sort(list, comparator)`              |
+
+---
+
+### 🧠 Example: Sorting Movies
+
+#### ✅ Using `Comparable` (Natural Ordering by Year)
+
+```java
+class Movie implements Comparable<Movie> {
+    String name;
+    int year;
+
+    public Movie(String name, int year) {
+        this.name = name;
+        this.year = year;
+    }
+
+    @Override
+    public int compareTo(Movie other) {
+        return this.year - other.year;
+    }
+}
+```
+
+#### ✅ Using `Comparator` (Custom Ordering by Name)
+
+```java
+class MovieNameComparator implements Comparator<Movie> {
+    @Override
+    public int compare(Movie m1, Movie m2) {
+        return m1.name.compareTo(m2.name);
+    }
+}
+```
+
+Then you can sort like this:
+
+```java
+Collections.sort(movieList, new MovieNameComparator());
+```
+
+Or even better with Java 8+:
+
+```java
+Collections.sort(movieList, Comparator.comparing(Movie::getName));
+```
+
+---
+
+### 💡 Interview Insight
+
+If you're asked which to use, say:
+
+> “I use `Comparable` when the class has a single, natural sort order. But for flexibility—like sorting by multiple fields or changing order dynamically—I prefer `Comparator`, especially with lambdas.”
+
+Want to try a coding challenge where you implement both on a custom class? I can whip one up for you.
+
+
 Basic Understanding
+
+
 What is the difference between Comparable and Comparator in Java?
 
 Comparable is an interface that defines a natural ordering for objects of a class.
@@ -49,7 +125,11 @@ To manage them, you can use descriptive names for the comparator classes or stat
 class to provide clear access points for each comparator.
 
 Explain the significance of the compareTo method in the Comparable interface.
-The compareTo method is crucial as it defines the natural ordering of objects. It returns a negative integer, zero, or a positive integer if the current object is less than, equal to, or greater than the specified object, respectively. This method is used by sorting algorithms to determine the order of elements.
+The compareTo method is crucial as it defines the natural ordering of objects. It returns a
+negative integer, zero, or a positive integer if the current object is less than, equal to,
+or greater than the specified object, respectively. This method is used by sorting algorithms
+to determine the order of elements.
+
 What are the potential pitfalls when implementing Comparable?
 
 Potential pitfalls include:
@@ -88,7 +168,8 @@ Handle null values gracefully, possibly by defining a specific order for nulls.
 Document the sorting criteria clearly for future maintainability.
 How do you handle null values in comparisons?
 
-You can handle nulls by checking for null values in your compare or compareTo methods and defining a consistent strategy, such as treating nulls as less
+You can handle nulls by checking for null values in your compare or compareTo methods
+and defining a consistent strategy, such as treating nulls as less
 
 continue with question 12
 
@@ -110,7 +191,8 @@ public int compare(Person p1, Person p2) {
     if (p2 == null) return -1; // p1 is less than p2
     return p1.getName().compareTo(p2.getName());
 }
-Using Comparator.nullsFirst() or Comparator.nullsLast(): Java 8 introduced utility methods that allow you to easily handle nulls in a more concise way.
+Using Comparator.nullsFirst() or Comparator.nullsLast(): Java 8 introduced utility methods
+that allow you to easily handle nulls in a more concise way.
 Comparator<Person> comparator = Comparator.comparing(Person::getName, Comparator.nullsFirst(String::compareTo));
 13. What performance considerations should be taken into account when using Comparable and Comparator?
 Performance considerations include:

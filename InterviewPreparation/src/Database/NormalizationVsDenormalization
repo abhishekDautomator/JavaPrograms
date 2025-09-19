@@ -11,7 +11,8 @@ Objectives:
 Eliminate Redundancy: Reduce duplicate data by structuring the database appropriately.
 Improve Data Integrity: Ensure that data dependencies make sense and that changes to data are
 consistently applied.
-Simplify Data Maintenance: Make it easier to update, insert, or delete data without inconsistencies.
+Simplify Data Maintenance: Make it easier to update, insert, or delete data without
+inconsistencies.
 
 Normal Forms: Data is organized into various normal forms (1NF, 2NF, 3NF, BCNF, etc.), each with specific
 rules regarding how data should be structured.

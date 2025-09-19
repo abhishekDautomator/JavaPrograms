@@ -71,5 +71,7 @@ Enum Singleton: Using an enum to create a singleton instance, which is a simpler
 Answer: Potential downsides include:
 
 Global State: The singleton introduces a global state into an application, which can make testing and debugging more difficult.
-Hidden Dependencies: Classes that depend on the singleton may become tightly coupled, leading to challenges in managing dependencies and making the system less flexible.
-Concurrency Issues: In multi-threaded environments, improper implementation can lead to issues such as multiple instances being created unless proper synchronization is applied.
+Hidden Dependencies: Classes that depend on the singleton may become tightly coupled, leading
+to challenges in managing dependencies and making the system less flexible.
+Concurrency Issues: In multi-threaded environments, improper implementation can lead to issues
+such as multiple instances being created unless proper synchronization is applied.

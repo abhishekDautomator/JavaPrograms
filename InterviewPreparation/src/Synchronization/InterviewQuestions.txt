@@ -19,3 +19,21 @@ access to shared resources, such as variables or objects, preventing race condit
      indefinitely for each other to release locks.
      By using synchronization effectively, you can manage concurrent access to shared resources and maintain
      data consistency in multi-threaded applications.
+
+How to Avoid Deadlocks
+Here are proven strategies:
+- Lock Ordering
+Always acquire locks in a consistent global order. If every thread locks resources in the same sequence, deadlocks can’t occur.
+- Try-Lock with Timeout
+Use ReentrantLock.tryLock(timeout) to avoid indefinite waiting.
+if (lock.tryLock(100, TimeUnit.MILLISECONDS)) {
+    // safe to proceed
+}
+- Avoid Nested Locks
+Minimize locking inside other synchronized blocks or methods.
+- Use Concurrency Utilities
+Prefer ConcurrentHashMap, BlockingQueue, etc., which are designed to avoid deadlocks.
+- Thread Dump Analysis
+Tools like jConsole, VisualVM, or thread dumps help detect deadlocks in running applications.
+
+

@@ -80,6 +80,7 @@ GET http://localhost:8080/api/fetch-data
 
 This should trigger the Feign client call to Service B and return the response from Service B.
 Conclusion
-By using FeignClient, you simplify the HTTP communication between microservices. It abstracts the boilerplate
-code needed for making REST calls and provides a declarative way to define how to call other services.
-This approach is beneficial for maintaining clean and readable code in microservice architectures.
+By using FeignClient, you simplify the HTTP communication between microservices.
+It abstracts the boilerplate code needed for making REST calls and provides a declarative
+way to define how to call other services. This approach is beneficial for maintaining
+clean and readable code in microservice architectures.

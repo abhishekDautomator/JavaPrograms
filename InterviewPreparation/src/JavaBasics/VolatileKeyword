@@ -1,0 +1,52 @@
+The `volatile` keyword in Java is used to ensure **visibility** of changes to variables across
+threads. It’s a lightweight synchronization mechanism that tells the JVM:
+
+> “Hey, don’t cache this variable—always read and write it directly from main memory.”
+
+---
+
+### 🔍 Why It Matters
+
+In a multithreaded environment, each thread may keep a **local copy** of variables for performance.
+Without `volatile`, one thread’s update might not be visible to others immediately,
+leading to **data inconsistency**.
+
+---
+
+### ✅ What `volatile` Guarantees
+
+- **Visibility**: Changes made by one thread are immediately visible to others.
+- **No caching**: The variable is always read from and written to main memory.
+- **No reordering**: Prevents compiler and CPU from reordering instructions that involve the volatile variable.
+
+---
+
+### ⚠️ What It Does *Not* Guarantee
+
+- **Atomicity**: Operations like `counter++` are *not* atomic even if `counter` is volatile.
+- **Mutual exclusion**: It doesn’t prevent race conditions— use `synchronized` or `AtomicInteger`
+for that.
+
+---
+
+### 🧠 Example
+
+```java
+class SharedData {
+    private volatile boolean flag = false;
+
+    public void setFlagTrue() {
+        flag = true;
+    }
+
+    public boolean isFlagTrue() {
+        return flag;
+    }
+}
+```
+
+Here, if one thread sets `flag = true`, other threads will see the change immediately—even if they’re running on different cores.
+
+---
+
+Want to explore how `volatile` compares with `synchronized`, or dive into real-world use cases like double-checked locking or visibility bugs? I can walk you through those next.
