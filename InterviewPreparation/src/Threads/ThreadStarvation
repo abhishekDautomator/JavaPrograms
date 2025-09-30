@@ -1,0 +1,110 @@
+**Thread starvation** happens when one or more threads are **perpetually denied access to resources**
+because other threads keep hogging them—often due to unfair scheduling or locking. It’s a subtle concurrency bug that can cripple performance in multi-threaded systems.
+
+---
+
+## 🧠 What Causes Thread Starvation?
+
+- **Unfair locks**: Threads with lower priority or bad luck never acquire the lock
+- **Busy threads monopolizing resources**
+- **Synchronized blocks that never release**
+- **Thread priorities misused**
+- **Executor services with limited threads and long-running tasks**
+
+---
+
+## ✅ Ways to Fix or Prevent Thread Starvation
+
+### 🔹 1. **Use Fair Locks**
+
+Java’s `ReentrantLock` supports fairness:
+
+```java
+Lock lock = new ReentrantLock(true); // true = fair
+```
+
+This ensures threads acquire the lock in **FIFO order**, reducing starvation.
+
+---
+
+### 🔹 2. **Avoid Thread Priorities**
+
+Java thread priorities (`Thread.setPriority()`) are **platform-dependent** and often ignored. Relying on them can cause starvation.
+
+✅ Tip: Stick to default priority unless you have a real-time system.
+
+---
+
+### 🔹 3. **Use `Thread.yield()` Carefully**
+
+`Thread.yield()` hints the scheduler to pause the current thread, but it’s **not guaranteed**. Use it only for **fine-tuned concurrency**, not starvation fixes.
+
+---
+
+### 🔹 4. **Use `Executors` with Bounded Queues**
+
+Avoid unbounded queues in thread pools. Use bounded queues and monitor task durations:
+
+```java
+ExecutorService executor = new ThreadPoolExecutor(
+    5, 10, 60, TimeUnit.SECONDS,
+    new ArrayBlockingQueue<>(100), // bounded queue
+    new ThreadPoolExecutor.CallerRunsPolicy() // fallback
+);
+```
+
+This prevents long-running tasks from starving others.
+
+---
+
+### 🔹 5. **Break Long Locks into Smaller Chunks**
+
+Don’t hold locks for too long. Break critical sections into **smaller atomic operations**.
+
+```java
+synchronized (lock) {
+    updateCache(); // fast
+}
+processData(); // outside lock
+```
+
+---
+
+### 🔹 6. **Use `ReadWriteLock` for Read-Heavy Workloads**
+
+Allows multiple readers without blocking each other:
+
+```java
+ReadWriteLock rwLock = new ReentrantReadWriteLock(true); // fair
+rwLock.readLock().lock();
+// read-only operations
+rwLock.readLock().unlock();
+```
+
+This avoids starvation of readers when writers dominate.
+
+---
+
+### 🔹 7. **Monitor and Profile Threads**
+
+Use tools like:
+- **VisualVM**
+- **JConsole**
+- **Java Flight Recorder**
+
+To detect blocked threads, long-held locks, and starvation patterns.
+
+---
+
+## 🧪 Interview Insight
+
+| Fix Strategy           | Best For                          | Trade-Offs                        |
+|------------------------|-----------------------------------|-----------------------------------|
+| Fair locks             | Preventing lock monopolization    | Slight performance overhead       |
+| Bounded thread pools   | Managing task execution fairness  | Requires tuning                   |
+| ReadWriteLock          | Read-heavy systems                | Writers may still block readers   |
+| Breaking long locks    | Improving responsiveness          | Needs careful design              |
+
+---
+
+Want to simulate a thread starvation scenario in code and fix it together? Or explore how SAP handles concurrency in enterprise-grade systems? I can walk you through both.

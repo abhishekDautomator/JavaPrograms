@@ -1,0 +1,14 @@
+ What Is a TreeMap?
+- TreeMap is part of the Java Collections Framework
+- Implements the NavigableMap interface
+- Internally uses a Red-Black Tree (self-balancing binary search tree)
+- Keys are sorted in natural order (Comparable) or by a custom comparator
+
+Key Features:
+
+Feature                 Description
+Sorted keys             Maintains ascending order of keys
+No null keys            Throws NullPointerException if key is null
+Navigable operations    floorKey(), ceilingKey(), subMap(), etc.
+Logarithmic time        O(log n) for put(), get(), remove()
+

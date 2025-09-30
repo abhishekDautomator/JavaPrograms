@@ -1,0 +1,151 @@
+-> Race Condition — Unpredictable Outcomes
+
+A race condition occurs when two or more threads access shared data and
+try to change it at the same time, leading to unexpected behavior.
+🔥 Example:
+class Counter {
+    int count = 0;
+
+    void increment() {
+        count++; // not atomic!
+    }
+}
+
+
+If two threads call increment() simultaneously, they might both
+read count = 0, increment it, and write back 1—losing one increment.
+🧠 Analogy:
+Imagine two people trying to update the same Google Sheet cell
+at the same time—one update gets lost.
+
+✅ Fix:
+
+Great question, Abhishek! Race conditions are sneaky bugs that occur when multiple threads access shared data and try to change it at the same time. Resolving them is a key skill for any senior Java developer—especially in cloud-native or concurrent systems. Here's a breakdown of **various ways to resolve race conditions**, with practical examples and trade-offs:
+
+---
+
+## 🛠️ 1. **Synchronization**
+
+### ✅ Use `synchronized` keyword
+Ensures only one thread can access a block or method at a time.
+
+```java
+public synchronized void updateBalance() {
+    // critical section
+}
+```
+
+Or use a synchronized block:
+```java
+synchronized (lockObject) {
+    // critical section
+}
+```
+
+### 🔍 When to use:
+- Simple shared resources
+- Low contention
+
+---
+
+## 🔐 2. **Locks from `java.util.concurrent.locks`**
+
+### ✅ Use `ReentrantLock`
+More flexible than `synchronized`, supports try-lock, timed lock, and fairness.
+
+```java
+Lock lock = new ReentrantLock();
+lock.lock();
+try {
+    // critical section
+} finally {
+    lock.unlock();
+}
+```
+
+### 🔍 When to use:
+- Complex locking scenarios
+- Need for interruptible or timed locks
+
+---
+
+## 🧱 3. **Atomic Variables**
+
+### ✅ Use `AtomicInteger`, `AtomicBoolean`, etc.
+Avoids explicit locking by using low-level atomic CPU instructions.
+
+```java
+AtomicInteger counter = new AtomicInteger(0);
+counter.incrementAndGet();
+```
+
+### 🔍 When to use:
+- Simple counters, flags
+- High-performance concurrent updates
+
+---
+
+## 🧵 4. **Thread Confinement**
+
+### ✅ Keep data local to each thread
+No shared state → no race condition.
+
+```java
+ThreadLocal<SimpleDateFormat> formatter = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
+```
+
+### 🔍 When to use:
+- Per-thread data (e.g., formatters, buffers)
+- Avoiding shared mutable state
+
+---
+
+## 🧊 5. **Immutable Objects**
+
+### ✅ Make objects immutable
+If data can’t change, threads can’t interfere.
+
+```java
+public final class User {
+    private final String name;
+    private final int age;
+    // constructor, getters only
+}
+```
+
+### 🔍 When to use:
+- Shared read-only data
+- Functional programming style
+
+---
+
+## 🧪 6. **Concurrent Collections**
+
+### ✅ Use `ConcurrentHashMap`, `CopyOnWriteArrayList`, etc.
+Designed for safe concurrent access.
+
+```java
+ConcurrentHashMap<String, Integer> map = new ConcurrentHashMap<>();
+map.put("Abhishek", 1);
+```
+
+### 🔍 When to use:
+- Shared collections
+- High-concurrency environments
+
+---
+
+## 🧠 Summary Table
+
+| Technique               | Best For                          | Trade-Offs                        |
+|------------------------|-----------------------------------|-----------------------------------|
+| `synchronized`         | Simple locking                    | Can block threads, less flexible |
+| `ReentrantLock`        | Advanced locking needs            | More verbose, manual unlock      |
+| Atomic variables       | Counters, flags                   | Limited to simple data types     |
+| Thread confinement     | Per-thread data                   | Doesn’t work for shared state    |
+| Immutable objects      | Read-only shared data             | No mutation allowed              |
+| Concurrent collections | Shared maps/lists                 | May not solve all race conditions|
+
+---
+
+Want to simulate a race condition in code and fix it together? Or explore how SAP handles concurrency in enterprise-grade systems? I can walk you through both.

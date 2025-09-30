@@ -1,0 +1,96 @@
+A Trie (pronounced “try”) is a tree-based data structure used for efficient prefix-based searching,
+especially in dictionaries, autocomplete systems, and spell checkers. It's not part of Java’s
+standard collections, but it's easy to implement and incredibly powerful.
+
+🌳 What Is a Trie?
+- Each node represents a character
+- Paths from root to leaf form words
+- Common prefixes are shared, making it memory-efficient
+- Supports fast insert, search, and prefix lookup in O(k) time, where k is the length of the word
+
+
+🧠 When to Use a Trie
+
+| Use Case            | Why Trie Works Well             |
+|---------------------|----------------------------------|
+| Autocomplete         | Fast prefix lookup              |
+| Spell checker        | Efficient word existence check  |
+| Dictionary           | Shared prefixes save memory     |
+| IP routing / DNS     | Hierarchical prefix matching    |
+
+
+
+In most basic Trie implementations:
+
+TrieNode[] children = new TrieNode[26]; // only supports 'a' to 'z'
+
+
+This assumes all input is lowercase. If you insert `"Abhishek"` and `"abhishek"`, they’ll collide or be misindexed.
+
+---
+
+## ✅ Solution: Support Full Alphabet (Upper + Lower)
+
+### Option 1: Use a `Map<Character, TrieNode>`
+This is the **most flexible and scalable** approach.
+
+```java
+class TrieNode {
+    Map<Character, TrieNode> children = new HashMap<>();
+    boolean isEndOfWord = false;
+}
+```
+
+### Benefits:
+- Supports **all characters**: `A–Z`, `a–z`, digits, symbols
+- No need to calculate index manually
+- Case-sensitive by default (you can normalize if needed)
+
+---
+
+## 🔧 Updated Insert Method
+
+```java
+public void insert(String word) {
+    TrieNode node = root;
+    for (char ch : word.toCharArray()) {
+        node.children.putIfAbsent(ch, new TrieNode());
+        node = node.children.get(ch);
+    }
+    node.isEndOfWord = true;
+}
+```
+
+---
+
+## 🧪 Example
+
+```java
+trie.insert("Abhishek");
+trie.insert("abhishek");
+
+System.out.println(trie.search("Abhishek")); // true
+System.out.println(trie.search("abhishek")); // true
+```
+
+They’re treated as **distinct words** unless you normalize case.
+
+---
+
+## 🧸 Optional: Normalize Case
+
+If you want `"Abhishek"` and `"abhishek"` to be treated the same:
+```java
+word = word.toLowerCase(); // before inserting or searching
+```
+
+---
+
+## 🧠 TL;DR
+
+| Approach                     | Supports A–Z and a–z? | Recommended? |
+|-----------------------------|------------------------|--------------|
+| `TrieNode[26]`              | ❌ Only lowercase       | ❌ Limited    |
+| `Map<Character, TrieNode>`  | ✅ All characters       | ✅ Flexible   |
+
+

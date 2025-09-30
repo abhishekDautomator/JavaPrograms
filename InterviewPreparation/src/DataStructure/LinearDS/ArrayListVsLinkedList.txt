@@ -1,9 +1,5 @@
 ArrayList vs LinkedLIst?
 
-Great question, Abhishek! Since you're prepping for senior Java interviews, understanding the **differences between `ArrayList` and `LinkedList`**—and when to use each—is crucial. Here's a clear breakdown:
-
----
-
 ### ⚔️ ArrayList vs LinkedList in Java
 
 | Feature                     | `ArrayList`                                      | `LinkedList`                                      |

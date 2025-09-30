@@ -78,15 +78,13 @@ public class BinarySearchTree {
         }
         return root;
     }
-    public int minValue(TreeNode root){
-        int minValue = root.value;
+
+    public int minValue(TreeNode root){ //- In a BST, the leftmost node is guaranteed to be the smallest.
+
         while(root.left!=null){
-            if(root.left.value<minValue) {
-                minValue = root.left.value;
-                root = root.left;
-            }
+            root = root.left;
         }
-        return minValue;
+        return root.value;
     }
 
     public void inorderTraverse(){
