@@ -1,0 +1,34 @@
+## 🔟 OWASP Top 10 Vulnerabilities (2021)
+
+| Rank | Vulnerability                          | Description |
+|------|----------------------------------------|-------------|
+| 1️⃣   | **Broken Access Control**              | Users can access data or actions they shouldn’t (e.g., viewing others’ accounts). |
+| 2️⃣   | **Cryptographic Failures**             | Weak or missing encryption, exposing sensitive data. Formerly called “Sensitive Data Exposure.” |
+| 3️⃣   | **Injection**                          | Malicious input (e.g., SQL, NoSQL, LDAP) alters backend queries or commands. |
+| 4️⃣   | **Insecure Design**                    | Flawed architecture or logic that leads to vulnerabilities — even if code is secure. |
+| 5️⃣   | **Security Misconfiguration**          | Default settings, open ports, verbose error messages, or missing headers. |
+| 6️⃣   | **Vulnerable and Outdated Components** | Using libraries or frameworks with known security issues. |
+| 7️⃣   | **Identification and Authentication Failures** | Broken login, session management, or credential handling. |
+| 8️⃣   | **Software and Data Integrity Failures** | Trusting unverified sources or allowing unauthorized updates (e.g., CI/CD pipeline tampering). |
+| 9️⃣   | **Security Logging and Monitoring Failures** | Lack of visibility into attacks or breaches — delays detection and response. |
+| 🔟   | **Server-Side Request Forgery (SSRF)**  | Server fetches remote resources based on user input — attackers can exploit internal systems.
+
+---
+
+## 🛡️ How to Mitigate These Risks
+
+- ✅ Use **input validation** and parameterized queries
+- ✅ Implement **role-based access control**
+- ✅ Keep dependencies **up-to-date**
+- ✅ Use **HTTPS** and strong encryption
+- ✅ Enable **logging and alerting**
+- ✅ Apply **secure coding practices** and regular code reviews
+
+---
+
+## 🧠 Bonus Tip for Interviews
+If asked how you apply OWASP in real projects:
+- Mention **Spring Security** for auth
+- Use **Bean Validation** (`@Valid`, `@NotNull`) for input sanitization
+- Integrate **SonarQube or Snyk** for static analysis
+- Apply **rate limiting** and **CORS policies** at the gateway level

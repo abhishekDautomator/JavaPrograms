@@ -42,11 +42,11 @@ Feature	HashMap	ConcurrentHashMap
 Thread-safe	❌ No	✅ Yes
 Performance	Fast (single-threaded)	Optimized for multithreading
 Null Keys	✅ 1 allowed	❌ Not allowed
-Data Structure	Array + LinkedList/Tree	Same, but with fine-grained locking
+Data Structure	Array + LinkedList/Red-blackTree	Same, but with fine-grained locking
 Synchronization	External	Internal (bucket-level)
 
 🎯 How to Finish:
-“So overall, I’d choose HashMap for single-threaded or read-heavy scenarios where thread-safety isn't a
-concern.
+“So overall, I’d choose HashMap for single-threaded or read-heavy scenarios where
+thread-safety isn't a concern.
 But for concurrent applications like caching, I'd go with ConcurrentHashMap due to its
 fine-grained locking and better performance under multi-threaded access.”

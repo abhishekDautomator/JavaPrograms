@@ -30,8 +30,10 @@ ArrayList vs LinkedLIst?
 
 ### 🔍 Interview Tip
 
-If asked which one to use in a real-world scenario, always **justify based on access vs. mutation patterns**. For example:
+If asked which one to use in a real-world scenario, always **justify based on access vs.
+mutation patterns**. For example:
 
-> “If I’m building a cache where I frequently access elements by index, I’d go with `ArrayList`. But for a messaging queue where I enqueue and dequeue often, `LinkedList` is more appropriate.”
+> “If I’m building a cache where I frequently access elements by index, I’d go with `ArrayList`.
+But for a messaging queue where I enqueue and dequeue often, `LinkedList` is more appropriate.”
 
 Want to dive into internal implementation or performance benchmarks next? I can walk you through how `ArrayList` resizes or how `LinkedList` nodes are structured in memory.

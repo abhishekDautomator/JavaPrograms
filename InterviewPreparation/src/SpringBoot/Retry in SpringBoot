@@ -1,0 +1,96 @@
+## 🔁 What Is Spring Retry?
+
+Spring Retry allows you to **automatically re-execute failed operations** with configurable:
+- Number of attempts
+- Delay between retries
+- Backoff strategies (fixed, exponential)
+- Recovery logic
+
+---
+
+## ⚙️ Step-by-Step Implementation
+
+### 🔹 1. Add Dependency
+
+If you're using Spring Boot with Maven:
+```xml
+<dependency>
+    <groupId>org.springframework.retry</groupId>
+    <artifactId>spring-retry</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
+
+> 🔸 AOP is required because Spring Retry uses method-level proxies.
+
+---
+
+### 🔹 2. Enable Retry Globally
+
+```java
+@SpringBootApplication
+@EnableRetry
+public class RetryDemoApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(RetryDemoApplication.class, args);
+    }
+}
+```
+
+---
+
+### 🔹 3. Annotate the Method with `@Retryable`
+
+```java
+@Service
+public class PaymentService {
+
+    @Retryable(
+        value = { RemoteServiceException.class },
+        maxAttempts = 3,
+        backoff = @Backoff(delay = 2000, multiplier = 2)
+    )
+    public String processPayment(String orderId) {
+        System.out.println("Trying to process payment for order: " + orderId);
+        // Simulate failure
+        throw new RemoteServiceException("Payment gateway not responding");
+    }
+
+    @Recover
+    public String recover(RemoteServiceException e, String orderId) {
+        System.out.println("Recovery logic for order: " + orderId);
+        return "Payment failed for order " + orderId + ". Please try again later.";
+    }
+}
+```
+
+### 🔹 Explanation:
+- `@Retryable`: Retries the method on `RemoteServiceException`
+- `maxAttempts`: Number of retries (3 total attempts)
+- `@Backoff`: Waits 2 seconds, then doubles each time (2s, 4s)
+- `@Recover`: Fallback method if all retries fail
+
+---
+
+## 🧪 Sample Output
+
+```
+Trying to process payment for order: 123
+Trying to process payment for order: 123
+Trying to process payment for order: 123
+Recovery logic for order: 123
+```
+
+---
+
+## 🧠 Best Practices
+
+| Tip | Why It Matters |
+|-----|----------------|
+| ✅ Use specific exception types | Avoid retrying on fatal errors |
+| ✅ Add exponential backoff | Prevent overwhelming downstream services |
+| ✅ Use `@Recover` wisely | Provide graceful fallback |
+| ✅ Combine with circuit breakers | Use Resilience4j or Hystrix for full fault tolerance |

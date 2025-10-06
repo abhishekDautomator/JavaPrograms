@@ -1,6 +1,7 @@
 package DataStructure.map.HashMap;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class HashMapInternallyWorks {
     //A DataStructure.map.HashMap in Java is a part of the Java Collections Framework and is used to store
@@ -53,38 +54,71 @@ public class HashMapInternallyWorks {
     // When a key-value pair is added, the hash code of the key determines the index of the bucket.
     // If there is a collision, the key-value pair is added to the linked list or tree at that bucket.
     // The following code simulates the internal structure of a HashMap bucket:
-   /* class Bucket {
-        LinkedList<Entry> entries;
+    class MyHashMap {
+        private static final int DEFAULT_CAPACITY = 16;
+        private Bucket[] buckets;
 
-        public Bucket() {
-            entries = new LinkedList<>();
-        }
-
-        public void add(String key, Integer value) {
-            entries.add(new Entry(key, value));
-        }
-
-        class Entry {
-            String key;
-            Integer value;
-
-            Entry(String key, Integer value) {
-                this.key = key;
-                this.value = value;
+        public MyHashMap() {
+            buckets = new Bucket[DEFAULT_CAPACITY];
+            for (int i = 0; i < DEFAULT_CAPACITY; i++) {
+                buckets[i] = new Bucket();
             }
         }
-    }*/
-    //How multiple key values are added in a bucket after collision?
-    //How multiple key values are added in a bucket after collision?
-    /*public void add(String key, Integer value) {
-        int bucketIndex = getBucketIndex(key);
-        Bucket bucket = buckets[bucketIndex];
-        bucket.add(key, value);
-    }
 
-    private int getBucketIndex(String key) {
-        return key == null ? 0 : Math.abs(key.hashCode()) % buckets.length;
-    }*/
+        public void put(String key, Integer value) {
+            int bucketIndex = getBucketIndex(key);
+            Bucket bucket = buckets[bucketIndex];
+            bucket.addOrUpdate(key, value);
+        }
+
+        public Integer get(String key) {
+            int bucketIndex = getBucketIndex(key);
+            Bucket bucket = buckets[bucketIndex];
+            return bucket.getValue(key);
+        }
+
+        private int getBucketIndex(String key) {
+            return key == null ? 0 : Math.abs(key.hashCode()) % buckets.length;
+        }
+
+        // Inner Bucket class
+        class Bucket {
+            LinkedList<Entry> entries;
+
+            public Bucket() {
+                entries = new LinkedList<>();
+            }
+
+            public void addOrUpdate(String key, Integer value) {
+                for (Entry entry : entries) {
+                    if (entry.key.equals(key)) {
+                        entry.value = value; // Update existing key
+                        return;
+                    }
+                }
+                entries.add(new Entry(key, value)); // Add new key
+            }
+
+            public Integer getValue(String key) {
+                for (Entry entry : entries) {
+                    if (entry.key.equals(key)) {
+                        return entry.value;
+                    }
+                }
+                return null; // Key not found
+            }
+
+            class Entry {
+                String key;
+                Integer value;
+
+                Entry(String key, Integer value) {
+                    this.key = key;
+                    this.value = value;
+                }
+            }
+        }
+    }
 
     //Please explain how a linked list bucket can hold multiple key-values pair if the hash code is same?
     //A linked list bucket can hold multiple key-value pairs if the hash code is the same by chaining the entries

@@ -1,0 +1,187 @@
+## 💉 What Is Injection?
+
+Injection happens when **untrusted input** is sent to a database or interpreter **without proper validation or sanitization**, allowing attackers to manipulate queries and access unauthorized data.
+
+---
+
+## 🧨 SQL Injection: Classic Example
+
+### 🔹 Vulnerable Code
+```java
+String query = "SELECT * FROM users WHERE username = '" + userInput + "'";
+```
+
+If `userInput = ' OR '1'='1`, the query becomes:
+```sql
+SELECT * FROM users WHERE username = '' OR '1'='1'
+```
+
+🔴 This returns **all users**, bypassing authentication!
+
+### 🔹 Attack Impact
+- Bypass login
+- Dump entire database
+- Delete or modify data
+- Execute admin operations
+
+---
+
+## 🧨 NoSQL Injection: Modern Variant
+
+### 🔹 MongoDB Example (JavaScript-style query)
+```js
+db.users.find({ username: userInput })
+```
+
+If `userInput = { "$ne": null }`, the query becomes:
+```js
+db.users.find({ username: { "$ne": null } })
+```
+
+🔴 This matches **all users**, again bypassing logic.
+
+### 🔹 Attack Impact
+- Unauthorized access
+- Data leakage
+- Logic manipulation
+
+---
+
+## 🛡️ How to Prevent Injection
+
+| Technique                     | Description |
+|------------------------------|-------------|
+| ✅ **Parameterized Queries** | Use `PreparedStatement` in SQL or query builders in NoSQL |
+| ✅ **Input Validation**      | Whitelist expected formats (e.g., email, username) |
+| ✅ **Escaping Input**        | Escape special characters if dynamic queries are unavoidable |
+| ✅ **Use ORM/ODM Safely**    | Hibernate, JPA, Spring Data MongoDB reduce direct query risks |
+| ✅ **Security Testing**      | Use tools like OWASP ZAP, Burp Suite, or Snyk to scan for vulnerabilities |
+
+---
+
+## 🔐 Spring Boot Example: Safe SQL
+
+```java
+@Query("SELECT u FROM User u WHERE u.username = :username")
+User findByUsername(@Param("username") String username);
+```
+
+✅ Uses JPQL with parameter binding — safe from injection.
+
+JPQL — **Java Persistence Query Language** — is a powerful, object-oriented query language used in **JPA (Java Persistence API)** to interact with relational databases using **entity objects**, not raw tables.
+
+Let’s break it down clearly:
+
+---
+
+## 🧠 What Is JPQL?
+
+- JPQL is **similar to SQL**, but it works with **Java classes and fields**, not database tables and columns.
+- It’s **database-agnostic** — meaning the same JPQL works across MySQL, PostgreSQL, Oracle, etc.
+- It’s used in **repositories**, **custom queries**, and **dynamic query building**.
+
+---
+
+## 🔍 JPQL vs SQL
+
+| Feature         | JPQL                                | SQL                                 |
+|----------------|--------------------------------------|-------------------------------------|
+| Operates on    | Java entities                        | Database tables                     |
+| Syntax         | Object-oriented                      | Table-oriented                      |
+| Portability    | High (JPA standard)                  | Depends on DB vendor                |
+| Example        | `SELECT u FROM User u`               | `SELECT * FROM users`               |
+
+---
+
+## 🔧 JPQL Syntax Examples
+
+### 🔹 Select All Users
+```java
+@Query("SELECT u FROM User u")
+List<User> findAllUsers();
+```
+
+### 🔹 Filter by Field
+```java
+@Query("SELECT u FROM User u WHERE u.email = :email")
+User findByEmail(@Param("email") String email);
+```
+
+### 🔹 Join with Another Entity
+```java
+@Query("SELECT o FROM Order o JOIN o.user u WHERE u.id = :userId")
+List<Order> findOrdersByUserId(@Param("userId") Long userId);
+```
+
+### 🔹 Update Query
+```java
+@Modifying
+@Query("UPDATE User u SET u.status = 'ACTIVE' WHERE u.id = :id")
+void activateUser(@Param("id") Long id);
+```
+
+> 🔐 Use `@Modifying` for update/delete queries, and enable transaction management.
+
+---
+
+## 🧠 Best Practices
+
+- ✅ Use **named parameters** (`:param`) for clarity and safety
+- ✅ Avoid native SQL unless absolutely necessary
+- ✅ Use **entity relationships** (`@OneToMany`, `@ManyToOne`) for joins
+- ✅ Combine with **Spring Data JPA** for clean repository interfaces
+
+
+## 💬 What Does “Treated as a Literal String” Mean?
+
+When you use JPQL with **parameter binding**, like this:
+
+```java
+@Query("SELECT u FROM User u WHERE u.username = :username")
+```
+
+and pass in:
+```java
+username = "' OR '1'='1"
+```
+
+Spring Data JPA internally uses a **PreparedStatement**, which means it doesn’t **inject** the value directly into the query string. Instead, it sends the query like:
+
+```sql
+SELECT u FROM User u WHERE u.username = ?
+```
+
+and binds the value `' OR '1'='1` as a **literal string**, not as part of the SQL syntax.
+
+---
+
+## 🔐 Why This Is Safe
+
+- The database sees `' OR '1'='1` as just a weird username — not as a command to alter the query logic.
+- It tries to find a user whose username is literally `' OR '1'='1`, which **doesn’t exist**, so the query returns nothing.
+- The dangerous part (`OR '1'='1'`) is **not executed** — it’s just treated like any other string.
+
+---
+
+## 🧪 Unsafe Version (for contrast)
+
+If you did this:
+```java
+String query = "SELECT * FROM users WHERE username = '" + userInput + "'";
+```
+
+and `userInput = ' OR '1'='1`, the query becomes:
+```sql
+SELECT * FROM users WHERE username = '' OR '1'='1'
+```
+
+Now `'1'='1'` is **valid SQL logic**, so the query returns **all users** — that’s SQL injection.
+
+---
+
+## 🧠 Summary
+
+| Input Type           | Behavior                          |
+|----------------------|-----------------------------------|
+| **Bound parameter**  | Treated as data (safe)            |
+| **Concatenated string** | Treated as code (vulnerable)     |

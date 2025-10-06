@@ -1,0 +1,47 @@
+## 🌱 What Is a Bean Scope in Spring?
+
+A **bean scope** defines the **lifecycle and visibility** of a bean — essentially, how and when
+Spring creates and shares instances of that bean.
+
+---
+
+## 🔍 Common Spring Bean Scopes
+
+| Scope        | Description                                                                 | Typical Use Case                        |
+|--------------|-----------------------------------------------------------------------------|-----------------------------------------|
+| **Singleton** | One shared instance per Spring container (default scope)                   | Stateless services, utility components  |
+| **Prototype** | A new instance every time the bean is requested                            | Stateful objects, per-request configs   |
+| **Request**   | One instance per HTTP request (Web-aware scope)                            | Web controllers, request-bound data     |
+| **Session**   | One instance per HTTP session (Web-aware scope)                            | User session data, login state          |
+| **Application** | One instance per ServletContext (shared across all requests)             | App-wide caches, configuration holders  |
+| **Websocket** | One instance per WebSocket session                                         | Real-time messaging, chat sessions      |
+
+---
+
+## 🧠 How to Define Scope
+
+You can set scope using annotations or XML:
+
+### 🔹 Annotation-Based
+```java
+@Component
+@Scope("prototype")
+public class MyBean { ... }
+```
+
+### 🔹 XML-Based
+```xml
+<bean id="myBean" class="com.example.MyBean" scope="prototype"/>
+```
+
+---
+
+## 🚦 Quick Tips
+
+- **Singleton** is default — use it unless you have a reason not to.
+- **Prototype** beans aren’t managed after creation — no lifecycle callbacks like `@PreDestroy`.
+- **Request/Session/Application/Websocket** require Spring Web context — not available in standalone apps.
+
+---
+
+Want to dive deeper into how scopes affect **dependency injection**, or explore **custom scopes** for multi-tenant apps? I’d be happy to walk you through those too.

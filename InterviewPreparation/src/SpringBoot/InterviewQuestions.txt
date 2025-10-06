@@ -378,7 +378,8 @@ Ans. Core Annotations
      }
 
      @Bean:
-     Purpose: Indicates that a method produces a bean that should be managed by the Spring container.
+     Purpose: Indicates that a method produces a bean that should be managed by the Spring
+     container.
      Usage: Used within @Configuration classes to define beans.
      Why: It enables manual control over the instantiation and configuration of Spring beans.
      @Bean
@@ -389,7 +390,8 @@ Ans. Core Annotations
      Web Annotations
 
      @RestController:
-     Purpose: Combines @Controller and @ResponseBody, indicating that the class serves RESTful web services.
+     Purpose: Combines @Controller and @ResponseBody, indicating that the class serves RESTful
+     web services.
      Usage: Used in classes that handle HTTP requests and responses.
      Why: Simplifies the creation of REST APIs by eliminating the need for explicit @ResponseBody annotations
      on each method.
@@ -422,7 +424,8 @@ Ans. Core Annotations
      Dependency Injection Annotations
 
      @Autowired:
-     Purpose: Mark a constructor, field, setter method, or configuration method for dependency injection.
+     Purpose: Mark a constructor, field, setter method, or configuration method for dependency
+     injection.
      Usage: Used to inject beans automatically.
      Why: Reduces the need for manual bean wiring, making the code cleaner and easier to manage.
      @Service
@@ -435,9 +438,41 @@ Ans. Core Annotations
      Purpose: Specify which bean to inject when multiple candidates are available.
      Usage: Used in conjunction with @Autowired.
      Why: Helps avoid ambiguity when multiple beans of the same type exist.
+
+     @Bean
+     public Vehicle car() {
+         return new Car();
+     }
+
+     @Bean
+     public Vehicle bike() {
+         return new Bike();
+     }
+
+
      @Autowired
-     @Qualifier("mySpecificBean")
-     private MyService myService;
+     @Qualifier("bike")
+     private Vehicle vehicle;
+
+
+     @Primary:
+     Purpose: Marks a bean as the default choice when multiple candidates exist.
+     Usage: When default type needs to be provided for multiple candidates
+     Example:
+
+     @Bean
+     @Primary
+     public Vehicle car() {
+         return new Car();
+     }
+
+     @Bean
+     public Vehicle bike() {
+         return new Bike();
+     }
+
+     @Autowired
+     private Vehicle vehicle; // Injects Car because it's @Primary
 
      Other Useful Annotations
 
@@ -468,7 +503,8 @@ Ans. Core Annotations
      }
 
      @Repository:
-     Purpose: Indicates that a class is a Data Access Object (DAO) that interacts with the database.
+     Purpose: Indicates that a class is a Data Access Object (DAO) that interacts with the
+     database.
      Usage: Used on classes that encapsulate data access logic, often linked to ORM frameworks like JPA or
      Hibernate.
      Why: It allows for exception translation, converting database-related exceptions into Spring's

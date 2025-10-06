@@ -1,0 +1,124 @@
+## ⚡ What Is a Circuit Breaker?
+
+A **circuit breaker** monitors calls to external services. If failures exceed a threshold, it “opens the circuit” — temporarily blocking further calls to prevent system overload.
+
+### 🔁 States of a Circuit Breaker:
+| State       | Behavior |
+|-------------|----------|
+| **Closed**  | Calls flow normally |
+| **Open**    | Calls are blocked immediately |
+| **Half-Open** | A few test calls are allowed to check recovery |
+
+---
+
+## 🧠 Why Use It?
+
+- ✅ Prevents retry storms and resource exhaustion
+- ✅ Improves system stability
+- ✅ Enables graceful degradation
+- ✅ Works well with retries and fallbacks
+
+---
+
+## 🚀 Implementation with Spring Boot + Resilience4j
+
+### 🔹 1. Add Dependencies (`pom.xml`)
+```xml
+<dependency>
+    <groupId>io.github.resilience4j</groupId>
+    <artifactId>resilience4j-spring-boot2</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-aop</artifactId>
+</dependency>
+```
+
+---
+
+### 🔹 2. Sample Service with Circuit Breaker
+
+```java
+@Service
+public class ExternalService {
+
+    @CircuitBreaker(name = "externalApi", fallbackMethod = "fallbackResponse")
+    public String callExternalApi() {
+        System.out.println("Calling external API...");
+        throw new RuntimeException("API not available");
+    }
+
+    public String fallbackResponse(Throwable t) {
+        return "External service is down. Please try later.";
+    }
+}
+```
+
+> 🔸 `@CircuitBreaker` monitors the method. If it fails repeatedly, it opens the circuit.
+> 🔸 `fallbackMethod` is called when the circuit is open or the method throws an exception.
+
+---
+
+### 🔹 3. Configuration (`application.yml`)
+```yaml
+resilience4j:
+  circuitbreaker:
+    instances:
+      externalApi:
+        registerHealthIndicator: true
+        slidingWindowSize: 5
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        permittedNumberOfCallsInHalfOpenState: 2
+```
+
+### 🔹 What This Means:
+- After 5 calls, if ≥50% fail → circuit opens
+- Waits 10 seconds before trying again
+- Allows 2 test calls in half-open state
+
+---
+
+### 🔹 4. Controller to Trigger It
+
+```java
+@RestController
+public class TestController {
+    @Autowired private ExternalService externalService;
+
+    @GetMapping("/test")
+    public String testCircuitBreaker() {
+        return externalService.callExternalApi();
+    }
+}
+```
+
+---
+
+## 🧪 Sample Flow
+
+1. Call `/test` → throws exception
+2. After 3 failed calls → circuit opens
+3. Next calls → immediately return fallback
+4. After 10s → circuit goes half-open
+5. If test calls succeed → circuit closes
+
+---
+
+## 🧠 Best Practices
+
+| Practice | Why It Matters |
+|---------|----------------|
+| ✅ Combine with retry | Retry transient failures before breaking |
+| ✅ Use fallback | Graceful degradation improves UX |
+| ✅ Monitor metrics | Use Actuator + Prometheus/Grafana |
+| ✅ Tune thresholds | Match SLA and traffic patterns |
+
+---
+
+## 🔐 Bonus: Combine with Rate Limiter & Bulkhead
+
+Resilience4j also supports:
+- **Rate Limiting**: Prevent abuse
+- **Bulkhead**: Isolate thread pools to avoid overload
+- **Time Limiter**: Timeout slow calls

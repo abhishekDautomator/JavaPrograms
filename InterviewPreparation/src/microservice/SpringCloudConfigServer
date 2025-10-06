@@ -1,0 +1,164 @@
+## 🧱 Step 1: Create the Spring Cloud Config Server
+
+### 🔹 Add Dependencies (`pom.xml`)
+```xml
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-config-server</artifactId>
+</dependency>
+```
+
+Also include the Spring Cloud BOM:
+```xml
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>2022.0.4</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+```
+
+---
+
+### 🔹 Enable Config Server (`ConfigServerApplication.java`)
+```java
+@SpringBootApplication
+@EnableConfigServer
+public class ConfigServerApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ConfigServerApplication.class, args);
+    }
+}
+```
+
+---
+
+### 🔹 Configure `application.yml`
+```yaml
+server:
+  port: 8888
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/your-username/config-repo
+          clone-on-start: true
+```
+
+> 🔐 You can also use a local path or secure Git repo with credentials.
+
+---
+
+## 🧾 Step 2: Create a Git-Based Config Repository
+
+Create a Git repo (e.g., `config-repo`) with files like:
+
+- `user-service.yml`
+```yaml
+server:
+  port: 8081
+app:
+  name: User Service
+```
+
+- `order-service.yml`
+```yaml
+server:
+  port: 8082
+app:
+  name: Order Service
+```
+
+Commit and push to GitHub or your Git server.
+
+---
+
+## 🧩 Step 3: Create a Microservice That Uses Config Server
+
+### 🔹 Add Dependencies (`pom.xml`)
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-config</artifactId>
+</dependency>
+```
+
+---
+
+### 🔹 Bootstrap Configuration (`bootstrap.yml`)
+```yaml
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      uri: http://localhost:8888
+```
+
+> `bootstrap.yml` is loaded **before** `application.yml` — perfect for config server setup.
+
+---
+
+### 🔹 Use Config Properties
+```java
+@RestController
+public class ConfigController {
+    @Value("${app.name}")
+    private String appName;
+
+    @GetMapping("/name")
+    public String getAppName() {
+        return "Service name: " + appName;
+    }
+}
+```
+
+---
+
+## 🔄 Step 4: Enable Dynamic Refresh (Optional)
+
+Add actuator dependency:
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
+Enable refresh endpoint:
+```yaml
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
+```
+
+Use `@RefreshScope` on beans to enable runtime config updates:
+```java
+@RefreshScope
+@RestController
+public class ConfigController { ... }
+```
+
+---
+
+## 🧠 Summary
+
+| Component         | Role                                      |
+|------------------|-------------------------------------------|
+| Config Server     | Serves config from Git                   |
+| Git Repo          | Stores versioned config files            |
+| Microservice      | Fetches config via Spring Cloud Config   |
+| Actuator + Refresh| Enables dynamic updates                  |

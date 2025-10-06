@@ -64,7 +64,10 @@ processes in Java:
 
 1. Serial Garbage Collector
 
-Description: The Serial GC uses a single thread for garbage collection, making it suitable for small applications or single-threaded environments.
+Description: The Serial GC uses a single thread for garbage collection, making it suitable for small
+applications or single-threaded environments.
+
+
 How It Works:
 During a young generation collection, it pauses all application threads (stop-the-world event).
 It performs marking and sweeping in the young generation, and if necessary, it can also collect the

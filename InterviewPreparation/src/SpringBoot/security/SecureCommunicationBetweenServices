@@ -1,0 +1,99 @@
+## 🔐 1. Use Mutual TLS (mTLS - mutual transport layer security)
+
+### 🔹 What It Does:
+- Encrypts traffic between services
+- Authenticates both client and server using certificates
+
+### 🔹 Tools:
+- Istio or Linkerd (service mesh)
+- Spring Boot with SSL configuration
+
+```yaml
+server:
+  ssl:
+    key-store: classpath:keystore.p12
+    key-store-password: changeit
+    key-store-type: PKCS12
+```
+
+---
+
+## 🔑 2. JWT-Based Authentication Between Services
+
+### 🔹 How It Works:
+- Each service includes a **JWT token** in the `Authorization` header
+- Receiving service validates the token (issuer, expiry, signature)
+
+### 🔹 Benefits:
+- Stateless and scalable
+- Easy to propagate user context
+
+```http
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6...
+```
+
+> Use Spring Security + OAuth2 Resource Server to validate tokens.
+
+---
+
+## 🧩 3. API Gateway as Security Gatekeeper
+
+### 🔹 Role:
+- Centralized authentication and authorization
+- Validates tokens before routing to downstream services
+- Applies rate limiting, IP whitelisting, and header sanitization
+
+### 🔹 Example:
+Spring Cloud Gateway + Keycloak or Okta
+
+---
+
+## 🛡️ 4. Service Mesh for Zero-Trust Security
+
+### 🔹 What It Adds:
+- Automatic mTLS
+- Policy-based access control
+- Traffic encryption and observability
+
+### 🔹 Tools:
+- Istio (with Envoy sidecars)
+- Consul Connect
+
+---
+
+## 🔍 5. Secure Service Discovery
+
+### 🔹 Risks:
+- If Eureka or Consul is exposed, attackers can spoof services
+
+### 🔹 Mitigation:
+- Use TLS for registry communication
+- Authenticate service registration
+- Limit access to registry endpoints
+
+---
+
+## 🧠 6. Internal Firewalling & Network Segmentation
+
+- Use Kubernetes Network Policies or cloud-native firewalls
+- Restrict which services can talk to each other
+- Block public access to internal APIs
+
+---
+
+## 🧪 7. Audit, Monitor, and Alert
+
+- Use ELK stack, Prometheus, Grafana
+- Monitor failed auth attempts, token misuse, and traffic anomalies
+- Set up alerts for suspicious patterns
+
+---
+
+## 🧠 Real-World Example:
+
+Imagine a payment service calling a user profile service:
+- Gateway validates JWT and routes request
+- Istio enforces mTLS between services
+- Spring Security checks token scopes
+- Prometheus tracks latency and error rates
+- Audit logs capture request metadata for compliance

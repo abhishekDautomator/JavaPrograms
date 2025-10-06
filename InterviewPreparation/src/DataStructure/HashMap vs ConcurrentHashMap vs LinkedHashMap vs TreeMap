@@ -1,0 +1,57 @@
+## 🧠 Key Differences Between Java Map Implementations
+
+| Feature                  | `HashMap`                        | `ConcurrentHashMap`                  | `LinkedHashMap`                      | `TreeMap`                            |
+|--------------------------|----------------------------------|--------------------------------------|--------------------------------------|--------------------------------------|
+| **Ordering**             | No ordering                      | No ordering                          | Maintains **insertion order**        | Sorted by **natural or custom order**|
+| **Thread Safety**        | ❌ Not thread-safe               | ✅ Thread-safe (segment locking)     | ❌ Not thread-safe                   | ❌ Not thread-safe                   |
+| **Performance**          | Fast (O(1) average)              | Slightly slower due to concurrency   | Slightly slower than `HashMap`       | Slower (O(log n)) due to sorting     |
+| **Null Keys/Values**     | ✅ One null key, multiple null values | ❌ No null keys, null values allowed | ✅ One null key, multiple null values | ❌ No null keys, null values allowed |
+| **Underlying Structure** | Array + Linked List / Tree       | Segmented buckets with locks         | HashMap + Doubly Linked List         | Red-Black Tree                       |
+| **Use Case**             | General-purpose map              | High-concurrency environments        | Ordered iteration                    | Sorted data, range queries           |
+
+---
+
+## 🔍 When to Use What
+
+- **HashMap**: Default choice for non-threaded, fast lookups.
+- **ConcurrentHashMap**: When multiple threads access and modify the map concurrently.
+- **LinkedHashMap**: When you need predictable iteration order (e.g., LRU cache).
+- **TreeMap**: When you need sorted keys or range-based operations (e.g., floor/ceiling keys).
+
+---
+
+## 🔍 When to Use Each
+
+### 🔹 `HashMap`
+Use when:
+- You need **fast access** and don’t care about order
+- Keys are unique and hashable
+- Example: Caching user sessions, storing config flags
+
+```java
+Map<String, Integer> map = new HashMap<>();
+```
+
+---
+
+### 🔹 `LinkedHashMap`
+Use when:
+- You need **predictable iteration order**
+- You want to implement **LRU cache** (via `removeEldestEntry`)
+- Example: Maintaining recent access history
+
+```java
+Map<String, Integer> map = new LinkedHashMap<>();
+```
+
+---
+
+### 🔹 `TreeMap`
+Use when:
+- You need **sorted keys** or **range-based queries**
+- You want to implement **navigable maps** (`floorKey`, `ceilingKey`)
+- Example: Leaderboard, price ranges, time-series data
+
+```java
+Map<String, Integer> map = new TreeMap<>();
+```

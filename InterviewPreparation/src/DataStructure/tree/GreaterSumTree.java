@@ -1,7 +1,7 @@
 package DataStructure.tree;
 
 public class GreaterSumTree {
-    int sum = 0;
+    int sum = 0, sum1=0;
 
 
     private void getGreaterSumTree(TreeNode root) { //we need to traverse through the tree
@@ -13,6 +13,16 @@ public class GreaterSumTree {
         root.value = sum - root.value;
         System.out.println("greater sum of the current node: "+root.value);
         getGreaterSumTree(root.left);
+    }
+
+    public void greaterSumTree(TreeNode root){
+        if(root==null) return;
+        greaterSumTree(root.right);
+        int current = root.value;
+        sum1+= current;
+        root.value = sum1 - current;
+        System.out.println("Greater sum of current node: "+current+" is: "+root.value);
+        greaterSumTree(root.left);
     }
 
     public void inOrderTraversal(TreeNode root){
@@ -35,7 +45,7 @@ public class GreaterSumTree {
         GreaterSumTree gst = new GreaterSumTree();
 
         // Convert to Greater Sum Tree
-        gst.getGreaterSumTree(root);
+        gst.greaterSumTree(root);
 
         // Print the resulting tree (in-order traversal)
         System.out.println("In-order traversal of the Greater Sum Tree:");

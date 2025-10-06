@@ -1,0 +1,126 @@
+Designing a **global leaderboard system** with real-time updates and caching is a classic system design challenge — perfect for showcasing your skills in scalability, consistency, and performance, Abhishek. Let’s architect it step-by-step.
+
+---
+
+## 🌍 Goal: Global Leaderboard System
+
+### 🔹 Requirements:
+- Real-time score updates
+- Global ranking across millions of users
+- Fast read access (low latency)
+- High write throughput (score updates)
+- Caching and eventual consistency
+- Fault tolerance and scalability
+
+---
+
+## 🧱 High-Level Architecture
+
+```
+Client → API Gateway → Leaderboard Service → Score Processor → Kafka
+                                      → Aggregator -> Redis + DB → Cache Updater
+```
+
+---
+
+## 🔧 Core Components
+
+### 1. **Leaderboard Service (Spring Boot)**
+- Exposes REST APIs:
+  - `GET /leaderboard/top`
+  - `POST /score/update`
+- Stateless, horizontally scalable
+- Uses Redis for fast reads, Kafka for async writes
+
+---
+
+### 2. **Score Processor**
+- Validates and normalizes incoming scores
+- Publishes to Kafka topic: `score-updates`
+
+---
+
+### 3. **Kafka (Event Stream)**
+- Decouples write path from ranking logic
+- Enables async processing and replayability
+- Topic: `score-updates`
+
+---
+
+### 4. **Aggregator Service**
+- Consumes Kafka events
+- Updates Redis sorted sets (`ZADD`) for real-time ranking
+- Periodically syncs to persistent DB (PostgreSQL or Cassandra)
+
+---
+
+### 5. **Redis (Caching Layer)**
+- Stores leaderboard using **Sorted Sets**
+  ```bash
+  ZADD global_leaderboard 1500 "user123"
+  ZREVRANGE global_leaderboard 0 9 WITHSCORES //This returns the top 10 users in the
+  leaderboard, along with their scores, sorted from highest to lowest.
+  ```
+- Fast reads for top-N queries
+- TTL or eviction policy for memory control
+
+---
+
+### 6. **Database (Durable Storage)**
+- Stores historical scores, user metadata
+- Used for analytics, recovery, and audit
+- Write-behind strategy from Redis
+
+---
+
+## ⚡ Real-Time Update Flow
+
+1. User submits score → API Gateway → Leaderboard Service
+2. Score published to Kafka
+3. Aggregator updates Redis
+4. Redis reflects updated ranking instantly
+5. Periodic sync to DB for durability
+
+---
+
+## 🛡️ Scalability & Fault Tolerance
+
+| Concern              | Solution |
+|----------------------|----------|
+| High read traffic    | Redis + CDN |
+| High write traffic   | Kafka + async processing |
+| Data loss            | Kafka durability + DB sync |
+| Cache eviction       | TTL + DB fallback |
+| Global latency       | Geo-distributed Redis + CDN |
+| Failover             | Kubernetes + health checks |
+
+---
+
+## 🧠 Bonus Features
+
+- **Sharded Leaderboards**: Per region, game mode, or season
+- **User Metadata**: Avatar, country, badges
+- **Pagination**: Cursor-based for infinite scroll
+- **User Rank API**: `GET /leaderboard/rank/{userId}`
+- **Notifications**: Push updates when rank changes
+
+---
+
+## 🧪 Sample Redis Query
+
+```bash
+ZADD global_leaderboard 2500 "abhishek"
+ZREVRANK global_leaderboard "abhishek"  # Get rank
+ZREVRANGE global_leaderboard 0 9 WITHSCORES  # Top 10
+```
+
+---
+
+## 🧩 Interview Tip
+
+When asked to design this:
+- Start with use cases
+- Define read/write patterns
+- Choose Redis for speed, Kafka for decoupling, DB for durability
+- Discuss consistency trade-offs (eventual vs strong)
+- Highlight monitoring, scaling, and fallback strategies

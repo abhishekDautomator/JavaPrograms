@@ -59,7 +59,7 @@ public class TreeMapExample {
         String endPrefix = prefix + Character.MAX_VALUE;
 
         // Get names starting with "Ab"
-        SortedMap<String, String> matches = nameDirectory.subMap(prefix, true, endPrefix, true);
+        Map<String, String> matches = nameDirectory.subMap(prefix, true, endPrefix, true);
 
         System.out.println("🔍 Names starting with '" + prefix + "':");
         matches.forEach((name, role) -> System.out.println(name + " → " + role));

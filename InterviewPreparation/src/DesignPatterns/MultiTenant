@@ -1,0 +1,87 @@
+## 🧱 Core Goals
+
+- ✅ Serve multiple tenants (companies, teams, users) from a single platform
+- ✅ Ensure **data isolation** — no leakage or cross-access
+- ✅ Support **scaling**, **customization**, and **compliance**
+
+---
+
+## 🧩 Architecture Overview
+
+```
+Client → API Gateway → Auth Service → Tenant-Aware Microservices → DB Layer
+                                     ↘︎ Metadata Service → Tenant Configs
+```
+
+---
+
+## 🧠 Data Isolation Strategies
+
+### 1. **Database per Tenant**
+- Each tenant gets its own DB instance or schema
+- Strong isolation, easy backup/restore
+- Higher operational overhead
+
+### 2. **Shared Database, Separate Schemas**
+- One DB, multiple schemas (e.g., `tenant1.users`, `tenant2.users`)
+- Good balance of isolation and efficiency
+- Schema management complexity
+
+### 3. **Shared Database, Shared Schema with Tenant ID**
+- All data in one schema, tagged with `tenant_id`
+- Most scalable, but requires strict row-level security
+- Use Hibernate filters or Spring Data specs
+
+---
+
+## 🔐 Authentication & Tenant Context
+
+- Use **JWT tokens** with embedded `tenant_id` claim
+- API Gateway validates token and injects tenant context
+- Services extract tenant info from security context or headers
+
+```java
+String tenantId = SecurityContextHolder.getContext().getAuthentication().getTenantId();
+```
+
+---
+
+## 🧰 Tech Stack Choices
+
+| Layer            | Tools |
+|------------------|-------|
+| API Gateway      | Spring Cloud Gateway, Kong |
+| Auth             | Keycloak, OAuth2, JWT |
+| Tenant Routing   | Custom filters, interceptors |
+| DB Isolation     | PostgreSQL, MongoDB, or multi-tenant RDS |
+| Caching          | Redis with tenant-aware keys |
+| Config           | Spring Cloud Config with tenant profiles |
+
+---
+
+## 🛡️ Security & Compliance
+
+- ✅ Row-level access control
+- ✅ Audit logging per tenant
+- ✅ Encryption at rest and in transit
+- ✅ GDPR/ISO compliance with data boundaries
+
+---
+
+## 🧠 Real-World Example
+
+Imagine a SaaS HR platform:
+- Each company (tenant) has its own employee data
+- Admins log in via SSO → JWT includes `tenant_id`
+- All queries are scoped by tenant
+- Redis caches `employee:tenant123:456` for fast access
+- Background jobs run per tenant (e.g., payroll, reports)
+
+---
+
+## 🧪 Bonus: Tenant Onboarding Flow
+
+1. Admin signs up → creates tenant record
+2. System provisions DB/schema/config
+3. Default roles and settings applied
+4. Tenant metadata stored in central registry

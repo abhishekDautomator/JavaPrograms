@@ -10,7 +10,9 @@ value. This allows for quick lookups based on the key.
 Hashing Mechanism: It uses a hash function to compute an index (bucket) based on the hash code of the key.
 This enables average-case constant time complexity (O(1)) for basic operations like get and put.
 
-Collision Handling: When two keys hash to the same index, DataStructure.map.HashMap handles collisions using techniques such as chaining (linked lists) or, in some implementations, by using balanced trees for buckets that exceed a certain threshold.
+Collision Handling: When two keys hash to the same index, DataStructure.map.HashMap handles collisions
+using techniques such as chaining (linked lists) or, in some implementations, by using balanced trees
+for buckets that exceed a certain threshold.
 
 Dynamic Resizing: As more entries are added, a DataStructure.map.HashMap dynamically resizes itself
 when a predefined load factor is exceeded, ensuring efficient space utilization.

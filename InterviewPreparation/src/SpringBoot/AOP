@@ -1,4 +1,5 @@
- what do you mean by AOP and cross cutting concerns explain in easy terms with example in springboot
+what do you mean by AOP and cross cutting concerns explain in easy terms with
+example in springboot
 
 Ans: AOP (Aspect-Oriented Programming) is a programming technique for separating
 repetitive tasks (called cross-cutting concerns) from core business logic in a clean,
@@ -7,7 +8,11 @@ management to many parts of an application without duplicating code.
 
 ## What Are Cross-Cutting Concerns?
 
-**Cross-cutting concerns** are functionalities that affect multiple parts of an application, but are not the main business logic. Examples include logging, security checks, error handling, and transaction management. These concerns "cut across" various modules, so without AOP, you'd have to insert them manually in lots of places, making maintenance harder.[4][1]
+**Cross-cutting concerns** are functionalities that affect multiple parts of an
+application, but are not the main business logic. Examples include logging, security
+checks, error handling, and transaction management. These concerns "cut across" various
+modules, so without AOP, you'd have to insert them manually in lots of places, making
+maintenance harder.
 
 ### Examples of Cross-Cutting Concerns
 - Logging actions or method calls throughout your application

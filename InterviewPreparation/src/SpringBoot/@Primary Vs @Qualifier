@@ -1,0 +1,79 @@
+## 🧭 The Problem
+You have **multiple beans of the same type**, and Spring doesn’t know which one to inject.
+That’s where `@Primary` and `@Qualifier` come in.
+
+---
+
+## 🥇 `@Primary`: The Default Winner
+
+### 🔹 What It Does
+Marks a bean as the **default choice** when multiple candidates exist.
+
+### 🔹 Example
+```java
+@Bean
+@Primary
+public Vehicle car() {
+    return new Car();
+}
+
+@Bean
+public Vehicle bike() {
+    return new Bike();
+}
+```
+
+### 🔹 Usage
+```java
+@Autowired
+private Vehicle vehicle; // Injects Car because it's @Primary
+```
+
+---
+
+## 🎯 `@Qualifier`: The Explicit Selector
+
+### 🔹 What It Does
+Lets you **specify exactly** which bean to inject — overrides `@Primary`.
+
+### 🔹 Example
+```java
+@Bean
+public Vehicle car() {
+    return new Car();
+}
+
+@Bean
+public Vehicle bike() {
+    return new Bike();
+}
+```
+
+### 🔹 Usage
+```java
+@Autowired
+@Qualifier("bike")
+private Vehicle vehicle; // Injects Bike
+```
+
+---
+
+## 🧠 When to Use What
+
+| Use Case                          | Annotation     |
+|----------------------------------|----------------|
+| You want a **default bean**      | `@Primary`     |
+| You need **fine-grained control**| `@Qualifier`   |
+| You have **multiple beans** and want to switch based on context | `@Qualifier` |
+
+---
+
+## 💡 Pro Tip
+You can combine both:
+- Use `@Primary` for the most common bean.
+- Use `@Qualifier` when you need something specific.
+
+---
+
+Want to see how this plays out in a real-world scenario like injecting different payment gateways or
+message senders? I can whip up a quick example for that too.
