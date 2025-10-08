@@ -25,4 +25,6 @@ JVM (Java Virtual Machine), or other parts of your code. It's a way to provide m
 
 In essence, a marker interface is a clever way to tag classes with extra information without cluttering the class definition with methods. It's a simple yet powerful concept in Java!
 
-Do you have any more questions about Java or anything else I can help you with?
+interface MyMarkerInterface {
+        // This interface is empty
+    }
