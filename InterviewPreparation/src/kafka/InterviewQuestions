@@ -1,0 +1,343 @@
+## 🧠 1. What is Apache Kafka?
+
+**Answer:** Apache Kafka is a distributed event streaming platform used for building real-time data pipelines and streaming applications. It handles high-throughput, fault-tolerant, and scalable messaging.
+
+**Use Case:** Real-time analytics, log aggregation, fraud detection.
+
+---
+
+## 📦 2. What are Kafka’s core components?
+
+| Component     | Role |
+|---------------|------|
+| **Producer**  | Sends messages to Kafka topics |
+| **Consumer**  | Reads messages from topics |
+| **Broker**    | Kafka server that stores and serves messages |
+| **Topic**     | Logical channel for messages |
+| **Partition** | Subdivision of a topic for parallelism |
+| **ZooKeeper** | Manages Kafka cluster metadata (replaced by KRaft in newer versions) |
+
+---
+
+## 🧩 3. What is a Topic and Partition?
+
+**Topic:** A named stream of records.
+**Partition:** A topic is split into partitions for scalability. Each partition is an ordered log.
+
+```java
+ProducerRecord<String, String> record = new ProducerRecord<>("orders", "order123", "item=book");
+producer.send(record);
+```
+
+---
+
+## 🔁 4. What is a Consumer Group?
+
+**Answer:** A group of consumers that share the workload of reading from a topic. Each partition is read by only one consumer in the group.
+
+```java
+props.put("group.id", "order-consumers");
+KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+consumer.subscribe(Arrays.asList("orders"));
+```
+
+---
+
+## 🔄 5. What are Kafka’s delivery semantics?
+
+| Type             | Description |
+|------------------|-------------|
+| **At-most-once** | Messages may be lost |
+| **At-least-once**| Messages may be duplicated |
+| **Exactly-once** | Messages are delivered once and only once (requires idempotent producer + transactional consumer) |
+
+---
+
+## 🛡️ 6. How does Kafka ensure fault tolerance?
+
+- **Replication:** Each partition has replicas across brokers.
+- **Leader Election:** One replica is elected leader; others are followers.
+- **ISR (In-Sync Replicas):** Replicas that are up-to-date with the leader.
+
+---
+
+## 🧠 7. How is offset managed?
+
+**Answer:** Offset is the position of a consumer in a partition. Kafka stores offsets in a special topic (`__consumer_offsets`) or externally (e.g., DB).
+
+```java
+consumer.commitSync(); // Manually commit offset
+```
+
+---
+
+## ⚙️ 8. How does Kafka achieve high throughput?
+
+- Batching of messages
+- Compression (e.g., Snappy, GZIP)
+- Zero-copy transfer
+- Asynchronous I/O
+
+---
+
+## 🧪 9. How to implement a Kafka Producer?
+
+```java
+Properties props = new Properties();
+props.put("bootstrap.servers", "localhost:9092");
+props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+
+KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+producer.send(new ProducerRecord<>("orders", "orderId", "item=book"));
+producer.close();
+```
+
+---
+
+## 🧪 10. How to implement a Kafka Consumer?
+
+```java
+Properties props = new Properties();
+props.put("bootstrap.servers", "localhost:9092");
+props.put("group.id", "order-consumers");
+props.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+props.put("value.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");
+
+KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+consumer.subscribe(Arrays.asList("orders"));
+
+while (true) {
+    ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+    for (ConsumerRecord<String, String> record : records) {
+        System.out.println("Received: " + record.value());
+    }
+}
+```
+
+---
+
+## 🔐 11. How do you secure a Kafka cluster?
+
+- **SSL/TLS** for encryption
+- **SASL** for authentication
+- **ACLs** for authorization
+- **Kerberos** for enterprise-grade security
+
+---
+
+## 🧠 12. How do you handle schema evolution?
+
+Use **Schema Registry** with **Avro** serialization:
+- Register schema versions
+- Ensure backward/forward compatibility
+
+---
+
+## 🧩 13. Real-World Scenario: Retry Mechanism
+
+**Problem:** Consumer fails to process a message.
+
+**Solution:**
+- Use a **dead-letter topic** for failed messages
+- Retry with exponential backoff
+- Track retry count in message headers
+
+---
+
+## 📊 Monitoring Kafka
+
+- **Prometheus + Grafana** for metrics
+- **Kafka Manager / Confluent Control Center** for cluster health
+- Monitor **consumer lag**, **partition skew**, **message throughput**
+
+## 🎬 What Is an Event?
+
+An **event** is a small piece of information that describes something that happened:
+- A user clicked a button
+- A payment was made
+- A sensor detected motion
+- A new order was placed
+
+Each of these is an **event** — a record of something that occurred.
+
+---
+
+## 🌐 What Is Event Streaming?
+
+**Event streaming** means:
+- Events are **continuously generated**
+- They are **sent in real time** to a system
+- Other systems can **react to them immediately**
+
+It’s like a **live news feed** of everything happening in your app or business.
+
+---
+
+## 🧩 What Does “Distributed” Mean?
+
+**Distributed** means the system is spread across multiple servers or machines:
+- It can handle **huge volumes of data**
+- It’s **fault-tolerant** — if one machine fails, others keep working
+- It’s **scalable** — you can add more machines as needed
+
+So, **distributed event streaming** is:
+> A system that collects, processes, and delivers real-time events across multiple machines, reliably and at scale.
+
+---
+
+## 🚀 Real-World Example
+
+Imagine Flipkart:
+- Every time a user places an order → an event is generated
+- That event is streamed to:
+  - Inventory service (to update stock)
+  - Notification service (to send confirmation)
+  - Analytics service (to track sales)
+  - Delivery service (to schedule shipment)
+
+All these services **react to the same event**, in real time, without waiting for each other.
+
+---
+
+## 🛠️ Tools That Do This
+
+The most popular tool for distributed event streaming is **Apache Kafka**.
+
+Kafka:
+- Stores events in **topics**
+- Producers send events
+- Consumers read events
+- It’s fast, durable, and scalable
+
+---
+
+## 🧠 Why Is It Useful?
+
+| Benefit | Description |
+|--------|-------------|
+| ⚡ Real-time processing | React instantly to user actions |
+| 🔁 Decoupling | Services don’t need to call each other directly |
+| 📈 Scalability | Handles millions of events per second |
+| 🛡️ Fault tolerance | Keeps working even if parts fail |
+
+---
+
+## 🧪 Simple Analogy
+
+Imagine a **radio station**:
+- The station broadcasts music (events)
+- Listeners (services) tune in and react
+- The station doesn’t care who’s listening — it just keeps streaming
+
+That’s distributed event streaming in action.
+
+
+## 🧱 Step-by-Step Kafka Setup in Java
+
+### 🔹 1. Add Kafka Dependencies to `pom.xml`
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.apache.kafka</groupId>
+    <artifactId>kafka-clients</artifactId>
+    <version>3.9.1</version>
+  </dependency>
+</dependencies>
+```
+
+---
+
+### 🔹 2. Create a Kafka Producer (Sends Events)
+
+```java
+import org.apache.kafka.clients.producer.*;
+import org.apache.kafka.common.serialization.StringSerializer;
+import java.util.Properties;
+
+public class SimpleKafkaProducer {
+    public static void main(String[] args) {
+        String bootstrapServers = "localhost:9092";
+        String topic = "demo-topic";
+
+        Properties props = new Properties();
+        props.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+        props.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+
+        KafkaProducer<String, String> producer = new KafkaProducer<>(props);
+
+        ProducerRecord<String, String> record = new ProducerRecord<>(topic, "user123", "Signed up for newsletter");
+        producer.send(record, (metadata, exception) -> {
+            if (exception == null) {
+                System.out.printf("Sent to topic %s partition %d offset %d%n", metadata.topic(), metadata.partition(), metadata.offset());
+            } else {
+                exception.printStackTrace();
+            }
+        });
+
+        producer.close();
+    }
+}
+```
+
+---
+
+### 🔹 3. Create a Kafka Consumer (Receives Events)
+
+```java
+import org.apache.kafka.clients.consumer.*;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import java.time.Duration;
+import java.util.*;
+
+public class SimpleKafkaConsumer {
+    public static void main(String[] args) {
+        String bootstrapServers = "localhost:9092";
+        String groupId = "demo-consumer-group";
+        String topic = "demo-topic";
+
+        Properties props = new Properties();
+        props.setProperty(ConsumerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
+        props.setProperty(ConsumerConfig.KEY_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.setProperty(ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG, StringDeserializer.class.getName());
+        props.setProperty(ConsumerConfig.GROUP_ID_CONFIG, groupId);
+        props.setProperty(ConsumerConfig.AUTO_OFFSET_RESET_CONFIG, "earliest");
+
+        KafkaConsumer<String, String> consumer = new KafkaConsumer<>(props);
+        consumer.subscribe(Collections.singletonList(topic));
+
+        while (true) {
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(100));
+            for (ConsumerRecord<String, String> record : records) {
+                System.out.printf("Received message: key=%s, value=%s, partition=%d, offset=%d%n",
+                        record.key(), record.value(), record.partition(), record.offset());
+            }
+        }
+    }
+}
+```
+
+---
+
+## 🧠 What’s Happening Behind the Scenes?
+
+- The **producer** sends an event (e.g., “user signed up”) to a Kafka topic.
+- Kafka stores this event in a **partition**.
+- The **consumer** reads the event from the topic and processes it.
+- This happens in **real time**, across distributed servers.
+
+---
+
+## 🧪 Real-World Analogy
+
+Imagine a cricket match:
+- The **producer** is the scoreboard operator sending updates (runs, wickets).
+- Kafka is the **radio station** broadcasting those updates.
+- The **consumer** is your mobile app showing live scores.
+
+---
+
+## 🔗 Helpful Guide to Follow Along
+
+You can find a full beginner-friendly walkthrough with code and setup steps on [Javacodepoint’s Hello Kafka guide](https://javacodepoint.com/hello-kafka-first-java-kafka-application/).

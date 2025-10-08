@@ -18,7 +18,9 @@ Answer:
 Controlled Access: It provides controlled access to the sole instance, ensuring that no other instances can
 be created.
 Lazy Initialization: The instance can be created only when it is needed, which can help save resources.
-Global Point of Access: It offers a global point of access to the instance, making it easy to use throughout an application.
+Global Point of Access: It offers a global point of access to the instance, making it easy to use
+throughout an application.
+
 4. How would you implement the Singleton Design Pattern in Java?
 Answer: Here’s a simple implementation example:
 
@@ -50,8 +52,10 @@ public class SingletonDemo {
 5. What are some real-world applications of the Singleton Design Pattern?
 Answer: Real-world applications include:
 
-Configuration Management: A central configuration manager that loads configuration settings for an application.
-Logging Services: A logging service that handles logging operations throughout an application, ensuring that all logs are centralized.
+Configuration Management: A central configuration manager that loads configuration settings
+for an application.
+Logging Services: A logging service that handles logging operations throughout an application,
+ensuring that all logs are centralized.
 Thread Pools: Managing a pool of threads where only one instance is needed to control the pool.
 
 6. How does the Singleton Design Pattern promote the Single Responsibility Principle?

@@ -5,11 +5,11 @@ import java.util.TreeSet;
 
 public class TreeSetLambda {
     public static void main(String[] args) {
-        Set<Integer> set = new TreeSet<>((a,b)-> b.compareTo(a));
+        TreeSet<Integer> set = new TreeSet<>((a,b)-> b.compareTo(a));
         set.add(10);
         set.add(4);
         set.add(20);
         set.add(2);
-        System.out.println(set);
+        System.out.println(set.descendingSet());
     }
 }

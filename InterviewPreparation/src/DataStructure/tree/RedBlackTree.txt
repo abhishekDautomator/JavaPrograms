@@ -1,5 +1,6 @@
 1. What is a Red-Black Tree?
-Ans. A Red-Black Tree is a type of self-balancing binary search tree used to keep the tree height small for
+Ans. A Red-Black Tree is a type of self-balancing binary search tree used to keep the tree
+height small for
 efficient search, insert, and delete operations — always in O(log n) time.
 
 2.  Why is it used in HashMap?

@@ -1,6 +1,9 @@
 package DesignPatterns.CreationalPattern.Singleton;
 
-public class SingletonObjCreationInBestWay {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class SingletonObjCreationInBestWay implements Cloneable, Serializable {
 
     private SingletonObjCreationInBestWay(){
         //To prevent singleton break using Reflection API
@@ -20,6 +23,7 @@ public class SingletonObjCreationInBestWay {
         throw new CloneNotSupportedException("Cannot clone singleton instance");
     }
 
+    @Serial
     private Object readResolve() {
         return getObj();
     }

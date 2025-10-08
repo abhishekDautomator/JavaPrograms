@@ -1,4 +1,4 @@
-A Trie (pronounced “try”) is a tree-based data structure used for efficient prefix-based searching,
+Trie (pronounced “try”) is a tree-based data structure used for efficient prefix-based searching,
 especially in dictionaries, autocomplete systems, and spell checkers. It's not part of Java’s
 standard collections, but it's easy to implement and incredibly powerful.
 

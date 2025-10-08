@@ -7,6 +7,8 @@ Static blocks are executed when the class is loaded into memory. This happens on
 at the start of the program or when the class is first referenced.
 If there are multiple static blocks, they execute in the order they appear in the code.
 
+main method:
+
 Instance Initializer Blocks:
 After static blocks, the instance initializer blocks are executed whenever an instance of the class is
 created.

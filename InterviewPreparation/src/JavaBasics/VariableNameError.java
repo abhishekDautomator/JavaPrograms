@@ -7,7 +7,8 @@ public class VariableNameError {
         char String = 'I';
         System.out.println(String);
     }
-    //In Java, variable names (also known as identifiers) must follow specific rules. Here’s a breakdown of what is allowed and what is not when it comes to naming variables.
+    //In Java, variable names (also known as identifiers) must follow specific rules.
+    // Here’s a breakdown of what is allowed and what is not when it comes to naming variables.
     //
     //Allowed Variable Names
     //Start with a Letter, Dollar Sign, or Underscore:
