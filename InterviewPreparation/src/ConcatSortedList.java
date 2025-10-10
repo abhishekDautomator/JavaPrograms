@@ -7,8 +7,10 @@ public class ConcatSortedList {
     public static void main(String[] args) {
         List<String> query = new ArrayList<>();
         query.add("Abhishek");
+        String sQ = "";
         for (String sq : query) {
-            String sQ = Arrays.stream(sq.split("")).sorted().collect(Collectors.joining());
+            sQ = Arrays.stream(sq.split("")).sorted().collect(Collectors.joining());
         }
+        System.out.println("Sorted string is: "+sQ);
     }
 }

@@ -31,7 +31,9 @@ public class User {
 }
 Behavior:
 
-When the entity is saved or updated, the field annotated with @Transient will be excluded from the persistence context, so its value will not be stored in the database.
+When the entity is saved or updated, the field annotated with
+@Transient will be excluded from the persistence context, so its value will not be stored in the database.
+
 2. @JsonIgnore
 Purpose:
 

@@ -10,7 +10,7 @@ public class UniqueRandomNumbers {
                 .distinct()
                 .limit(7)
                 .boxed()
-                .collect(Collectors.toList());
+                .toList();
 
         StringBuilder roomNumbersAsString = new StringBuilder();
         for (int n:

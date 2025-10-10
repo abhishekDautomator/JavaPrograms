@@ -1,0 +1,80 @@
+## ⚛️ What Are Atomic Variables?
+
+**Atomic variables** are special classes in Java that allow **thread-safe operations on single variables** without using explicit synchronization (`synchronized` blocks or locks).
+
+They are part of the `java.util.concurrent.atomic` package and include:
+- `AtomicInteger`
+- `AtomicLong`
+- `AtomicBoolean`
+- `AtomicReference<T>`
+
+These classes use **low-level CPU instructions** (like CAS — Compare-And-Swap) to ensure atomicity.
+
+---
+
+## 🧠 Why Are They Needed?
+
+In a multi-threaded environment:
+- Multiple threads may try to **read/write the same variable** at the same time.
+- Without proper synchronization, this leads to **race conditions**, **inconsistent data**, or **lost updates**.
+
+Atomic variables solve this by:
+- Ensuring **atomicity**: operations happen as a single, indivisible step.
+- Avoiding **locks**, which can be expensive and lead to contention.
+
+---
+
+## 🔧 Example: Without AtomicInteger (Problematic)
+
+```java
+class Counter {
+    int count = 0;
+
+    public void increment() {
+        count++; // Not thread-safe!
+    }
+}
+```
+
+Multiple threads calling `increment()` may corrupt the value of `count`.
+
+---
+
+## ✅ Example: With AtomicInteger (Thread-Safe)
+
+```java
+import java.util.concurrent.atomic.AtomicInteger;
+
+class AtomicCounter {
+    AtomicInteger count = new AtomicInteger(0);
+
+    public void increment() {
+        count.incrementAndGet(); // Atomic and thread-safe
+    }
+
+    public int getCount() {
+        return count.get();
+    }
+}
+```
+
+Here, `incrementAndGet()` ensures that the increment operation is atomic — no two threads can interfere with each other.
+
+---
+
+## 🔁 Common Atomic Operations
+
+| Method | Description |
+|--------|-------------|
+| `get()` | Returns the current value |
+| `set(int newValue)` | Sets a new value |
+| `incrementAndGet()` | Atomically increments and returns new value |
+| `compareAndSet(expected, update)` | Atomically sets value if current equals expected |
+
+---
+
+## 🧩 Real-World Use Case
+
+Imagine a leaderboard system where multiple threads update a user's score:
+- Using `AtomicInteger` ensures that score updates are safe and consistent.
+- No need for synchronized blocks or locks — better performance under load.

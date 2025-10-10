@@ -21,11 +21,13 @@ In Java, inheritance is implemented using the extends keyword.
 
 Polymorphism:
 
-Polymorphism allows objects to be treated as instances of their parent class, enabling a single interface to represent different underlying forms (data types).
+Polymorphism allows objects to be treated as instances of their parent class, enabling a single interface
+to represent different underlying forms (data types).
 There are two types of polymorphism in Java:
 
 Compile-time polymorphism (method overloading): Same method name with different parameters.
-Run-time polymorphism (method overriding): Subclass provides a specific implementation of a method that is already defined in its superclass.
+Run-time polymorphism (method overriding): Subclass provides a specific implementation of a method that
+is already defined in its superclass.
 
 Abstraction:
 

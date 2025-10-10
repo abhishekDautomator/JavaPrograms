@@ -1,6 +1,7 @@
 ## ⚡ What Is a Circuit Breaker?
 
-A **circuit breaker** monitors calls to external services. If failures exceed a threshold, it “opens the circuit” — temporarily blocking further calls to prevent system overload.
+A **circuit breaker** monitors calls to external services. If failures exceed a threshold, it
+“opens the circuit” — temporarily blocking further calls to prevent system overload.
 
 ### 🔁 States of a Circuit Breaker:
 | State       | Behavior |

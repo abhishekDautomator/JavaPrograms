@@ -7,6 +7,8 @@ public class FindStringStartWithNum {
             if(s.substring(0,1).matches("[0-9]"))
                 System.out.println(s);
         }
-        Arrays.stream(arr).filter(s->s.substring(0,1).matches("[0-9]")).forEach(System.out::println);
+        Arrays.stream(arr)
+                .filter(s->s.substring(0,1).matches("[0-9]"))
+                .forEach(System.out::println);
     }
 }

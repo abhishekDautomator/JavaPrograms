@@ -14,7 +14,7 @@ Handling concurrency issues in a Java application is all about ensuring **correc
    A thread never gets CPU time or access to resources due to other greedy threads.
 
 4. **Data Inconsistency**
-   Shared data gets corrupted due to unsynchronized access.
+   Shared data gets corrupted due to non-synchronized access.
 
 ---
 

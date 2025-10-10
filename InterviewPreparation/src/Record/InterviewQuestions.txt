@@ -5,7 +5,8 @@ classes that are immutable by default. They simplify the process of creating cla
 primary purpose is to hold data, reducing boilerplate code significantly.
 
 Key Features of Records
-Compact Syntax: Records provide a more compact syntax for declaring classes. You can define a record in a single line, specifying its fields directly in the declaration.
+Compact Syntax: Records provide a more compact syntax for declaring classes.
+You can define a record in a single line, specifying its fields directly in the declaration.
 
 Immutable: All fields in a record are implicitly final, meaning their values cannot be changed after the record is created.
 This immutability is beneficial for thread safety and makes records easier to reason about.

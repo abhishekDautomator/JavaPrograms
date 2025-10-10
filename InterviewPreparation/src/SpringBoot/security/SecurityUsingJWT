@@ -9,8 +9,6 @@ Once issued, the token is sent with each request (usually in the
 `Authorization` header), allowing the server to validate the user **without storing session
 state**.
 
----
-
 ## 🛡️ Why Use JWT with Spring Security?
 
 - ✅ Stateless authentication (no server-side sessions)

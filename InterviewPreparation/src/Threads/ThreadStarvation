@@ -37,7 +37,8 @@ Java thread priorities (`Thread.setPriority()`) are **platform-dependent** and o
 
 ### 🔹 3. **Use `Thread.yield()` Carefully**
 
-`Thread.yield()` hints the scheduler to pause the current thread, but it’s **not guaranteed**. Use it only for **fine-tuned concurrency**, not starvation fixes.
+`Thread.yield()` hints the scheduler to pause the current thread, but it’s **not guaranteed**.
+Use it only for **fine-tuned concurrency**, not starvation fixes.
 
 ---
 

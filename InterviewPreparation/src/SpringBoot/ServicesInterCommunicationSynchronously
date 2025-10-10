@@ -1,6 +1,9 @@
-To enable synchronous communication between two microservices in Java using HTTP calls, you can follow these steps:
+To enable synchronous communication between two microservices in Java using HTTP calls,
+you can follow these steps:
+
 1. Set Up the Microservices
-Assume you have two microservices: Service A and Service B. Each service will expose RESTful endpoints.
+Assume you have two microservices: Service A and Service B. Each service will expose RESTful
+endpoints.
 Example Setup:
 
 Service A (Client)
@@ -115,3 +118,31 @@ String responseBody = response.getBody();
 
 In this example, we are making a POST request to the specified URL with a JSON request body and getting the response
 body as a String.
+
+2. Using feign client
+
+
+create a downstream service interface using feign client
+
+@FeignClient(name="serviceB", url = ${serviceA.url}")
+public interface ServiceB{
+    @GetMapping("/api/data")
+    public String getServiceBResponse();
+}
+
+
+@Service
+public class ServiceA{
+
+    private ServiceB serviceB;
+
+    public ServiceA(ServiceB serviceB){
+        this.serviceB = serviceB;
+    }
+
+    public String fetchServiceBResponse(){
+        String responseB = serviceB.getServiceBResponse();
+        //perform soe operations
+        return responseB;
+    }
+}

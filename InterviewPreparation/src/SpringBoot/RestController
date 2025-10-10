@@ -1,4 +1,8 @@
-The @RestController annotation in Spring is a specialized version of the @Controller annotation, primarily used in building RESTful web services. It simplifies the creation of REST APIs by automatically handling the conversion of the response body to JSON or XML format using HTTP message converters. Here’s a detailed description:
+The @RestController annotation in Spring is a specialized version of the @Controller annotation,
+primarily used in building RESTful web services.
+It simplifies the creation of REST APIs by automatically handling the conversion of the
+response body to JSON or XML format using HTTP message converters. Here’s a detailed description:
+
 Key Features of @RestController
 
 Combination of Annotations:

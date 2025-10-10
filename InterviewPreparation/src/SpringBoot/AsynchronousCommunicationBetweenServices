@@ -1,4 +1,5 @@
-Asynchronous communication between two services allows them to exchange data without waiting for immediate
+Asynchronous communication between two services allows them to exchange data without
+waiting for immediate
 responses, ensuring better scalability and performance. Below are several common approaches with explanations and
 code examples:
 
