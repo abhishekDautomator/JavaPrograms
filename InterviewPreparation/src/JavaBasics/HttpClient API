@@ -1,0 +1,71 @@
+The `HttpClient` API introduced in **Java 11** is a modern, efficient, and feature-rich replacement for the legacy `HttpURLConnection`. It supports **HTTP/1.1**, **HTTP/2**, **asynchronous requests**, and even **WebSockets**, making it ideal for building scalable, non-blocking applications.
+
+---
+
+## 🚀 Key Features of Java 11 `HttpClient`
+- **Supports HTTP/2**: Faster and more efficient than HTTP/1.1.
+- **Synchronous and Asynchronous calls**: Use `CompletableFuture` for non-blocking operations.
+- **Built-in timeout, redirect, and proxy configuration**
+- **Immutable and thread-safe**: Once built, the client can be reused safely.
+
+---
+
+## 🧪 Example 1: Synchronous GET Request
+
+```java
+HttpClient client = HttpClient.newHttpClient();
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://httpbin.org/get"))
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+System.out.println("Status Code: " + response.statusCode());
+System.out.println("Response Body: " + response.body());
+```
+
+---
+
+## ⚡ Example 2: Asynchronous GET Request
+
+```java
+HttpClient client = HttpClient.newHttpClient();
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://httpbin.org/get"))
+    .build();
+
+client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
+    .thenApply(HttpResponse::body)
+    .thenAccept(System.out::println);
+```
+
+---
+
+## 🔐 Example 3: POST Request with JSON
+
+```java
+String json = "{\"name\":\"Abhishek\",\"role\":\"Developer\"}";
+
+HttpRequest request = HttpRequest.newBuilder()
+    .uri(URI.create("https://httpbin.org/post"))
+    .header("Content-Type", "application/json")
+    .POST(HttpRequest.BodyPublishers.ofString(json))
+    .build();
+
+HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
+
+System.out.println(response.body());
+```
+
+---
+
+## 🧠 Interview Tip
+- Mention how `HttpClient` simplifies REST API calls compared to `HttpURLConnection`.
+- Discuss its use in **microservices**, **API clients**, and **asynchronous workflows**.
+- Highlight its integration with **CompletableFuture** for non-blocking I/O.
+
+You can explore more examples on [Mkyong’s tutorial](https://mkyong.com/java/java-11-httpclient-examples/) or the [official Oracle docs](https://docs.oracle.com/en/java/javase/11/docs/api/java.net.http/java/net/http/HttpClient.html).
+
+Want to simulate a system design scenario where you build a REST client using `HttpClient`?

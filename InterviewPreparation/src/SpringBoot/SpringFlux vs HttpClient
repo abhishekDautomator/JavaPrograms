@@ -1,0 +1,42 @@
+Great question, Abhishek — and one that often comes up in system design interviews and real-world architecture decisions. Let's break it down:
+
+---
+
+## ⚔️ Java `HttpClient` vs Spring WebFlux (`WebClient`)
+
+| Feature | **Java 11+ `HttpClient`** | **Spring WebFlux `WebClient`** |
+|--------|----------------------------|-------------------------------|
+| **Asynchronous Support** | Yes (via `CompletableFuture`) | Yes (via `Mono`/`Flux`) |
+| **Reactive Streams** | No native support | Fully reactive (Project Reactor) |
+| **Integration with Spring** | Minimal | Deep integration with Spring Boot/WebFlux |
+| **Thread Model** | Uses virtual threads or platform threads | Non-blocking, event-loop based |
+| **Use Case** | Lightweight async HTTP calls in plain Java apps or libraries | Reactive microservices, streaming APIs, backpressure handling |
+| **Ease of Use in Spring Boot** | Requires manual wiring | Auto-configured and idiomatic in Spring Boot |
+| **Streaming Support** | Limited | Excellent (e.g., SSE, WebSockets) |
+
+---
+
+## 🧠 When to Use What?
+
+### ✅ Use **Java `HttpClient`** if:
+- You're building a **non-Spring** Java application or library.
+- You want a **lightweight**, standard JDK solution.
+- You’re okay with basic async via `CompletableFuture`.
+
+### ✅ Use **Spring WebFlux (`WebClient`)** if:
+- You're already using **Spring Boot** or **Spring Cloud**.
+- You need **full reactive support** (e.g., backpressure, streaming).
+- You're building **high-throughput, non-blocking microservices**.
+- You want **seamless integration** with Spring Security, Resilience4j, etc.
+
+---
+
+## 🔧 Real-World Analogy
+Think of `HttpClient` as a **powerful screwdriver** — great for general tasks.
+But `WebClient` is a **Swiss Army knife** — tailored for Spring-based, reactive, and cloud-native systems.
+
+---
+
+For your SAP interview, if asked, I’d recommend leaning toward **Spring WebFlux** for asynchronous communication in Spring Boot apps — and be ready to explain why it’s more scalable and reactive-friendly.
+
+Would you like a code comparison between `HttpClient` and `WebClient` for the same use case?

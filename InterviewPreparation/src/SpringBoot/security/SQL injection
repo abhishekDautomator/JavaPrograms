@@ -1,6 +1,8 @@
 ## 💉 What Is Injection?
 
-Injection happens when **untrusted input** is sent to a database or interpreter **without proper validation or sanitization**, allowing attackers to manipulate queries and access unauthorized data.
+Injection happens when **untrusted input** is sent to a database or interpreter **without proper
+validation or sanitization**, allowing attackers to manipulate queries and access unauthorized
+data.
 
 ---
 
@@ -68,7 +70,9 @@ User findByUsername(@Param("username") String username);
 
 ✅ Uses JPQL with parameter binding — safe from injection.
 
-JPQL — **Java Persistence Query Language** — is a powerful, object-oriented query language used in **JPA (Java Persistence API)** to interact with relational databases using **entity objects**, not raw tables.
+JPQL — **Java Persistence Query Language** — is a powerful, object-oriented query language used
+in **JPA (Java Persistence API)** to interact with relational databases using **entity objects**,
+not raw tables.
 
 Let’s break it down clearly:
 

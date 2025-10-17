@@ -1,0 +1,47 @@
+A **stateless system** is one where **each request is independent** and does **not rely on any stored context or session** from previous interactions. The server doesn’t remember anything about the client between requests — every request must contain all the information needed to process it.
+
+---
+
+## 🧠 Key Characteristics of Stateless Systems
+
+- **No session memory**: Server doesn’t store user state between requests.
+- **Scalable**: Easier to distribute across multiple servers.
+- **Resilient**: Failover is simpler since any server can handle any request.
+- **Simplifies caching**: Responses can be cached easily because they’re not tied to a session.
+
+---
+
+## 🌐 Real-World Example
+
+### ✅ REST APIs
+- REST is designed to be stateless.
+- Each HTTP request includes all necessary data (e.g., authentication token, parameters).
+- No reliance on server-side sessions.
+
+```http
+GET /orders/123
+Authorization: Bearer <token>
+```
+
+---
+
+## 🏗️ In System Design
+
+- **Stateless services** are ideal for **horizontal scaling**.
+- Common in **microservices**, **serverless functions**, and **cloud-native architectures**.
+- For stateful needs (e.g., shopping cart), use **external stores** like Redis or databases.
+
+---
+
+## 🔄 Comparison: Stateless vs Stateful
+
+| Feature         | Stateless                     | Stateful                      |
+|----------------|-------------------------------|-------------------------------|
+| Server Memory   | None                          | Stores session/context        |
+| Scalability     | High                          | More complex                  |
+| Fault Tolerance | Easy failover                 | Requires session replication  |
+| Examples        | REST APIs, Lambda functions   | FTP, traditional web apps     |
+
+---
+
+Would you like to simulate a system design question like “How would you convert a stateful legacy service into a stateless microservice?” or explore how statelessness affects security and performance?

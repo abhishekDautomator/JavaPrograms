@@ -1,0 +1,34 @@
+A **Man-in-the-Middle (MITM)** attack is a serious cybersecurity threat where an attacker secretly intercepts and possibly alters the communication between two parties who believe they are directly communicating with each other.
+
+---
+
+## 🕵️‍♂️ How It Works
+- The attacker positions themselves between the client (e.g., your browser) and the server (e.g., your bank).
+- They intercept the data being exchanged — such as login credentials, credit card numbers, or personal messages.
+- The attacker can **read**, **modify**, or **inject** malicious content into the communication stream without either party knowing.
+
+---
+
+## 🔍 OWASP's Description
+OWASP refers to this as a **Manipulator-in-the-Middle** attack. Here's how it typically unfolds:
+- The attacker splits the original TCP connection into two:
+  - One between the client and attacker.
+  - One between the attacker and the server.
+- The attacker acts as a **proxy**, relaying and potentially altering messages between the two parties.
+
+---
+
+## 🧪 Common Techniques
+- **ARP Spoofing**: Faking MAC addresses to redirect traffic.
+- **DNS Spoofing**: Redirecting users to malicious websites.
+- **SSL Stripping**: Downgrading HTTPS to HTTP to expose data.
+- **Session Hijacking**: Stealing session tokens to impersonate users.
+
+---
+
+## 🛡️ How to Prevent MITM Attacks
+- Use **HTTPS** with valid SSL/TLS certificates.
+- Implement **certificate pinning** in mobile apps.
+- Avoid public Wi-Fi or use a **VPN**.
+- Enable **multi-factor authentication** (MFA).
+- Keep software and firmware updated.

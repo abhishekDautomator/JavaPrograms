@@ -1,0 +1,48 @@
+A **sealed class** in Java is a special type of class that **restricts which other classes can extend or implement it**. This feature was introduced in **Java 15 (preview)** and finalized in **Java 17** as part of enhancing the language’s expressiveness and security.
+
+---
+
+## 🔐 Why Use Sealed Classes?
+- **Control inheritance**: Prevents unwanted subclassing.
+- **Improves maintainability**: You know all possible subclasses at compile time.
+- **Enables better pattern matching**: Especially useful with `switch` expressions and `instanceof`.
+
+---
+
+## 🧱 Syntax and Example
+
+```java
+public sealed class Vehicle
+    permits Car, Truck {
+
+    public abstract void drive();
+}
+
+final class Car extends Vehicle {
+    public void drive() {
+        System.out.println("Driving a car");
+    }
+}
+
+final class Truck extends Vehicle {
+    public void drive() {
+        System.out.println("Driving a truck");
+    }
+}
+```
+
+### 🔍 Key Points:
+- `sealed` keyword is used on the base class.
+- `permits` clause explicitly lists allowed subclasses.
+- Subclasses must be either:
+  - `final` (cannot be extended further),
+  - `sealed` (can restrict further),
+  - or `non-sealed` (removes restriction).
+
+---
+
+## 🧠 Interview Tip
+When asked about sealed classes:
+- Mention how they **enhance security and readability**.
+- Compare with `abstract` and `final` classes.
+- Discuss use cases like **domain modeling**, **state machines**, or **expression trees**.

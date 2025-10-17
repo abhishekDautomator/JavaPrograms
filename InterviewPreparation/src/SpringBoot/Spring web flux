@@ -1,0 +1,154 @@
+Absolutely, Abhishek! Here's a complete example of a **Spring Boot microservice using Spring WebFlux** and **ReactiveCrudRepository** with **R2DBC** — covering all layers: **Entity**, **Repository**, **Service**, and **Controller**.
+
+---
+
+## ⚙️ Prerequisites
+
+### ✅ Dependencies (in `pom.xml`)
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-r2dbc</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.r2dbc</groupId>
+    <artifactId>r2dbc-postgresql</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.postgresql</groupId>
+    <artifactId>postgresql</artifactId>
+</dependency>
+```
+
+### ✅ Application Properties (`application.yml`)
+```yaml
+spring:
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/demo
+    username: postgres
+    password: password
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/demo
+    username: postgres
+    password: password
+```
+
+---
+
+## 🧱 1. Entity Layer
+
+```java
+@Table("students")
+public class Student {
+
+    @Id
+    private Long id;
+
+    private String name;
+    private int age;
+
+    // Getters and setters
+}
+```
+
+---
+
+## 📦 2. Repository Layer
+
+```java
+@Repository
+public interface StudentRepository extends ReactiveCrudRepository<Student, Long> {
+    Mono<Student> findByName(String name);
+    Flux<Student> findAllByAgeGreaterThan(int age);
+}
+```
+
+---
+
+## 🧰 3. Service Layer
+
+```java
+@Service
+public class StudentService {
+
+    @Autowired
+    private StudentRepository studentRepository;
+
+    public Mono<Student> getStudentById(Long id) {
+        return studentRepository.findById(id);
+    }
+
+    public Flux<Student> getAllStudents() {
+        return studentRepository.findAll();
+    }
+
+    public Mono<Student> saveStudent(Student student) {
+        return studentRepository.save(student);
+    }
+
+    public Mono<Void> deleteStudent(Long id) {
+        return studentRepository.deleteById(id);
+    }
+
+    public Mono<Student> getStudentByName(String name) {
+        return studentRepository.findByName(name);
+    }
+}
+```
+
+---
+
+## 🌐 4. Controller Layer
+
+```java
+@RestController
+@RequestMapping("/students")
+public class StudentController {
+
+    @Autowired
+    private StudentService studentService;
+
+    @GetMapping("/{id}")
+    public Mono<ResponseEntity<Student>> getStudent(@PathVariable Long id) {
+        return studentService.getStudentById(id)
+                             .map(ResponseEntity::ok)
+                             .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping
+    public Flux<Student> getAllStudents() {
+        return studentService.getAllStudents();
+    }
+
+    @PostMapping
+    public Mono<Student> createStudent(@RequestBody Student student) {
+        return studentService.saveStudent(student);
+    }
+
+    @DeleteMapping("/{id}")
+    public Mono<ResponseEntity<Void>> deleteStudent(@PathVariable Long id) {
+        return studentService.deleteStudent(id)
+                             .thenReturn(ResponseEntity.noContent().build());
+    }
+
+    @GetMapping("/search")
+    public Mono<ResponseEntity<Student>> getByName(@RequestParam String name) {
+        return studentService.getStudentByName(name)
+                             .map(ResponseEntity::ok)
+                             .defaultIfEmpty(ResponseEntity.notFound().build());
+    }
+}
+```
+
+---
+
+## 🧠 Interview Tip
+
+- Emphasize that this stack is **fully reactive**, from controller to database.
+- Mention **backpressure handling**, **non-blocking I/O**, and **scalability**.
+- Be ready to discuss **R2DBC vs JPA**, and why R2DBC is preferred in WebFlux.

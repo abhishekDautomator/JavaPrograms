@@ -1,0 +1,35 @@
+Here’s a concise overview of the **major Java versions** and their **key features**, especially the ones relevant for a Senior Java Developer like you, Abhishek:
+
+---
+
+## ☕ Java Version Highlights
+
+| Version | Release Year | Key Features |
+|--------|--------------|--------------|
+| **Java 8** | 2014 | - Lambda expressions<br>- Stream API<br>- Default methods in interfaces<br>- Optional class<br>- Date and Time API |
+| **Java 9** | 2017 | - Module system (Project Jigsaw)<br>- JShell (REPL)<br>- Improved Stream API |
+| **Java 10** | 2018 | - Local variable type inference (`var`)<br>- Application class-data sharing |
+| **Java 11** | 2018 | - New `HttpClient` API<br>- String methods (`isBlank`, `lines`, `repeat`)<br>- Removal of deprecated APIs |
+| **Java 12** | 2019 | - Switch expressions (preview)<br>- JVM constants API |
+| **Java 13** | 2019 | - Text blocks (preview)<br>- Dynamic CDS archives |
+| **Java 14** | 2020 | - Records (preview)<br>- Pattern matching for `instanceof` (preview) |
+| **Java 15** | 2020 | - Sealed classes (preview)<br>- Hidden classes |
+| **Java 16** | 2021 | - Records (final)<br>- Pattern matching (enhanced)<br>- JEP 376: ZGC concurrent thread-stack processing |
+| **Java 17 (LTS)** | 2021 | - Sealed classes (final)<br>- Enhanced pseudo-random number generators<br>- Strong encapsulation of JDK internals |
+| **Java 18** | 2022 | - UTF-8 by default<br>- Simple web server API |
+| **Java 19** | 2022 | - Virtual threads (preview)<br>- Structured concurrency (preview) |
+| **Java 20** | 2023 | - Scoped values (preview)<br>- Continued enhancements to virtual threads |
+| **Java 21 (LTS)** | 2023 | - Finalized virtual threads<br>- Sequenced collections<br>- Pattern matching for switch |
+| **Java 22** | 2024 | - Classfile API (preview)<br>- Stream gatherers (preview)<br>- Enhanced unnamed classes and instance main methods |
+
+Sources: [HowToDoInJava](https://howtodoinjava.com/series/java-versions-features/), [Wikipedia](https://en.wikipedia.org/wiki/Java_version_history)
+
+---
+
+## 🧠 Interview Tip
+For SAP’s second round, focus especially on:
+- **Java 8–11**: These are widely used in enterprise systems.
+- **Java 17 & 21 (LTS)**: Know the finalized features like sealed classes, records, and virtual threads.
+- Be ready to **compare versions** and explain **why you'd use a newer feature** in a system design.
+
+Want a quiz or mock Q&A based on Java version features next?

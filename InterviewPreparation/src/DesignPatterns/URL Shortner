@@ -1,0 +1,103 @@
+Designing a **URL Shortener** like Bitly involves multiple system design principles: scalability, performance, fault tolerance, and efficient storage. Here's a detailed breakdown tailored for your senior-level interview prep:
+
+---
+
+## 🏗️ 1. Functional Requirements
+- Convert a long URL into a short, unique alias.
+- Redirect short URL to the original long URL.
+- Track analytics (clicks, timestamps, geolocation).
+- Optional: Expiry time, custom aliases, user accounts.
+
+---
+
+## 🧱 2. High-Level Architecture
+
+### 🔹 Components
+- **API Gateway**: Handles incoming requests.
+- **URL Shortening Service**: Generates and stores short URLs.
+- **Redirect Service**: Resolves short URLs to long ones.
+- **Database**: Stores mappings and metadata.
+- **Cache**: Speeds up frequent lookups.
+- **Analytics Service**: Tracks usage.
+
+### 🔹 Flow
+1. User submits long URL → API Gateway → Shortening Service.
+2. Service generates short code → stores mapping in DB.
+3. On access, short URL → Redirect Service → fetch long URL → redirect.
+
+---
+
+## 🔢 3. Short URL Generation Strategies
+
+### ✅ Hashing
+- Hash long URL (e.g., MD5, SHA256) → Base62 encode → truncate.
+- Risk: collisions. Use collision detection or append salt.
+
+### ✅ Counter-Based
+- Auto-increment ID → Base62 encode.
+- Simple and fast, but requires central counter (can be sharded).
+
+### ✅ Random String
+- Generate random 6–8 character string.
+- Check for uniqueness in DB.
+
+---
+
+## 🗃️ 4. Database Design
+
+### 🔹 Table: `url_mapping`
+| Column        | Type       | Description                     |
+|---------------|------------|---------------------------------|
+| id            | BIGINT     | Primary key                     |
+| short_code    | VARCHAR    | Unique short alias              |
+| long_url      | TEXT       | Original URL                    |
+| created_at    | TIMESTAMP  | Creation time                   |
+| expires_at    | TIMESTAMP  | Optional expiry                 |
+| user_id       | VARCHAR    | Optional user reference         |
+
+### 🔹 Indexing
+- Index `short_code` for fast lookup.
+- TTL index for expiry (if using NoSQL like MongoDB).
+
+---
+
+## 🚀 5. Scalability & Performance
+
+### ✅ Caching
+- Use Redis to cache hot short codes.
+- TTL for expiry.
+
+### ✅ CDN
+- Serve redirects via CDN for static short links.
+
+### ✅ Load Balancing
+- Use NGINX or ELB to distribute traffic.
+
+### ✅ Partitioning
+- Shard DB by short code prefix or user ID.
+
+---
+
+## 🔐 6. Security & Abuse Prevention
+
+- Rate limiting (e.g., Redis counters).
+- CAPTCHA for anonymous users.
+- Blacklist malicious domains.
+
+---
+
+## 📊 7. Analytics (Optional)
+
+- Track clicks, IP, user-agent, geolocation.
+- Store in separate analytics DB (e.g., ClickHouse, Elasticsearch).
+- Use Kafka for event streaming.
+
+---
+
+## 🧠 Interview Tip
+
+If asked to design this:
+- Start with **functional goals**, then move to **architecture**.
+- Discuss **trade-offs**: hashing vs counter, SQL vs NoSQL.
+- Mention **scalability strategies**: caching, sharding, CDN.
+- Bonus: Talk about **eventual consistency** and **analytics pipeline**.

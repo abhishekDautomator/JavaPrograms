@@ -1,0 +1,84 @@
+
+
+## 🧵 What Is Thread Safety?
+Thread safety ensures that shared data structures or resources behave correctly when accessed by multiple threads concurrently — without causing race conditions, data corruption, or unexpected behavior.
+
+---
+
+## 🛠️ Strategies to Handle Thread Safety
+
+### 1. **Synchronization**
+- Use the `synchronized` keyword to lock critical sections.
+- Example:
+  ```java
+  public synchronized void increment() {
+      count++;
+  }
+  ```
+- **Pros**: Simple to implement.
+- **Cons**: Can lead to contention and reduced performance.
+
+---
+
+### 2. **Locks and Concurrency Utilities**
+- Use `ReentrantLock`, `ReadWriteLock`, or `StampedLock` for finer control.
+- Example:
+  ```java
+  Lock lock = new ReentrantLock();
+  lock.lock();
+  try {
+      // critical section
+  } finally {
+      lock.unlock();
+  }
+  ```
+
+---
+
+### 3. **Atomic Variables**
+- Use classes from `java.util.concurrent.atomic` like `AtomicInteger`, `AtomicReference`.
+- These provide lock-free thread-safe operations.
+- Example:
+  ```java
+  AtomicInteger counter = new AtomicInteger();
+  counter.incrementAndGet();
+  ```
+
+---
+
+### 4. **Concurrent Collections**
+- Use thread-safe collections like `ConcurrentHashMap`, `CopyOnWriteArrayList`.
+- Avoid using `Hashtable` or manually synchronizing `ArrayList`.
+
+---
+
+### 5. **Immutable Objects**
+- Design objects to be immutable — once created, their state cannot change.
+- This eliminates synchronization needs entirely.
+
+---
+
+### 6. **Thread-Local Variables**
+- Use `ThreadLocal` to give each thread its own isolated copy of a variable.
+- Example:
+  ```java
+  ThreadLocal<SimpleDateFormat> formatter = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy-MM-dd"));
+  ```
+
+---
+
+### 7. **Executor Framework**
+- Use `Executors` to manage thread pools and avoid manual thread creation.
+- Helps control concurrency and resource usage.
+
+---
+
+## 🧠 Interview Tip
+When asked this question, always:
+- Mention **trade-offs** (e.g., performance vs safety).
+- Refer to **real-world scenarios** (e.g., handling concurrent requests in a REST API).
+- Discuss **testing strategies** (e.g., stress testing, race condition detection).
+
+---
+
+Want to simulate a follow-up question like “How would you design a thread-safe cache?” or dive into concurrency bugs and how to detect them?

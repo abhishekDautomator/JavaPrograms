@@ -1,0 +1,37 @@
+A **load balancer** is a system component — either hardware or software — that distributes incoming network traffic across multiple servers to ensure no single server becomes overwhelmed. It's like a traffic cop for your web application, making sure requests are routed efficiently and reliably.
+
+---
+
+## ⚙️ What Does a Load Balancer Do?
+
+- **Distributes traffic**: Spreads incoming requests across multiple backend servers.
+- **Improves performance**: Prevents bottlenecks and reduces latency.
+- **Enhances reliability**: If one server fails, traffic is rerouted to healthy ones.
+- **Supports scalability**: Easily add or remove servers without downtime.
+
+---
+
+## 🧠 Types of Load Balancing Algorithms
+
+| Algorithm        | Description                                                                 |
+|------------------|-----------------------------------------------------------------------------|
+| Round Robin      | Sends requests to servers in a rotating order.                              |
+| Least Connections| Sends traffic to the server with the fewest active connections.             |
+| IP Hash          | Uses client IP to determine which server gets the request.                  |
+| Weighted Round Robin | Prioritizes servers based on assigned weights (e.g., capacity).         |
+
+---
+
+## 🧱 Types of Load Balancers
+
+- **Hardware Load Balancers**: Physical devices (e.g., F5, Cisco) used in enterprise setups.
+- **Software Load Balancers**: Tools like NGINX, HAProxy, or cloud-based ones like AWS ELB.
+- **Layer 4 (Transport Layer)**: Balances based on IP and TCP/UDP ports.
+- **Layer 7 (Application Layer)**: Balances based on content (e.g., HTTP headers, cookies).
+
+---
+
+## 🔐 Bonus: Security Benefits
+- Can help mitigate **DDoS attacks**.
+- Acts as a **reverse proxy**, hiding backend server details.
+- Supports **SSL termination**, offloading encryption tasks from servers.

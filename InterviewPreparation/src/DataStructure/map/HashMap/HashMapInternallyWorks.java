@@ -82,7 +82,7 @@ public class HashMapInternallyWorks {
         }
 
         // Inner Bucket class
-        class Bucket {
+        static class Bucket {
             LinkedList<Entry> entries;
 
             public Bucket() {

@@ -1,0 +1,30 @@
+The **DoS (Denial of Service)** issue in OWASP refers to a type of attack that aims to make a
+web application, server, or service **unavailable to legitimate users** by overwhelming it with
+excessive requests or exploiting vulnerabilities.
+
+
+## 🚨 What Is a DoS Attack?
+A **Denial of Service** attack targets the **availability** of a system. It can be executed by:
+- Flooding the server with traffic until it crashes or becomes unresponsive.
+- Exploiting programming or resource-handling flaws (e.g., memory leaks, infinite loops).
+- Sending malformed requests that consume excessive CPU or memory.
+
+---
+
+## 🧩 OWASP's Perspective
+According to OWASP:
+- DoS attacks can be **network-based**, **application-based**, or **logic-based**.
+- They may involve **resource exhaustion**, such as CPU, memory, disk space, or database connections.
+- In some cases, attackers may inject and execute code during a DoS attack to gain unauthorized access.
+
+---
+
+## 🛡️ How to Mitigate DoS Risks
+- **Rate limiting**: Restrict the number of requests per user/IP.
+- **Input validation**: Prevent malformed or malicious payloads.
+- **Timeouts and quotas**: Limit resource usage per session or request.
+- **Monitoring and alerting**: Detect unusual traffic patterns early.
+
+You can explore more on [OWASP's official page](https://owasp.org/www-community/attacks/Denial_of_Service).
+
+Would you like to see how DoS testing is done using OWASP ZAP or simulate a scenario for practice?

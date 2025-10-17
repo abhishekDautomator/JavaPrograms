@@ -1,0 +1,28 @@
+Absolutely, Abhishek! Here's a clear and concise comparison of **sealed**, **final**, **abstract**, **record**, and **enum** in Java — especially useful for interviews where you're expected to understand class design choices and their implications.
+
+---
+
+## 🧱 Java Class Types Comparison
+
+| Feature        | `sealed` class                     | `final` class                      | `abstract` class                   | `record`                           | `enum`                             |
+|----------------|------------------------------------|------------------------------------|------------------------------------|------------------------------------|------------------------------------|
+| **Purpose**     | Restrict which classes can extend it | Prevent any subclassing            | Define base behavior, must be extended | Immutable data carrier             | Fixed set of constants             |
+| **Inheritance** | Only permitted subclasses allowed   | Cannot be extended                 | Must be extended                   | Cannot be extended                 | Cannot be extended                 |
+| **Modifiers**   | `sealed`, `permits`                | `final`                            | `abstract`                         | `record`                           | `enum`                             |
+| **Subclassing** | Subclasses must be `final`, `sealed`, or `non-sealed` | No subclassing allowed             | Must implement abstract methods    | No subclassing                     | Enum constants can have methods    |
+| **Use Case**    | Controlled hierarchy (e.g., domain models) | Utility/helper classes             | Base class for polymorphism        | DTOs, value objects                | Represent fixed states or options  |
+| **Introduced In** | Java 15 (preview), Java 17 (final) | Since early Java versions          | Since early Java versions          | Java 14 (preview), Java 16 (final) | Since Java 5                      |
+
+---
+
+## 🧠 Interview Insights
+
+- Use `sealed` when you want **controlled extensibility** — great for modeling **state machines**, **expression trees**, or **domain hierarchies**.
+- Use `final` to **lock down behavior** — ideal for **utility classes** or **security-sensitive components**.
+- Use `abstract` to define **common behavior** — perfect for **template method patterns** or **base service layers**.
+- Use `record` for **immutable data** — great for **DTOs**, **event payloads**, or **configuration objects**.
+- Use `enum` when you need a **fixed set of values** — like **status codes**, **roles**, or **commands**.
+
+---
+
+Would you like a quiz based on this comparison or a mock question like “When would you choose a sealed class over an abstract class in a system design?”

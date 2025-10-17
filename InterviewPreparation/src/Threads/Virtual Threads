@@ -1,0 +1,51 @@
+Creating **virtual threads** in Java is straightforward starting from **Java 21**,
+where they became a final feature under **Project Loom**.
+Virtual threads are lightweight, JVM-managed threads designed for high-concurrency
+applications — perfect for scalable microservices and reactive systems.
+
+---
+
+## 🧵 How to Create Virtual Threads
+
+### ✅ Using `Thread.ofVirtual().start()`
+
+```java
+Runnable task = () -> System.out.println("Running in virtual thread");
+
+Thread virtualThread = Thread.ofVirtual().start(task);
+```
+
+- This creates and starts a virtual thread immediately.
+- Virtual threads are managed by the JVM, not the OS, making them extremely lightweight.
+
+---
+
+### ✅ Using `Executors.newVirtualThreadPerTaskExecutor()`
+
+```java
+ExecutorService executor = Executors.newVirtualThreadPerTaskExecutor();
+
+executor.submit(() -> {
+    System.out.println("Executed in virtual thread");
+});
+```
+
+- This creates a new virtual thread for each submitted task.
+- Ideal for handling thousands or even millions of concurrent tasks.
+
+---
+
+## 🔍 Key Benefits
+- **Massive scalability**: You can create millions of virtual threads.
+- **Simplified concurrency**: Write blocking code without worrying about thread starvation.
+- **Better resource utilization**: Threads are stored in JVM heap, not OS stack.
+
+---
+
+## 🧠 Interview Tip
+If asked about virtual threads:
+- Mention **Project Loom** and its goal to simplify concurrency.
+- Compare with **platform threads** (OS-backed) and explain why virtual threads are better for I/O-bound tasks.
+- Discuss how they integrate with **structured concurrency** and **reactive programming**.
+
+Would you like to simulate a system design scenario using virtual threads or compare them with reactive frameworks like Spring WebFlux?

@@ -1,0 +1,32 @@
+TTL stands for **Time To Live** — a setting that defines how long data should be kept before it expires or is discarded.
+
+---
+
+## 🕒 Where TTL Is Used
+
+### 🔹 1. **Caching (e.g., Redis, CDN)**
+- TTL determines how long a cached item stays valid.
+- After TTL expires, the item is evicted or refreshed.
+- Example:
+  ```java
+  redisTemplate.expire("user:123", Duration.ofMinutes(10));
+  ```
+
+### 🔹 2. **DNS**
+- TTL defines how long a DNS record is cached by clients or resolvers.
+- Lower TTL = faster propagation of changes.
+
+### 🔹 3. **Databases (e.g., MongoDB TTL Index)**
+- Automatically deletes documents after a certain time.
+- Useful for expiring sessions, logs, or temporary data.
+
+### 🔹 4. **Messaging Systems**
+- TTL on messages ensures they don’t stay in queues forever.
+- Example: RabbitMQ, Kafka with retention policies.
+
+---
+
+## 🧠 Interview Tip
+If asked about TTL:
+- Explain how it helps with **resource management**, **data freshness**, and **automatic cleanup**.
+- Mention use cases like **expiring short URLs**, **session tokens**, or **temporary cache entries**.
