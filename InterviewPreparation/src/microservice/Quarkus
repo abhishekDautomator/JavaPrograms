@@ -1,0 +1,186 @@
+
+1. What is Quarkus and why was it developed?
+Answer: Quarkus is a Kubernetes-native Java framework tailored for GraalVM and HotSpot. It was developed to optimize Java for cloud-native environments by reducing startup time and memory footprint.
+
+Example:
+`java
+@ApplicationScoped
+public class GreetingService {
+    public String greet(String name) {
+        return "Hello, " + name;
+    }
+}
+`
+This bean loads instantly with Quarkus's fast boot time.
+
+---
+
+2. How does Quarkus differ from Spring Boot?
+Answer:
+- Startup Time: Quarkus boots in milliseconds (ideal for serverless).
+- Memory Usage: Lower footprint due to aggressive build-time optimizations.
+- Native Compilation: Supports GraalVM for native executables.
+- Reactive Core: Built on Vert.x for reactive programming.
+
+---
+
+3. What is the role of application.properties in Quarkus?
+Answer: It’s the central config file. Quarkus supports property-based configuration with live reload.
+
+Example:
+`properties
+greeting.message=Hello from Quarkus
+`
+`java
+@ConfigProperty(name = "greeting.message")
+String message;
+`
+
+---
+
+4. How does Quarkus support live reload?
+Answer: Through the quarkus:dev mode. It watches for file changes and reloads the app instantly.
+
+Command:
+`bash
+./mvnw quarkus:dev
+`
+
+---
+
+5. Explain Quarkus extensions.
+Answer: Extensions are modular add-ons that integrate libraries like Hibernate, RESTEasy, Kafka, etc.
+
+Example:
+`bash
+./mvnw quarkus:add-extension -Dextensions="hibernate-orm, resteasy"
+`
+
+---
+
+6. How does Quarkus handle dependency injection?
+Answer: Uses CDI (Contexts and Dependency Injection) with annotations like @Inject, @ApplicationScoped.
+
+Example:
+`java
+@ApplicationScoped
+public class MyService {
+    public String process() { return "Processed"; }
+}
+
+@Path("/test")
+public class TestResource {
+    @Inject MyService service;
+
+    @GET
+    public String get() {
+        return service.process();
+    }
+}
+`
+
+---
+
+7. How does Quarkus support reactive programming?
+Answer: Through Vert.x and Mutiny. It allows non-blocking, event-driven architecture.
+
+Example:
+`java
+@GET
+@Produces(MediaType.TEXT_PLAIN)
+public Uni<String> hello() {
+    return Uni.createFrom().item("Hello Reactive");
+}
+`
+
+---
+
+8. How does Quarkus integrate with Kubernetes?
+Answer: Through extensions like quarkus-kubernetes and annotations that generate deployment YAMLs.
+
+Example:
+`properties
+quarkus.kubernetes.name=my-app
+quarkus.container-image.build=true
+`
+
+---
+
+9. How does Quarkus support security?
+Answer: Via quarkus-security, quarkus-oidc, and quarkus-keycloak.
+
+Example:
+`java
+@RolesAllowed("admin")
+@GET
+@Path("/secure")
+public String secureEndpoint() {
+    return "Admin Access";
+}
+`
+
+---
+
+10. How does Quarkus support microservices architecture?
+Answer: Through RESTEasy, SmallRye (for OpenAPI, JWT, Fault Tolerance), and reactive messaging.
+
+Example:
+`java
+@Path("/hello")
+public class HelloResource {
+    @GET
+    public String hello() {
+        return "Hello Microservice";
+    }
+}
+`
+
+---
+
+
+🧩 Quarkus vs Spring Boot: Annotation Comparison
+
+| Purpose                  | Quarkus Annotation                     | Spring Boot Equivalent              | Notes |
+|-----------------------------|--------------------------------------------|-----------------------------------------|----------|
+| Dependency Injection     | @Inject (CDI)                            | @Autowired                            | Quarkus uses CDI (JSR-330) |
+| Singleton Bean           | @Singleton or @ApplicationScoped       | @Component / @Service / @Repository | CDI scopes vs Spring stereotypes |
+| REST Controller          | @Path("/api")                            | @RestController + @RequestMapping   | Quarkus uses JAX-RS |
+| REST Method Mapping      | @GET, @POST, @PUT, @DELETE         | @GetMapping, @PostMapping, etc.     | |
+| Request Body             | @Consumes(MediaType.APPLICATION_JSON)    | @RequestBody                          | |
+| Response Type            | @Produces(MediaType.APPLICATION_JSON)    | @ResponseBody                         | |
+| Configuration Injection  | @ConfigProperty(name = "my.prop")        | @Value("${my.prop}") or @ConfigurationProperties | |
+| Transactional            | @Transactional (javax or Quarkus)        | @Transactional (Spring)               | Similar behavior |
+| Security Role Check      | @RolesAllowed("admin")                   | @PreAuthorize("hasRole('ROLE_ADMIN')")| |
+| Lifecycle Hooks          | @PostConstruct, @PreDestroy            | Same in Spring                          | Standard Java EE annotations |
+| Scheduled Tasks          | @Scheduled(every = "10s")                | @Scheduled(fixedRate = 10000)         | |
+| OpenAPI Documentation    | @Operation, @APIResponse (SmallRye)    | @Operation, @ApiResponse (Swagger)  | |
+| Reactive Return Types    | Uni<T>, Multi<T> (Mutiny)              | Mono<T>, Flux<T> (Project Reactor)  | |
+| Exception Mapping        | @Provider + ExceptionMapper<T>         | @ControllerAdvice + @ExceptionHandler | |
+
+---
+
+🔍 Example: REST Endpoint in Both
+
+Quarkus:
+`java
+@Path("/hello")
+@Produces(MediaType.TEXT_PLAIN)
+public class HelloResource {
+    @GET
+    public String hello() {
+        return "Hello from Quarkus";
+    }
+}
+`
+
+Spring Boot:
+`java
+@RestController
+@RequestMapping("/hello")
+public class HelloController {
+    @GetMapping
+    public String hello() {
+        return "Hello from Spring Boot";
+    }
+}
+`
