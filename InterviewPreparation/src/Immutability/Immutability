@@ -4,7 +4,8 @@ Here's how to create one:
 Key Requirements for Immutability
 Declare the class as final - Prevents subclassing and overriding methods
 
-Make all fields private and final - Ensures fields can't be accessed directly or modified
+Make all fields private and final - Ensures fields can't be accessed directly or
+modified
 
 Don't provide setter methods - No way to modify fields after construction
 

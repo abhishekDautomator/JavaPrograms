@@ -1,0 +1,100 @@
+Yes, Abhishek — you can absolutely handle large file operations from **Azure Blob Storage** using **Spring WebFlux** for a **fully reactive and asynchronous** experience. This is ideal for non-blocking I/O and high-concurrency systems.
+
+---
+
+## ⚡️ Why Use WebFlux for Blob Streaming?
+
+- **Non-blocking I/O**: Avoids thread starvation.
+- **Backpressure support**: Handles slow clients gracefully.
+- **Scalable**: Ideal for streaming large files to many users.
+
+---
+
+## 🧱 Reactive Blob Streaming Architecture
+
+### 🔹 Flow:
+1. Use Azure SDK to open a reactive stream from Blob.
+2. Convert it to `Flux<DataBuffer>`.
+3. Stream it via `ServerResponse` or `ResponseEntity`.
+
+---
+
+## 🧰 Step-by-Step Implementation
+
+### ✅ 1. Add Dependencies
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-storage-blob</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-webflux</artifactId>
+</dependency>
+```
+
+---
+
+### ✅ 2. Reactive BlobService
+
+```java
+@Service
+public class ReactiveBlobService {
+
+    @Autowired
+    private BlobContainerClient blobContainerClient;
+
+    public Flux<DataBuffer> streamBlob(String blobName) {
+        BlobClient blobClient = blobContainerClient.getBlobClient(blobName);
+        InputStream inputStream = blobClient.openInputStream();
+
+        return DataBufferUtils.readInputStream(
+            () -> inputStream,
+            new DefaultDataBufferFactory(),
+            8192
+        );
+    }
+}
+```
+
+---
+
+### ✅ 3. Reactive Controller
+
+```java
+@RestController
+@RequestMapping("/reactive-files")
+public class ReactiveFileController {
+
+    @Autowired
+    private ReactiveBlobService blobService;
+
+    @GetMapping("/download/{filename}")
+    public Mono<ResponseEntity<Flux<DataBuffer>>> download(@PathVariable String filename) {
+        Flux<DataBuffer> data = blobService.streamBlob(filename);
+
+        return Mono.just(ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename)
+            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+            .body(data));
+    }
+}
+```
+
+---
+
+## 🧠 Best Practices
+
+- ✅ Use `DataBufferUtils.release()` to clean up buffers if needed.
+- ✅ Set proper timeouts and error handling.
+- ✅ Consider chunked transfer encoding for large files.
+- ✅ Use `Flux<DataBuffer>` for streaming and backpressure.
+
+---
+
+## 🔄 Alternative: Use `BlobAsyncClient`
+Azure SDK also provides `BlobAsyncClient` for reactive access:
+```java
+BlobAsyncClient asyncClient = blobContainerClient.getBlobAsyncClient("file.txt");
+Flux<ByteBuffer> byteStream = asyncClient.openQueryInputStream(...);
+```

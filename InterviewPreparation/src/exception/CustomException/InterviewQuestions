@@ -37,7 +37,8 @@ public class Main {
 Key Points
 Checked vs. Unchecked Exceptions (Java): If you create a custom exception that extends Exception,
 it will be a checked exception, which means it must be declared in the method signature using throws.
-If it extends RuntimeException, it will be an unchecked exception, which does not require explicit handling.
+If it extends RuntimeException, it will be an unchecked exception, which does not require explicit
+handling.
 
 Message and Cause: Providing both a message and a cause can help in debugging by giving context about what went wrong and why.
 

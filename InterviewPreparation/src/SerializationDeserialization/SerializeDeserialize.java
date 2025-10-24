@@ -5,15 +5,20 @@ import java.io.*;
 class SerializeDeserializeImpl implements Serializable {
 
     public static void serializeString(String str) throws IOException {
+        ObjectOutputStream oos = null;
+        FileOutputStream fos = null;
         try {
-            FileOutputStream fos = new FileOutputStream("serialize.ser"); //will save the file in the current working directory
-            ObjectOutputStream oos = new ObjectOutputStream(fos);
+            fos = new FileOutputStream("serialize.ser"); //will save the file in the current working directory
+            oos = new ObjectOutputStream(fos);
             oos.writeObject(str);
-            oos.close();
-            fos.close();
+
             System.out.println("String is serialized in a file at the current working directory");
         }catch (FileNotFoundException fe){
             throw new RuntimeException(fe);
+        }finally{
+            assert oos != null;
+            oos.close();
+            fos.close();
         }
     }
 

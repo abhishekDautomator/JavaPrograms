@@ -11,12 +11,16 @@ public class HashMapInternallyWorks {
     //Default capacity is 16 and the threshold is 12
     //https://www.youtube.com/watch?v=sw-j_ETGBEo&list=PL0zysOflRCen9SPmMO2XN1I2S9m96G_dx&index=3
     //null key entries are added at 0th index.
-
     public static void main(String[] args) {
-        HashMap<String, Integer> hm = new HashMap<>();
+        MyHashMap hm = new MyHashMap();
         hm.put("Math", 90);
         hm.put("Physics", 80);
-        System.out.println(hm);
+        for(MyHashMap.Bucket bucket: hm.buckets){
+            for (MyHashMap.Bucket.Entry entry: bucket.entries){
+                System.out.println(entry.key+"-"+entry.value);
+            }
+        }
+
     }
 
     //Internal Structure
@@ -54,7 +58,7 @@ public class HashMapInternallyWorks {
     // When a key-value pair is added, the hash code of the key determines the index of the bucket.
     // If there is a collision, the key-value pair is added to the linked list or tree at that bucket.
     // The following code simulates the internal structure of a HashMap bucket:
-    class MyHashMap {
+    static class MyHashMap {
         private static final int DEFAULT_CAPACITY = 16;
         private Bucket[] buckets;
 
@@ -108,7 +112,7 @@ public class HashMapInternallyWorks {
                 return null; // Key not found
             }
 
-            class Entry {
+            static class Entry {
                 String key;
                 Integer value;
 

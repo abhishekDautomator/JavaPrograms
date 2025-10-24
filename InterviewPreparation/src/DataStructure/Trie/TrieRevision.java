@@ -7,9 +7,8 @@ public class TrieRevision {
         TrieNode node = root;
         for(char c: word.toCharArray()){
             int index = c - 'a';
-            if(node.children[index]==null) {
+            if(node.children[index]==null)
                 node.children[index] = new TrieNode();
-            }
             node = node.children[index];
         }
         node.isEndOfWord = true;
@@ -18,24 +17,33 @@ public class TrieRevision {
     public boolean search(String word){
         TrieNode node = root;
         for(char c: word.toCharArray()){
-            int index = c - 'a';
-            if(node.children[index]==null) {
+            int index = c-'a';
+            if(node.children[index]==null)
                 node.children[index] = new TrieNode();
-            }
             node = node.children[index];
         }
         return node.isEndOfWord;
     }
 
-    public boolean preFix(String word){
+    public boolean startsWith(String word){
         TrieNode node = root;
         for(char c: word.toCharArray()){
-            int index = c - 'a';
-            if(node.children[index]==null) {
+            int index = c-'a';
+            if(node.children[index]==null)
                 return false;
-            }
             node = node.children[index];
         }
         return true;
+    }
+
+    public static void main(String[] args) {
+        Trie trie = new Trie();
+        trie.insert("abhishek");
+        trie.insert("abhinav");
+        trie.insert("ajay");
+
+        System.out.println(trie.search("abhishek")); // true
+        System.out.println(trie.search("abhi"));     // false
+        System.out.println(trie.startsWith("abhi")); // true
     }
 }

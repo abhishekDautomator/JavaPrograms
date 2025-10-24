@@ -1,5 +1,6 @@
 **Thread starvation** happens when one or more threads are **perpetually denied access to resources**
-because other threads keep hogging them—often due to unfair scheduling or locking. It’s a subtle concurrency bug that can cripple performance in multi-threaded systems.
+because other threads keep hogging them—often due to unfair scheduling or locking. It’s a subtle
+concurrency bug that can cripple performance in multi-threaded systems.
 
 ---
 

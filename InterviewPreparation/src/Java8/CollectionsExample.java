@@ -1,5 +1,6 @@
 package Java8;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -42,5 +43,35 @@ public class CollectionsExample {
                                                  .flatMap(List::stream) // Flatten nested lists
                                                  .toList(); // Collect to a single list
         System.out.println("Flattened List: " + flattenedList);
+
+        //To extract unique company names from a List<People> using Java Streams, you can flatten the list of companies from each person, then collect them into a Set to ensure uniqueness, and finally convert it to a List if needed.
+        //Here’s a clean and idiomatic way to do it:
+        record People(String name, List<String> companies){}
+        List<People> peopleList = Arrays.asList(
+                new People("Abhishek", Arrays.asList("Cognizant", "Ajio")),
+        new People("Anu", Arrays.asList("IBM", "Accenture")),
+        new People("Abha", Arrays.asList("Capgemini", "Accenture"))
+        );
+
+        List<String> uniqueCompanies = peopleList.stream()
+            .flatMap(person -> person.companies().stream()) // flatten all company lists
+           .distinct()                                     // remove duplicates
+            .toList();                  // collect as List
+
+        System.out.println("UniqueCompanies: "+uniqueCompanies);
+        //
+        //
+        //✅ Alternative using Set for uniqueness:
+        //If you prefer to collect directly into a Set (e.g., LinkedHashSet to preserve order):
+        //Set<String> uniqueCompanies = peopleList.stream()
+        //    .flatMap(person -> person.companies().stream())
+        //    .collect(Collectors.toCollection(LinkedHashSet::new));
+        //
+        //
+        //🧠 Breakdown:
+        //- flatMap(...): merges all List<String> from each People record into one stream.
+        //- distinct(): ensures uniqueness (optional if collecting into a Set).
+        //- collect(...): gathers the results into a desired collection.
+        //Let me know if you want to group companies by age, count frequency, or sort them alphabetically — we can layer more logic easily.
     }
 }

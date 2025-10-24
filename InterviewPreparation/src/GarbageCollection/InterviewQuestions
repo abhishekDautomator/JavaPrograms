@@ -123,7 +123,8 @@ ZGC uses a technique called "colored pointers" to track object references, allow
 garbage collection concurrently without needing to stop the application threads for long periods.
 It includes concurrent marking, relocation, and compaction phases.
 
-Use Case: Ideal for applications requiring extremely low latency, such as real-time processing systems and high-frequency trading platforms.
+Use Case: Ideal for applications requiring extremely low latency, such as real-time processing
+systems and high-frequency trading platforms.
 
 6. Shenandoah Garbage Collector
 
@@ -139,7 +140,8 @@ processing.
 
 Conclusion
 Java's garbage collection processes are designed to address various application requirements,
-ranging from low-latency needs to high-throughput scenarios. By understanding the different garbage collection algorithms and their characteristics, developers can choose the most appropriate garbage collector based on their application's specific performance and resource management needs. Each garbage collector comes with trade-offs regarding pause times, throughput, and memory footprint, so careful consideration is essential when configuring the JVM for optimal performance.
+ranging from low-latency needs to high-throughput scenarios. By understanding the different
+garbage collection algorithms and their characteristics, developers can choose the most appropriate garbage collector based on their application's specific performance and resource management needs. Each garbage collector comes with trade-offs regarding pause times, throughput, and memory footprint, so careful consideration is essential when configuring the JVM for optimal performance.
 
 Advantages of Garbage Collection
 

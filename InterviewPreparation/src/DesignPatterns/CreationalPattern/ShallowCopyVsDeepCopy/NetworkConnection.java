@@ -5,7 +5,8 @@ import java.util.List;
 
 public class NetworkConnection implements Cloneable{
     //This design pattern is used when we have a scenario where object creation is costing
-    // heavy resource and takes time to create. It copies an existing object rather than creating a new object
+    // heavy resource and takes time to create. It copies an existing object rather than
+    // creating a new object
     // from the scratch.
 
     private String ip;
