@@ -1,4 +1,6 @@
-Handling concurrency issues in a Java application is all about ensuring **correctness**, **performance**, and **thread safety** when multiple threads access shared resources. Here's a structured approach that senior developers like you, Abhishek, should master:
+Handling concurrency issues in a Java application is all about ensuring **correctness**,
+**performance**, and **thread safety** when multiple threads access shared resources.
+Here's a structured approach that senior developers like you, Abhishek, should master:
 
 ---
 

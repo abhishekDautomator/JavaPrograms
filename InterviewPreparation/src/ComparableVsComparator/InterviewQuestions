@@ -1,6 +1,7 @@
 Comparable vs Comparator?
 
-Great topic, Abhishek! Understanding the difference between `Comparable` and `Comparator` is essential for writing flexible and efficient sorting logic in Java—especially for interviews at companies like EPAM.
+Great topic, Abhishek! Understanding the difference between `Comparable` and `Comparator` is essential for writing
+flexible and efficient sorting logic in Java—especially for interviews at companies like EPAM.
 
 ---
 

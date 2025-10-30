@@ -1,0 +1,65 @@
+## ✅ Recommended Approaches
+
+### 1. **Use `long` for the sum**
+This is the simplest and safest way to avoid overflow:
+
+```java
+public long safeSum(int[] arr) {
+    long sum = 0;
+    for (int num : arr) {
+        sum += num; // long can handle values beyond Integer.MAX_VALUE
+    }
+    return sum;
+}
+```
+
+### 2. **Use `BigInteger` for unbounded sum**
+If the array might contain extremely large values or you want absolute safety:
+
+```java
+import java.math.BigInteger;
+
+public BigInteger safeBigSum(int[] arr) {
+    BigInteger sum = BigInteger.ZERO;
+    for (int num : arr) {
+        sum = sum.add(BigInteger.valueOf(num));
+    }
+    return sum;
+}
+```
+
+---
+
+## ⚠️ What Happens Without Handling
+
+```java
+int sum = 0;
+for (int num : arr) {
+    sum += num; // May overflow silently!
+}
+```
+
+If `sum` exceeds `Integer.MAX_VALUE`, it wraps around to negative values — a classic **integer overflow bug**.
+
+---
+
+## 🧪 Optional: Detect Overflow Manually
+
+If you want to detect overflow explicitly:
+
+```java
+public int safeSumWithCheck(int[] arr) {
+    int sum = 0;
+    for (int num : arr) {
+        if (Integer.MAX_VALUE - sum < num) {
+            throw new ArithmeticException("Integer overflow detected");
+        }
+        sum += num;
+    }
+    return sum;
+}
+```
+
+---
+
+Would you like to simulate this in a reactive stream (e.g., using `Flux<Integer>` and `reduce`) or apply it to a real-world use case like billing or metrics aggregation?

@@ -20,9 +20,7 @@ public class MultipleWaysToCreateThreads {
         thread4.executor.shutdown();  // Initiates an orderly shutdown
 
         UsingCallableAndFuture thread5 = new UsingCallableAndFuture();
-        Callable<String> task = () -> {
-            return "Running thread using Callable and Future";
-        };
+        Callable<String> task = () -> "Running thread using Callable and Future";
         Future<String> future = thread5.executor.submit(task);
         try{
             System.out.println(future.get());

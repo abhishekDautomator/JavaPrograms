@@ -1,15 +1,109 @@
 package Java8;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class CollectorsExample {
-    //Java 8 introduced several **collectors** to simplify working with data aggregation and transformation:
-    //- **`groupingBy`**: Groups elements by a classifier.
-    //- **`partitioningBy`**: Partitions elements into two groups based on a Predicate.
+    record Person(String name, int age, String city){ }
+
+    record Employee(String name, String department, String role, long salary){}
+
     public static void main(String[] args) {
+    /**
+     * Given List<Person> where Person has getName(), getAge(), getCity(). Produce a
+     * LinkedHashMap<String, List<String>> mapping each city to the alphabetically sorted names
+     * of the three youngest people in that city
+     */
+    List<Person> people = Arrays.asList(
+            new Person("Abhishek", 32, "Bangalore"),
+            new Person("Anu", 32, "Bangalore"),
+            new Person("Dhriti", 2, "Bangalore"),
+            new Person("Narayan", 30, "Bangalore"),
+            new Person("Sah", 28, "Bangalore"),
+            new Person("Abhishek", 32, "Patna"),
+            new Person("Anu", 32, "Patna"),
+            new Person("Dhriti", 2, "Patna"),
+            new Person("Narayan", 30, "Patna"),
+            new Person("Sah", 28, "Patna")
+    );
+
+
+    HashMap<String, List<String>> result = people.stream()
+            .collect(
+                    Collectors.groupingBy(
+                            Person::city,
+                            LinkedHashMap::new,
+                            Collectors.collectingAndThen(
+                                    Collectors.toList(),
+                                    list -> list.stream()
+                                            .sorted(Comparator.comparingInt(Person::age))
+                                            .limit(3)
+                                            .map(Person::name)
+                                            .sorted()
+                                            .toList()
+                            )
+                    )
+            );
+
+        System.out.println(result);
+
+        //Given a List<Employee> with getDepartment() and getRole(), how would you group employees
+        // first by department and then by role?
+
+        List<Employee> employeeList = Arrays.asList(
+                new Employee("Abhishek", "Engineering", "developer", 2700000),
+                new Employee("Deepak", "Engineering", "developer", 3000000),
+                new Employee("Anupriya", "Engineering", "Tester", 1800000),
+                new Employee("Dhriti", "Management", "Manager", 4000000),
+                new Employee("Sah", "Management", "Senior Manager", 5000000),
+                new Employee("Narayan", "Management", "Manager", 3600000),
+                new Employee("priya", "HR", "Recruiter", 1200000)
+        );
+
+        Map<String, Map<String, List<Employee>>> grpEmpByDeptOfGrpOfEMpByrle =
+                employeeList.stream().collect(Collectors.groupingBy(Employee::department,
+                    LinkedHashMap::new,
+                    Collectors.groupingBy(Employee::role)
+                ));
+
+        System.out.println("Ans 2:- "+grpEmpByDeptOfGrpOfEMpByrle);
+
+        //How would you return a Map<Department, List<Employee>> where each department
+        // maps to the top 3 highest-paid employees?
+        Map<String, List<Employee>> output = employeeList.stream()
+                .collect(Collectors.groupingBy(
+                        Employee::department,
+                        LinkedHashMap::new,
+                        Collectors.collectingAndThen(
+                               Collectors.toList(),
+                                e->e.stream()
+                                        .sorted(Comparator.comparingLong(Employee::salary).reversed())
+                                        .limit(3)
+                                        .toList()
+                        )));
+        System.out.println("Ans 3: "+output);
+
+        //Can you write a custom collector that accumulates strings into a comma-separated format
+        // but skips null or empty values?
+
+        List<String> stringList = Arrays.asList("Abhishek", "Anupriya", "Dhriti", "Narayan");
+
+        String commaSeparatedString = stringList.stream()
+                .filter(s -> s != null && !s.isEmpty())
+                .collect(Collectors.joining(","));
+
+
+        System.out.println("Ans4: "+commaSeparatedString);
+
+        //How would you flatten a List<List<Order>> into a single List<Order> using streams
+
+        List<List<String>> eatables= List.of(List.of("Apple","Banana"), List.of("Potato","Onion"));
+        System.out.println("Ans5: "+eatables.stream().flatMap(List::stream).toList());
+
+        //Java 8 introduced several **collectors** to simplify working with data aggregation and transformation:
+        //- **`groupingBy`**: Groups elements by a classifier.
+        //- **`partitioningBy`**: Partitions elements into two groups based on a Predicate.
+
         // List of numbers
         List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
 

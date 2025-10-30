@@ -1,5 +1,6 @@
 Creating **virtual threads** in Java is straightforward starting from **Java 21**,
 where they became a final feature under **Project Loom**.
+
 Virtual threads are lightweight, JVM-managed threads designed for high-concurrency
 applications — perfect for scalable microservices and reactive systems.
 

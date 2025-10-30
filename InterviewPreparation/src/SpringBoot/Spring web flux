@@ -70,6 +70,21 @@ public interface StudentRepository extends ReactiveCrudRepository<Student, Long>
 
 ---
 
+## config for any downstream service:
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.reactive.function.client.WebClient;
+
+@Configuration
+public class WebClientConfig {
+
+    @Bean
+    public WebClient webClient(WebClient.Builder builder) {
+        return builder.baseUrl("http://downstream-service-host") // replace with actual URL
+                      .build();
+    }
+}
+
 ## 🧰 3. Service Layer
 
 ```java
@@ -98,6 +113,14 @@ public class StudentService {
     public Mono<Student> getStudentByName(String name) {
         return studentRepository.findByName(name);
     }
+
+    public Mono<StudentDetails> getStudentDetailsFromDownstream(Long studentId) {
+            return webClient.get()
+                    .uri("/details/{id}", studentId)
+                    .retrieve()
+                    .bodyToMono(StudentDetails.class);
+       }
+
 }
 ```
 

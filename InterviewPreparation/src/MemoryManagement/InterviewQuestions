@@ -18,12 +18,13 @@ reachable.
 
 2. Stack Memory
 
-Description: The stack is used for storing local variables and method call information, including method
-parameters, return addresses, and references to objects in the heap.
+Description: The stack is used for storing local variables and method call information, including
+method parameters, return addresses, and references to objects in the heap.
 
 Management:
 Each thread has its own stack memory, which is organized in a Last In First Out (LIFO) manner.
-Memory allocation and de-allocation in the stack is handled automatically as methods are called and returned.
+Memory allocation and de-allocation in the stack is handled automatically as methods are called
+and returned.
 Stack memory is limited and typically smaller than heap memory;
 excessive use can lead to a StackOverflowError.
 

@@ -80,7 +80,8 @@ Let’s break it down clearly:
 
 ## 🧠 What Is JPQL?
 
-- JPQL is **similar to SQL**, but it works with **Java classes and fields**, not database tables and columns.
+- JPQL is **similar to SQL**, but it works with **Java classes and fields**, not database tables
+and columns.
 - It’s **database-agnostic** — meaning the same JPQL works across MySQL, PostgreSQL, Oracle, etc.
 - It’s used in **repositories**, **custom queries**, and **dynamic query building**.
 

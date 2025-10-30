@@ -1,6 +1,6 @@
 # Reflection in Java
 
-Reflection is a powerful feature in Java that allows programs to examine and modify the runtime
+Reflection is a powerful feature in Java that allows programs to examine and modify the
 behavior of classes, interfaces, fields, and methods at runtime. It provides the ability to inspect
 classes, interfaces, fields, and methods at runtime without knowing their names at compile time.
 

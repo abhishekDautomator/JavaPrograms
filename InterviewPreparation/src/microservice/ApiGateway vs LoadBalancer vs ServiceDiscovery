@@ -1,6 +1,7 @@
 ## 🚪 What Is an API Gateway?
 
-An **API Gateway** is a **single entry point** for all client requests to your backend services.
+An **API Gateway** is a **single entry point** for all client requests to your backend
+services.
 
 It acts like a **smart traffic controller** that handles:
 
@@ -73,7 +74,7 @@ spring:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka///
+      defaultZone: http://localhost:8761/eureka/
 ```
 
 > 🔹 `lb://` means load-balanced URI — Spring Gateway will use Eureka to discover service instances.

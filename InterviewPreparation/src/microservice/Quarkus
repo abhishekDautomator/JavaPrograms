@@ -1,6 +1,8 @@
 
 1. What is Quarkus and why was it developed?
-Answer: Quarkus is a Kubernetes-native Java framework tailored for GraalVM and HotSpot. It was developed to optimize Java for cloud-native environments by reducing startup time and memory footprint.
+Answer: Quarkus is a Kubernetes-native Java framework tailored for GraalVM and HotSpot.
+It was developed to optimize Java for cloud-native environments by reducing startup time and
+memory footprint.
 
 Example:
 `java
@@ -59,7 +61,8 @@ Example:
 ---
 
 6. How does Quarkus handle dependency injection?
-Answer: Uses CDI (Contexts and Dependency Injection) with annotations like @Inject, @ApplicationScoped.
+Answer: Uses CDI (Contexts and Dependency Injection) with annotations like @Inject,
+@ApplicationScoped.
 
 Example:
 `java
@@ -162,7 +165,6 @@ public class HelloResource {
 🔍 Example: REST Endpoint in Both
 
 Quarkus:
-`java
 @Path("/hello")
 @Produces(MediaType.TEXT_PLAIN)
 public class HelloResource {
