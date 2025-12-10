@@ -1,6 +1,8 @@
 ## 🧠 1. What is Apache Kafka?
 
-**Answer:** Apache Kafka is a distributed event streaming platform used for building real-time data pipelines and streaming applications. It handles high-throughput, fault-tolerant, and scalable messaging.
+**Answer:** Apache Kafka is a distributed event streaming platform used for building
+real-time data pipelines and streaming applications. It handles high-throughput, fault-tolerant,
+and scalable messaging.
 
 **Use Case:** Real-time analytics, log aggregation, fraud detection.
 
@@ -22,7 +24,8 @@
 ## 🧩 3. What is a Topic and Partition?
 
 **Topic:** A named stream of records.
-**Partition:** A topic is split into partitions for scalability. Each partition is an ordered log.
+**Partition:** A topic is split into partitions for scalability. Each partition is an ordered
+log.
 
 ```java
 ProducerRecord<String, String> record = new ProducerRecord<>("orders", "order123", "item=book");

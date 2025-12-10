@@ -20,7 +20,11 @@ at the same time—one update gets lost.
 
 ✅ Fix:
 
-Great question, Abhishek! Race conditions are sneaky bugs that occur when multiple threads access shared data and try to change it at the same time. Resolving them is a key skill for any senior Java developer—especially in cloud-native or concurrent systems. Here's a breakdown of **various ways to resolve race conditions**, with practical examples and trade-offs:
+Great question, Abhishek! Race conditions are sneaky bugs that occur when multiple
+threads access shared data and try to change it at the same time. Resolving them is a key skill
+for any senior Java developer—especially in cloud-native or concurrent systems.
+Here's a breakdown of **various ways to resolve race conditions**, with practical examples and
+trade-offs:
 
 ---
 

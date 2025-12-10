@@ -13,14 +13,21 @@ Portability: Containers can run on any system that supports Docker, regardless o
 infrastructure, making it easy to move applications between development, testing, and production
 environments.
 
-Version Control: Docker provides versioning for images, enabling developers to manage different versions of applications and roll back to previous states if needed.
+Version Control: Docker provides versioning for images, enabling developers to manage different versions
+of applications and roll back to previous states if needed.
 
-Efficiency: Docker containers share the host OS kernel, which makes them more lightweight and faster to start compared to traditional virtual machines (VMs).
+Efficiency: Docker containers share the host OS kernel, which makes them more lightweight and faster to
+start compared to traditional virtual machines (VMs).
 
-Ecosystem: Docker has a rich ecosystem that includes Docker Hub (a registry for sharing container images), Docker Compose (for defining multi-container applications), and Docker Swarm (for orchestrating containers).
+Ecosystem: Docker has a rich ecosystem that includes Docker Hub (a registry for sharing container images),
+Docker Compose (for defining multi-container applications), and Docker Swarm (for orchestrating
+containers).
 
 Container
-A container is a lightweight, standalone executable package that includes everything needed to run a piece of software, including the code, runtime, libraries, environment variables, and configuration files. Containers are isolated from each other and the host operating system, providing a consistent environment for applications to run.
+A container is a lightweight, standalone executable package that includes everything needed to run a
+piece of software, including the code, runtime, libraries, environment variables, and configuration files.
+Containers are isolated from each other and the host operating system, providing a consistent environment
+for applications to run.
 
 Key Characteristics of Containers:
 Isolation: Containers operate in their own environments, meaning they do not interfere with one another, even when running on the same host.
@@ -29,9 +36,12 @@ Lightweight: Containers share the host OS kernel and do not require a full opera
 
 Fast Startup: Containers can be started and stopped quickly, allowing for rapid scaling and deployment of applications.
 
-Consistency: Since containers encapsulate all dependencies, they ensure that the application behaves the same way regardless of where it is deployed, reducing the "it works on my machine" problem.
+Consistency: Since containers encapsulate all dependencies, they ensure that the application behaves
+the same way regardless of where it is deployed, reducing the "it works on my machine" problem.
 
-Microservices Architecture: Containers are often used in microservices architectures, where applications are broken down into smaller, independently deployable services that can communicate with one another.
+Microservices Architecture: Containers are often used in microservices architectures, where
+applications are broken down into smaller, independently deployable services that can communicate with
+one another.
 
 Summary
 Docker is the platform that provides the tools and services to create, manage, and run containers.

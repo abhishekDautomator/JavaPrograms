@@ -1,4 +1,4 @@
-Here are some common kubectl commands used to manage pods in Kubernetes:
+gccccHere are some common kubectl commands used to manage pods in Kubernetes:
 1. Creating a Pod
 To create a pod from a YAML file:
 kubectl apply -f pod-definition.yaml

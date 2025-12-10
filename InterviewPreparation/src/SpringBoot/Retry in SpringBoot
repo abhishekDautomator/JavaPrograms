@@ -68,7 +68,7 @@ public class PaymentService {
 ```
 
 ### 🔹 Explanation:
-- `@Retryable`: Retries the method on `RemoteServiceException`
+- `@Retryable`: Retries the method on `RemoteServiceException` exception
 - `maxAttempts`: Number of retries (3 total attempts)
 - `@Backoff`: Waits 2 seconds, then doubles each time (2s, 4s)
 - `@Recover`: Fallback method if all retries fail

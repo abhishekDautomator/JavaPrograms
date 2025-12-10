@@ -1,0 +1,55 @@
+**The Saga pattern in microservices is a design approach for handling distributed transactions by breaking them into smaller, independent steps, each with its own compensating action in case of failure.** It ensures data consistency across services without relying on traditional two-phase commit protocols, which are often unsuitable for microservice architectures.
+
+---
+
+## 🌐 What is the Saga Pattern?
+- **Definition**: A Saga is a sequence of local transactions. Each transaction updates data within a single service and publishes an event or message to trigger the next step.
+- **Compensation**: If one step fails, previously executed steps are undone using compensating transactions.
+- **Goal**: Maintain **eventual consistency** across distributed services without locking resources.
+
+---
+
+## 🔑 Why Use Saga in Microservices?
+- **Avoids 2PC overhead**: Traditional distributed transactions (two-phase commit) are heavy and reduce scalability.
+- **Resilience**: Services remain loosely coupled and can recover gracefully from partial failures.
+- **Scalability**: Each service manages its own data, improving independence and fault tolerance.
+
+---
+
+## ⚙️ Saga Implementation Approaches
+| Approach | How it Works | Pros | Cons |
+|----------|--------------|------|------|
+| **Choreography** | Each service listens for events and reacts accordingly. No central coordinator. | Simple, decentralized, good for small workflows | Harder to manage complex flows, risk of cyclic dependencies |
+| **Orchestration** | A central orchestrator service tells each participant what to do next. | Clear control, easier debugging, good for complex flows | Adds a single point of control, potential bottleneck |
+
+---
+
+## 📖 Example Scenario
+Imagine an **e-commerce order**:
+1. **Order Service**: Creates order.
+2. **Payment Service**: Charges customer.
+3. **Inventory Service**: Reserves items.
+4. **Shipping Service**: Arranges delivery.
+
+If **Payment fails**, the Saga triggers compensations:
+- Cancel order.
+- Release reserved inventory.
+- Abort shipping.
+
+---
+
+## ✅ Advantages
+- Ensures **data consistency** across services.
+- Improves **fault tolerance** with compensating actions.
+- Works well in **cloud-native, event-driven systems**.
+
+## ⚠️ Disadvantages
+- **Complexity** in designing compensating transactions.
+- **Debugging** distributed workflows can be challenging.
+- **Eventual consistency** may not suit all business cases.
+
+---
+
+👉 Abhishek, since you’re preparing for **Senior Java Developer interviews**, you can frame Saga as a **resilience pattern** that complements your circuit breaker experience. For example, highlight how your Draft Microservice could integrate Saga for multi-step operations like draft creation, storage in Azure Blob, and metadata persistence in PostgreSQL—ensuring rollback if any step fails.
+
+Would you like me to create a **diagrammatic flow** of Saga (both choreography and orchestration) so you can use it as a visual aid in interviews?

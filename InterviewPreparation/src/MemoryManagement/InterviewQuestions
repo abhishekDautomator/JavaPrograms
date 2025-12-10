@@ -37,7 +37,8 @@ and constant pool information. It is part of the heap but has a special role.
 Management:
 The JVM loads class definitions into this area when a class is first referenced.
 It includes metadata about classes, their methods, and static variables.
-Unlike the heap, the method area is not subject to garbage collection in the same way; it is cleared only when the class loader that loaded the class is garbage collected.
+Unlike the heap, the method area is not subject to garbage collection in the same way;
+it is cleared only when the class loader that loaded the class is garbage collected.
 
 
 4. Program Counter Register

@@ -6,7 +6,8 @@ cleaning up resources. Spring provides a powerful and flexible scheduling mechan
 annotation.
 
 Key Components of Scheduling in Spring Boot
-Enable Scheduling: You need to enable scheduling in your Spring Boot application by adding the @EnableScheduling annotation to one of your configuration classes.
+Enable Scheduling: You need to enable scheduling in your Spring Boot application by adding the
+@EnableScheduling annotation to one of your configuration classes.
 
 Using the @Scheduled Annotation: You can annotate methods with @Scheduled to specify the frequency or timing of the task execution.
 
@@ -18,7 +19,9 @@ Make sure you include the necessary dependency in your pom.xml if you are using 
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter</artifactId>
 </dependency>
-2. Enable Scheduling: Add the @EnableScheduling annotation to your main application class or any configuration class. This annotation is what tells Spring to look for methods annotated with @Scheduled.
+2. Enable Scheduling: Add the @EnableScheduling annotation to your main application class or
+any configuration class. This annotation is what tells Spring to look for methods annotated with
+@Scheduled.
 
 Example:
 

@@ -124,7 +124,7 @@ body as a String.
 
 create a downstream service interface using feign client
 
-@FeignClient(name="serviceB", url = ${serviceA.url}")
+@FeignClient(name="serviceB", url = "${serviceA.url}")
 public interface ServiceB{
     @GetMapping("/api/data")
     public String getServiceBResponse();

@@ -1,0 +1,42 @@
+**Eviction in a caching system means removing existing data from the cache to make room for new data when the cache reaches its capacity.** This is managed through *cache eviction policies* that decide which items should be discarded. It can be solved by choosing the right eviction strategy based on system requirements, workload patterns, and performance goals.
+
+---
+
+        ## 🗂️ What is Cache Eviction?
+        - **Definition**: Cache eviction is the process of clearing data from a cache when
+        it becomes full, so new or more relevant data can be stored.
+- **Reason**: Since cache memory is limited, not all data can be stored indefinitely. Eviction ensures
+that the cache continues to serve frequently accessed or important data.
+- **Analogy**: Think of a cache like a small fridge. When you buy new snacks, you may need to
+throw out old ones. The eviction policy decides which snacks to discard.
+
+        ---
+
+        ## ⚙️ Common Cache Eviction Policies
+| Policy | How It Works | Best Use Case |
+        |--------|--------------|---------------|
+        | **LRU (Least Recently Used)** | Removes the item that hasn’t been accessed for the longest time | General-purpose systems where recent access predicts future use |
+        | **LFU (Least Frequently Used)** | Removes items accessed the least number of times | Systems with stable access patterns (e.g., popular content caching) |
+        | **FIFO (First-In-First-Out)** | Removes the oldest item added to the cache | Simple systems where order matters more than frequency |
+        | **MRU (Most Recently Used)** | Removes the most recently accessed item | Rare, but useful in cases where older data is more valuable |
+        | **Random Replacement (RR)** | Randomly removes an item | Low-complexity systems where predictability isn’t critical |
+        | **TTL (Time-To-Live)** | Removes items after a fixed time duration | Useful for expiring stale data (e.g., session tokens) |
+        | **Size-Based Eviction** | Removes items exceeding memory or size limits | Large object caching (images, files) |
+
+Sources:
+
+        ---
+
+        ## ✅ How to Solve Eviction Challenges
+- **Choose the right policy**: Match eviction strategy to workload. For example, LRU works well for web caches, LFU for recommendation systems.
+        - **Tune cache size**: Increase cache capacity if eviction is too frequent and hurting performance.
+- **Hybrid approaches**: Combine policies (e.g., LRU + TTL) for better balance between freshness and efficiency.
+        - **Distributed caching**: Use systems like Redis or Memcached with clustering to scale horizontally.
+- **Monitoring & metrics**: Track cache hit/miss ratios to adjust eviction strategies dynamically.
+
+---
+
+        👉 In your **Draft Microservice project**, Abhishek, you could highlight how eviction policies ensure resilience and efficiency. For example, if you’re caching user drafts metadata, an **LRU policy** would ensure that the most recently accessed drafts stay in memory, while older ones get evicted. This shows interviewers that you understand not just caching, but also *how to manage limited resources intelligently*.
+
+Would you like me to help you **frame an interview-ready explanation** of cache eviction with a diagram showing how LRU works in practice?
+

@@ -1,11 +1,14 @@
-A **sealed class** in Java is a special type of class that **restricts which other classes can extend or implement it**. This feature was introduced in **Java 15 (preview)** and finalized in **Java 17** as part of enhancing the language’s expressiveness and security.
+A **sealed class** in Java is a special type of class that **restricts which other classes can
+extend or implement it**. This feature was introduced in **Java 15 (preview)** and finalized
+in **Java 17** as part of enhancing the language’s expressiveness and security.
 
 ---
 
 ## 🔐 Why Use Sealed Classes?
 - **Control inheritance**: Prevents unwanted subclassing.
 - **Improves maintainability**: You know all possible subclasses at compile time.
-- **Enables better pattern matching**: Especially useful with `switch` expressions and `instanceof`.
+- **Enables better pattern matching**: Especially useful with `switch` expressions and
+`instanceof`.
 
 ---
 

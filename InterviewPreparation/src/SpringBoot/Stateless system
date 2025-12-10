@@ -1,4 +1,6 @@
-A **stateless system** is one where **each request is independent** and does **not rely on any stored context or session** from previous interactions. The server doesn’t remember anything about the client between requests — every request must contain all the information needed to process it.
+A **stateless system** is one where **each request is independent** and does **not rely on any
+stored context or session** from previous interactions. The server doesn’t remember anything about
+the client between requests — every request must contain all the information needed to process it.
 
 ---
 

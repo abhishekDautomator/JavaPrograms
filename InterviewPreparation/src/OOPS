@@ -6,8 +6,8 @@ The four fundamental principles of OOP are:
 
 Encapsulation:
 
-Encapsulation is the bundling of data (attributes) and methods (functions) that operate on the data into a
-single unit called a class.
+Encapsulation is the bundling of data (attributes) and methods (functions) that operate on
+the data into a single unit called a class.
 It restricts direct access to some of an object's components, which is a means of preventing
 unintended interference and misuse of the methods and data.
 In Java, encapsulation is achieved using access modifiers.
@@ -21,8 +21,8 @@ In Java, inheritance is implemented using the extends keyword.
 
 Polymorphism:
 
-Polymorphism allows objects to be treated as instances of their parent class, enabling a single interface
-to represent different underlying forms (data types).
+Polymorphism allows objects to be treated as instances of their parent class, enabling a single
+interface to represent different underlying forms (data types).
 There are two types of polymorphism in Java:
 
 Compile-time polymorphism (method overloading): Same method name with different parameters.
@@ -31,11 +31,13 @@ is already defined in its superclass.
 
 Abstraction:
 
-Abstraction is the concept of hiding complex implementation details and exposing only the necessary parts of
-an object.
+Abstraction is the concept of hiding complex implementation details and exposing only
+the necessary parts of an object.
 It helps in reducing programming complexity and increases efficiency.
-In Java, abstraction can be achieved using abstract classes and interfaces. An abstract class can have both
-abstract methods (without implementation) and concrete methods (with implementation), while an interface can
+In Java, abstraction can be achieved using abstract classes and interfaces. An abstract class
+can have both
+abstract methods (without implementation) and concrete methods (with implementation), while an
+interface can
 only declare abstract methods (from Java 8 onwards, it can also have default and static methods).
 
 Types of classes which cannot be instantiated?

@@ -1,0 +1,172 @@
+**Spring Boot + Azure Blob Storage + PostgreSQL integration**, for **Message
+Draft application**.
+
+---
+
+## 🔑 Requirements
+1. **File upload API** in Spring Boot.
+   - Accepts images (`.png/.jpg/.jpeg`), PDFs, Word docs.
+   - Linked to a `MessageDraft` entity.
+2. **Store file content in Azure Blob Storage** (not in DB).
+3. **Store transaction metadata in PostgreSQL**:
+   - File name, type, size.
+   - Blob URL or blob reference.
+   - Linked `message_id`.
+
+---
+
+## ⚡ Architecture Flow
+1. User uploads file via REST endpoint (`/messages/{id}/attachments`).
+2. Spring Boot controller receives `MultipartFile`.
+3. Service layer:
+   - Validates file type.
+   - Uploads file to Azure Blob Storage.
+   - Gets blob URL/reference.
+   - Saves metadata in PostgreSQL (`Attachment` table linked to `MessageDraft`).
+4. Return success response with blob URL.
+
+---
+
+## 🧑‍💻 Example Implementation
+
+### 1. Entity (Postgres)
+```java
+@Entity
+@Table(name = "attachments")
+public class Attachment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private Long messageId;
+    private String fileName;
+    private String fileType;
+    private long fileSize;
+    private String blobUrl;
+
+    // getters/setters
+}
+```
+
+---
+
+### 2. Repository
+```java
+public interface AttachmentRepository extends JpaRepository<Attachment, Long> {
+    List<Attachment> findByMessageId(Long messageId);
+}
+```
+
+---
+
+### 3. Azure Blob Service
+```java
+@Service
+public class AzureBlobService {
+
+    @Value("${azure.storage.container-name}")
+    private String containerName;
+
+    private final BlobServiceClient blobServiceClient;
+
+    public AzureBlobService(BlobServiceClient blobServiceClient) {
+        this.blobServiceClient = blobServiceClient;
+    }
+
+    public String uploadFile(MultipartFile file) throws IOException {
+        BlobContainerClient containerClient = blobServiceClient.getBlobContainerClient(containerName);
+        BlobClient blobClient = containerClient.getBlobClient(UUID.randomUUID() + "-" + file.getOriginalFilename());
+
+        blobClient.upload(file.getInputStream(), file.getSize(), true);
+
+        return blobClient.getBlobUrl(); // return URL for DB
+    }
+}
+```
+
+---
+
+### 4. Attachment Service
+```java
+@Service
+public class AttachmentService {
+
+    private final AzureBlobService azureBlobService;
+    private final AttachmentRepository attachmentRepository;
+
+    public AttachmentService(AzureBlobService azureBlobService, AttachmentRepository attachmentRepository) {
+        this.azureBlobService = azureBlobService;
+        this.attachmentRepository = attachmentRepository;
+    }
+
+    public Attachment saveAttachment(Long messageId, MultipartFile file) throws IOException {
+        // Validate file type
+        String contentType = file.getContentType();
+        if (!(contentType.equals("image/png") || contentType.equals("image/jpeg") ||
+              contentType.equals("application/pdf") || contentType.equals("application/msword") ||
+              contentType.equals("application/vnd.openxmlformats-officedocument.wordprocessingml.document"))) {
+            throw new IllegalArgumentException("Unsupported file type: " + contentType);
+        }
+
+        // Upload to Azure Blob
+        String blobUrl = azureBlobService.uploadFile(file);
+
+        // Save metadata in DB
+        Attachment attachment = new Attachment();
+        attachment.setMessageId(messageId);
+        attachment.setFileName(file.getOriginalFilename());
+        attachment.setFileType(contentType);
+        attachment.setFileSize(file.getSize());
+        attachment.setBlobUrl(blobUrl);
+
+        return attachmentRepository.save(attachment);
+    }
+}
+```
+
+---
+
+### 5. Controller
+```java
+@RestController
+@RequestMapping("/messages")
+public class MessageController {
+
+    private final AttachmentService attachmentService;
+
+    public MessageController(AttachmentService attachmentService) {
+        this.attachmentService = attachmentService;
+    }
+
+    @PostMapping("/{id}/attachments")
+    public ResponseEntity<Attachment> uploadAttachment(
+            @PathVariable Long id,
+            @RequestParam("file") MultipartFile file) throws IOException {
+        Attachment attachment = attachmentService.saveAttachment(id, file);
+        return ResponseEntity.ok(attachment);
+    }
+}
+```
+
+---
+
+## 📊 DB Schema (Postgres)
+- **messages** table → stores draft message metadata.
+- **attachments** table → stores file metadata linked by `message_id`.
+
+---
+
+## ⚡ Best Practices
+- **Validation**: Restrict file types and max size.
+- **Security**: Use SAS tokens or private containers in Azure Blob.
+- **Transaction safety**: If blob upload fails, don’t persist DB record.
+- **Async option**: For large files, consider async upload with status tracking.
+
+---
+
+👉 Abhishek, in interviews you can highlight:
+- Why you store **files in Blob** (scalable, cheap, not bloating DB).
+- Why you store **metadata in Postgres** (transactional consistency, easy queries).
+- How you ensure **atomicity** (upload first, then DB commit).
+
+Would you like me to also sketch a **sequence diagram** showing the flow from client → Spring Boot → Azure Blob → Postgres? That’s a great way to visually impress interviewers.

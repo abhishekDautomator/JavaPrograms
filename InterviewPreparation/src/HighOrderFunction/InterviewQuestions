@@ -4,7 +4,8 @@ they refer to functions that can take other functions as parameters or return fu
 as results. In Java, higher-order functions can be implemented using interfaces,
 particularly with the introduction of lambda expressions in Java 8.
 
-     Key Characteristics of Higher-Order Functions
+     Key Characteri
+     stics of Higher-Order Functions
      Accepting Functions as Parameters: A higher-order function can accept one or more functions as arguments.
      Returning Functions: It can also return a function as its result.
      Functional Interfaces: In Java, functional interfaces (interfaces with a single abstract method) are commonly used to represent functions.

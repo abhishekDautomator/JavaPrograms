@@ -3,18 +3,18 @@ package DataStructure.sorting;
 import java.util.Arrays;
 
 public class QuickSort {
-    public static void quickSort(int[]arr, int start, int end){
-        if(start<end){
-            int p = partition(arr, start, end);
-            quickSort(arr, start, p-1);
-            quickSort(arr, p+1, end);
+    public static void quickSort(int[]arr, int l, int r){
+        if(l<r){
+            int p = partition(arr, l, r);
+            quickSort(arr, l, p-1);
+            quickSort(arr, p+1, r);
         }
     }
 
-    public static int partition(int[] arr, int start, int end){
-        int p = arr[end];
-        int j = start;
-        for(int i=start; i<end; i++) {
+    public static int partition(int[] arr, int l, int r){
+        int p = arr[r];
+        int j = l;
+        for(int i=l; i<r; i++) {
             if (arr[i] <= p) {
                 int temp1 = arr[i];
                 arr[i] = arr[j];
@@ -23,8 +23,8 @@ public class QuickSort {
             }
         }
         int temp2 = arr[j];
-        arr[j] = arr[end];
-        arr[end] = temp2;
+        arr[j] = arr[r];
+        arr[r] = temp2;
         return j;
     }
 

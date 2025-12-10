@@ -3,7 +3,7 @@ package DesignPatterns.CreationalPattern.Singleton;
 import java.io.Serial;
 import java.io.Serializable;
 
-class SingletonClass2 implements Serializable, Cloneable { //implementing serializable for break using deserialization example class
+class  SingletonClass2 implements Serializable, Cloneable { //implementing serializable for break using deserialization example class
 
     private static SingletonClass2 singletonObj2 = null;
     private SingletonClass2(){}

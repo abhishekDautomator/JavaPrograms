@@ -1,0 +1,70 @@
+Great question, Abhishek 👨‍💻 — this is one of those subtle but important distinctions in Java
+Streams that interviewers love to probe because it reveals whether you understand **performance
+implications and internal mechanics** of the Stream API.
+
+---
+
+## ⚡ Intermediate Operations in Java Streams
+Intermediate operations transform a stream into another stream. They are **lazy** (executed only
+when a terminal operation runs) and can be classified as **stateless** or **stateful** depending
+on whether they need to maintain state across elements.
+
+---
+
+## 🟢 Stateless Intermediate Operations
+- **Definition**: Each element is processed independently, without needing information about other
+elements.
+- **Examples**:
+  - `map()`
+  - `filter()`
+  - `flatMap()`
+  - `peek()`
+- **Characteristics**:
+  - No memory overhead beyond the current element.
+  - Highly parallelizable.
+  - Predictable performance.
+- **Analogy**: Like a factory assembly line where each item is processed individually without
+caring about the rest.
+
+---
+
+## 🔵 Stateful Intermediate Operations
+- **Definition**: Require knowledge of other elements in the stream to produce results.
+- **Examples**:
+  - `sorted()`
+  - `distinct()`
+  - `limit()` (partially stateful, depends on short-circuiting)
+  - `skip()`
+- **Characteristics**:
+  - Must buffer or track multiple elements.
+  - Can introduce performance overhead.
+  - May reduce parallel efficiency.
+- **Analogy**: Like organizing books in alphabetical order — you need to see all books before
+arranging them.
+
+---
+
+## 📊 Comparison Table
+
+| Aspect                  | Stateless Ops | Stateful Ops |
+|--------------------------|---------------|--------------|
+| **Memory Usage**         | Minimal       | Can be high (buffering required) |
+| **Parallelization**      | Easy          | Harder, sometimes inefficient |
+| **Execution Order**      | Independent   | Dependent on other elements |
+| **Examples**             | `map`, `filter` | `sorted`, `distinct`, `limit` |
+
+---
+
+## 🚀 Interview Tip (for you, Abhishek)
+When asked this, you can frame your answer like this:
+
+> "In Java Streams, intermediate operations are either stateless or stateful. Stateless operations
+like `map` and `filter` process each element independently, making them efficient and
+parallel-friendly. Stateful operations like `sorted` or `distinct` require maintaining state
+across elements, which can introduce memory overhead and impact parallel performance. For example,
+`sorted()` must buffer the entire stream before producing results, while `filter()` can process
+elements one by one."
+
+This shows **clarity, depth, and awareness of performance trade-offs** — exactly what senior
+developer interviewers look for.
+

@@ -1,0 +1,129 @@
+Perfect request, Abhishek 👌. Let’s walk through a **complete, end-to-end example** of enabling caching in a Spring Boot microservice using **Azure Cache for Redis**. This will give you a production-ready setup you can confidently present in interviews.
+
+---
+
+## 🛠️ Step 1: Provision Azure Cache for Redis
+1. Go to **Azure Portal** → Create a resource → Search for *Azure Cache for Redis*.
+2. Configure:
+   - **DNS name**: e.g., `mydraftcache.redis.cache.windows.net`
+   - **Pricing tier**: Choose based on workload (Basic for dev, Standard/Premium for prod).
+   - **Authentication**: Azure generates a primary and secondary access key.
+3. Once deployed, note:
+   - **Host name**
+   - **Port** (usually 6380 for SSL)
+   - **Access key**
+
+---
+
+## 🛠️ Step 2: Add Dependencies
+In `pom.xml`:
+```xml
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-cache</artifactId>
+</dependency>
+<dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-data-redis</artifactId>
+</dependency>
+<dependency>
+    <groupId>io.lettuce.core</groupId>
+    <artifactId>lettuce-core</artifactId>
+</dependency>
+```
+Spring Boot uses **Lettuce** as the Redis client by default.
+
+---
+
+## 🛠️ Step 3: Configure Redis in `application.properties`
+```properties
+spring.cache.type=redis
+spring.redis.host=mydraftcache.redis.cache.windows.net
+spring.redis.port=6380
+spring.redis.password=<your-access-key>
+spring.redis.ssl=true
+```
+
+---
+
+## 🛠️ Step 4: Enable Caching
+In your main application class:
+```java
+@SpringBootApplication
+@EnableCaching
+public class DraftMicroserviceApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(DraftMicroserviceApplication.class, args);
+    }
+}
+```
+
+---
+
+## 🛠️ Step 5: Use Cache Annotations
+Example service class:
+```java
+@Service
+public class DraftService {
+
+    private final DraftRepository draftRepository;
+
+    public DraftService(DraftRepository draftRepository) {
+        this.draftRepository = draftRepository;
+    }
+
+    // Cache user drafts by userId
+    @Cacheable(value = "drafts", key = "#userId")
+    public Draft getDraftByUser(String userId) {
+        System.out.println("Fetching from DB...");
+        return draftRepository.findByUserId(userId);
+    }
+
+    // Update cache when saving
+    @CachePut(value = "drafts", key = "#draft.userId")
+    public Draft saveDraft(Draft draft) {
+        return draftRepository.save(draft);
+    }
+
+    // Evict cache when deleting
+    @CacheEvict(value = "drafts", key = "#userId")
+    public void deleteDraft(String userId) {
+        draftRepository.deleteByUserId(userId);
+    }
+}
+```
+
+---
+
+## 🛠️ Step 6: Configure Cache Manager (Optional, for TTL)
+```java
+@Configuration
+public class RedisConfig {
+
+    @Bean
+    public RedisCacheConfiguration cacheConfiguration() {
+        return RedisCacheConfiguration.defaultCacheConfig()
+                .entryTtl(Duration.ofMinutes(10)) // TTL of 10 minutes
+                .disableCachingNullValues();
+    }
+}
+```
+
+---
+
+## ✅ How It Works
+- First call to `getDraftByUser("123")` → hits PostgreSQL → caches result in Azure Redis.
+- Subsequent calls → served directly from Redis (shared across all microservice instances).
+- Updates/deletes automatically refresh or evict cache entries.
+- TTL ensures stale data doesn’t linger forever.
+
+---
+
+## 🎯 Interview Angle for You
+When explaining this:
+- Highlight **scalability**: multiple instances share the same cache.
+- Emphasize **resilience**: Azure Cache for Redis supports clustering, replication, and persistence.
+- Mention **performance gains**: reduced DB load, faster response times.
+- Tie it back to your **Draft Microservice**: caching user drafts metadata improves UX by making retrieval instant.
+
+---

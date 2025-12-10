@@ -91,9 +91,8 @@ public class CollectionsExample<T> {
 
         Map<Character, Long> mapChar = IntStream.range(0, charArr.length)
                 .mapToObj(i -> charArr[i])
-                .collect(Collectors.groupingBy(
-                        Function.identity(),
-                        Collectors.counting()
+                .collect(Collectors.groupingBy(Function.identity(),
+                                            Collectors.counting()
                 ));
         System.out.println("count of each char in " + Arrays.toString(charArr) + " is: " + mapChar);
 

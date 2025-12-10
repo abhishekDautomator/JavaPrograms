@@ -1,6 +1,6 @@
 package DataStructure.LinearDS;
 
-public class LinkedList {
+public class SingleLinkedList {
     Node head;
 
     public void insert(int value){
@@ -121,7 +121,7 @@ public class LinkedList {
     }
 
     public static void main(String[] args) {
-        LinkedList ll = new LinkedList();
+        SingleLinkedList ll = new SingleLinkedList();
         ll.insert(1);
         ll.insert(2);
         ll.insert(3);

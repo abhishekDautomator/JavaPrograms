@@ -12,3 +12,67 @@ No null keys            Throws NullPointerException if key is null
 Navigable operations    floorKey(), ceilingKey(), subMap(), etc.
 Logarithmic time        O(log n) for put(), get(), remove()
 
+**TreeMap in Java provides a rich set of methods for managing sorted key-value pairs.** These methods come from the `Map`, `NavigableMap`, and `SortedMap` interfaces, offering powerful capabilities for insertion, retrieval, navigation, and ordering.
+
+Here’s a structured breakdown of the most important TreeMap methods grouped by functionality:
+
+        ---
+
+        ### 🧩 Basic Operations
+- **`put(K key, V value)`**: Adds or updates a key-value pair.
+        - **`get(Object key)`**: Retrieves the value for a given key.
+- **`remove(Object key)`**: Deletes the entry for the specified key.
+- **`clear()`**: Removes all entries from the map.
+        - **`size()`**: Returns the number of key-value pairs.
+        - **`isEmpty()`**: Checks if the map is empty.
+        - **`containsKey(Object key)`**: Checks if a key exists.
+- **`containsValue(Object value)`**: Checks if a value exists.
+
+---
+
+        ### 📌 Navigational Methods (from `NavigableMap`)
+- **`firstEntry()` / `lastEntry()`**: Returns the first/last key-value pair.
+        - **`firstKey()` / `lastKey()`**: Returns the first/last key.
+        - **`pollFirstEntry()` / `pollLastEntry()`**: Removes and returns the first/last entry.
+        - **`lowerEntry(K key)` / `lowerKey(K key)`**: Entry/key less than the given key.
+        - **`floorEntry(K key)` / `floorKey(K key)`**: Entry/key less than or equal to the key.
+        - **`ceilingEntry(K key)` / `ceilingKey(K key)`**: Entry/key greater than or equal to the key.
+        - **`higherEntry(K key)` / `higherKey(K key)`**: Entry/key greater than the key.
+
+---
+
+        ### 🔄 Views and Iteration
+- **`keySet()`**: Returns a `Set` of all keys.
+- **`values()`**: Returns a `Collection` of all values.
+- **`entrySet()`**: Returns a `Set` of all key-value pairs.
+        - **`descendingKeySet()`**: Returns keys in reverse order.
+- **`descendingMap()`**: Returns a reversed view of the map.
+
+---
+
+        ### 🧭 Range Views
+- **`subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)`**: Returns a view between two keys.
+        - **`headMap(K toKey, boolean inclusive)`**: View of keys less than (or equal to) `toKey`.
+        - **`tailMap(K fromKey, boolean inclusive)`**: View of keys greater than (or equal to) `fromKey`.
+
+        ---
+
+        ### 🛠 Utility Methods
+- **`comparator()`**: Returns the comparator used for ordering keys (or `null` if natural ordering).
+        - **`clone()`**: Creates a shallow copy of the TreeMap.
+
+---
+
+        ### 🔍 Example Usage
+```java
+TreeMap<String, Integer> map = new TreeMap<>();
+map.put("Apple", 50);
+map.put("Banana", 30);
+map.put("Cherry", 40);
+
+System.out.println(map.firstKey()); // Apple
+        System.out.println(map.higherKey("Banana")); // Cherry
+        System.out.println(map.subMap("Apple", true, "Cherry", true)); // {Apple=50, Banana=30, Cherry=40}
+        ```
+
+

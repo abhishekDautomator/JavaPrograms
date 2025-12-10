@@ -1,0 +1,29 @@
+In Spring Framework, there are two primary types of IoC (Inversion of Control) containers: [1]
+
+• BeanFactory:
+	• This is the most basic and lightweight IoC container in Spring.
+	• It provides fundamental support for dependency injection, managing beans, and their lifecycle.
+	• Beans are typically loaded lazily, meaning they are instantiated only when requested.
+	• It is suitable for resource-constrained environments or simple applications where advanced features are not required.
+
+• ApplicationContext:
+	• This is a more advanced and feature-rich IoC container that extends the functionality of BeanFactory.
+	• It includes all the capabilities of BeanFactory and adds enterprise-specific features like:
+		• Event propagation: Ability to publish and listen for application events.
+		• Internationalization (I18n): Support for message resolution in different locales.
+		• Spring AOP integration: Seamless integration with Aspect-Oriented Programming.
+		• Declarative mechanisms: for creating beans and managing their lifecycle.
+
+	• Beans are typically loaded eagerly (eager initialization), meaning they are instantiated at startup.
+	• ApplicationContext is generally recommended for most enterprise applications due to its comprehensive features.
+	• Common implementations include ClassPathXmlApplicationContext, FileSystemXmlApplicationContext, and WebXmlApplicationContext.
+
+In essence:
+
+• BeanFactory is a foundational, minimalist container.
+• ApplicationContext is an enhanced container built upon BeanFactory, offering a broader range of functionalities for more complex applications.
+
+AI responses may include mistakes.
+
+[1] https://www.codingshuttle.com/spring-boot-handbook/spring-ioc-container
+

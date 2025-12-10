@@ -13,7 +13,7 @@ public final class ImmutableClassPerson {
     public ImmutableClassPerson(String name, int age, List<String> programmingLanguages, Department department) {
         this.name = name;
         this.age = age;
-        this.programmingLanguages = new ArrayList<>(programmingLanguages);
+        this.programmingLanguages = new ArrayList<>(programmingLanguages); //defensive copy
         this.department = department;
     }
 

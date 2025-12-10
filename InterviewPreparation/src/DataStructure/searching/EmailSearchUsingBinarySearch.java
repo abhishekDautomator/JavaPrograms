@@ -19,13 +19,35 @@ public class EmailSearchUsingBinarySearch {
         }
         return false;
     }
+
+    public static boolean searchEmailUsingRecursion(String[] emails, int l, int r, String targetEmail){
+        if(l>r) return false;
+        int mid = l+ (r-l)/2;
+        int result = emails[mid].compareTo(targetEmail);
+        if(result==0){
+            return true;
+        }else if(result > 0){
+            return searchEmailUsingRecursion(emails, l, mid-1, targetEmail);
+        }else{
+            return searchEmailUsingRecursion(emails, mid+1, r, targetEmail);
+        }
+    }
+
     public static void main(String[] args) {
         String[] emails = {"abhi@gmail.com", "abhishek.narayan@gmail.com", "anupriya06@gmail.com", "narutonarayan@gmail.com"};
         String targetEmail = "abhi@gmail.com";
         if(searchEmail(emails, targetEmail)){
-            System.out.println("Email found");
+            System.out.print("Email found");
+        }else{
+            System.out.print("Email not found");
+        }
+        System.out.print(" using while loop and binary search logic");
+        System.out.println();
+        if(searchEmailUsingRecursion(emails, 0, emails.length-1, targetEmail)){
+            System.out.print("Email found");
         }else{
             System.out.println("Email not found");
         }
+        System.out.print(" using recursion and binary search logic");
     }
 }

@@ -1,0 +1,20 @@
+**A singly linked list stores only the next node’s reference, while a doubly linked list stores
+both next and previous references—making traversal and deletion more flexible but at the cost of
+extra memory.**
+
+
+---
+
+## 🔗 Singly Linked List vs Doubly Linked List
+
+| Feature                     | Singly Linked List (SLL)                          | Doubly Linked List (DLL)                          |
+|----------------------------|---------------------------------------------------|---------------------------------------------------|
+| **Node Structure**         | Contains `data` and `next` pointer                | Contains `data`, `next`, and `prev` pointers      |
+| **Traversal Direction**    | Only forward                                     | Forward and backward                              |
+| **Memory Usage**           | Lower (1 pointer per node)                        | Higher (2 pointers per node)                      |
+| **Insertion/Deletion**     | Efficient at head; deletion at tail is costly     | Efficient at both ends and in-between             |
+| **Reverse Traversal**      | Not possible without extra logic                  | Directly supported                                |
+| **Implementation Simplicity** | Easier to implement                            | More complex due to extra pointer management      |
+| **Use Cases**              | Stack, simple queues                              | Browser history, undo-redo, complex navigation    |
+
+Sources:

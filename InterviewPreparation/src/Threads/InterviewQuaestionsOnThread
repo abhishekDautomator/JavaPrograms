@@ -1,4 +1,4 @@
-1. What are the various ways to create a THread in Java?
+1. What are the various ways to create a Thread in Java?
 Ans. These are the primary ways to create threads in Java:
 
      Extending the Thread class
@@ -49,13 +49,14 @@ serve different purposes in the context of thread execution. Here’s a detailed
 
 -> ExecutorService:
 
-Absolutely, Abhishek! Let’s break down **ExecutorService** and **thread pools**—two pillars of Java’s concurrency model that every senior developer should master.
-
+**ExecutorService** and **thread pools**—two pillars of Java’s concurrency model
 ---
 
 ### ⚙️ What Is `ExecutorService`?
 
-`ExecutorService` is a **high-level API** in the `java.util.concurrent` package that simplifies running tasks asynchronously. Instead of manually creating and managing threads, you submit tasks to an executor, and it handles the rest.
+`ExecutorService` is a **high-level API** in the `java.util.concurrent` package that simplifies
+running tasks asynchronously. Instead of manually creating and managing threads, you submit tasks
+to an executor, and it handles the rest.
 
 ```java
 ExecutorService executor = Executors.newFixedThreadPool(5);

@@ -1,5 +1,6 @@
 HashMap (Java 8 and later)
-"HashMap is a part of the Java Collection Framework and provides a key-value based data structure that allows constant-time performance for get() and put() in the average case."
+"HashMap is a part of the Java Collection Framework and provides a key-value based
+data structure that allows constant-time performance for get() and put() in the average case."
 
 📌 Internal Implementation:
 Buckets and Hashing:
@@ -15,10 +16,12 @@ Nulls:
 Allows one null key and multiple null values.
 
 Not Thread-safe:
-If multiple threads access a HashMap concurrently and at least one thread modifies it, you must synchronize externally, otherwise it may lead to data corruption.
+If multiple threads access a HashMap concurrently and at least one thread modifies it, you must
+synchronize externally, otherwise it may lead to data corruption.
 
 ✅ ConcurrentHashMap
-"ConcurrentHashMap is a thread-safe alternative to HashMap, designed for high concurrency with minimal blocking."
+"ConcurrentHashMap is a thread-safe alternative to HashMap, designed for high concurrency with minimal
+blocking."
 
 📌 Internal Implementation:
 Segmented Locking (Pre-Java 8):

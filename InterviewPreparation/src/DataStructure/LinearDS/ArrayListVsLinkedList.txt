@@ -36,4 +36,5 @@ mutation patterns**. For example:
 > “If I’m building a cache where I frequently access elements by index, I’d go with `ArrayList`.
 But for a messaging queue where I enqueue and dequeue often, `LinkedList` is more appropriate.”
 
-Want to dive into internal implementation or performance benchmarks next? I can walk you through how `ArrayList` resizes or how `LinkedList` nodes are structured in memory.
+Want to dive into internal implementation or performance benchmarks next? I can walk you through how
+`ArrayList` resizes or how `LinkedList` nodes are structured in memory.

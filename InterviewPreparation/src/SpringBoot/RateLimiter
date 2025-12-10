@@ -1,4 +1,6 @@
-Implementing a **rate limiter** in a microservice is essential for protecting your service from abuse, ensuring fair usage, and maintaining performance — especially in high-traffic environments like e-commerce or public APIs.
+Implementing a **rate limiter** in a microservice is essential for protecting your service from
+abuse, ensuring fair usage, and maintaining performance — especially in high-traffic environments
+like e-commerce or public APIs.
 
 Here’s a breakdown of how to do it, with examples tailored for your Java/Spring/Quarkus expertise.
 
@@ -202,12 +204,12 @@ Resilience4j integrates with Spring Boot and supports annotations.
 ### ⚙️ Configuration:
 ```yaml
 resilience4j:
-ratelimiter:
-  instances:
-    myLimiter:
-      limitForPeriod: 5
-      limitRefreshPeriod: 1s
-      timeoutDuration: 0
+    ratelimiter:
+      instances:
+        myLimiter:
+          limitForPeriod: 5
+          limitRefreshPeriod: 1s
+          timeoutDuration: 0
 ```
 
 ### 🧩 Usage:
