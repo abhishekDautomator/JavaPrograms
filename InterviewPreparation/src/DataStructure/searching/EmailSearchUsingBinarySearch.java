@@ -28,9 +28,8 @@ public class EmailSearchUsingBinarySearch {
             return true;
         }else if(result > 0){
             return searchEmailUsingRecursion(emails, l, mid-1, targetEmail);
-        }else{
-            return searchEmailUsingRecursion(emails, mid+1, r, targetEmail);
         }
+        return searchEmailUsingRecursion(emails, mid+1, r, targetEmail);
     }
 
     public static void main(String[] args) {

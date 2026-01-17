@@ -6,10 +6,8 @@ public class WildCardSearchUsingTrie {
     public void insert(String word) {
         TrieNode node = root;
         for (char ch : word.toCharArray()) {
-            int i = ch - 'a';
-            if (node.children[i] == null)
-                node.children[i] = new TrieNode();
-            node = node.children[i];
+            node.children.putIfAbsent(ch, new TrieNode());
+            node = node.children.get(ch);
         }
         node.isEndOfWord = true;
     }
@@ -25,19 +23,18 @@ public class WildCardSearchUsingTrie {
         char ch = pattern.charAt(index);
 
         if (ch == '?') {
-            for (TrieNode child : node.children) {
+            for (TrieNode child : node.children.values()) {
                 if (searchHelper(pattern, index + 1, child)) return true;
             }
         } else if (ch == '*') {
             // Try skipping '*'
             if (searchHelper(pattern, index + 1, node)) return true;
             // Try consuming one character
-            for (TrieNode child : node.children) {
+            for (TrieNode child : node.children.values()) {
                 if (searchHelper(pattern, index, child)) return true;
             }
         } else {
-            int i = ch - 'a';
-            return searchHelper(pattern, index + 1, node.children[i]);
+            return searchHelper(pattern, index + 1, node.children.get(ch));
         }
 
         return false;

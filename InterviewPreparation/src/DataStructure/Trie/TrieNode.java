@@ -1,6 +1,9 @@
 package DataStructure.Trie;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TrieNode {
-    TrieNode[] children = new TrieNode[26]; //small case a-z
+    Map<Character, TrieNode> children = new HashMap<>(); //supports smallcase, uppercase, digits and special characters
     boolean isEndOfWord = false;
 }

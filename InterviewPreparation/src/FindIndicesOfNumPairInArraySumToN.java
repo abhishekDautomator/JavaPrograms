@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class FindIndicesOfNumInArraySumToN {
+public class FindIndicesOfNumPairInArraySumToN {
     public static void main(String[] args) {
         int[] arr = {3, 9, 0, 1, 4};
         System.out.println(findIndicesOfPairOfNumInArraySumToN(arr, 4));

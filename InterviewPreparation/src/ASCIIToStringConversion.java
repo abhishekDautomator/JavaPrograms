@@ -25,6 +25,16 @@ public class ASCIIToStringConversion {
         return result.toString();
     }
 
+    static String asciiToString2(String[] asciiNumArray) {
+        StringBuilder result = new StringBuilder();
+        for (String ascii : asciiNumArray) {
+            int code = Integer.parseInt(ascii);   // convert string to int
+            result.append((char) code);           // cast int to char
+        }
+        return result.toString();
+    }
+
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String strAscii = sc.next();

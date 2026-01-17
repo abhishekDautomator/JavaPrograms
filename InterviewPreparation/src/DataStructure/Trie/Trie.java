@@ -6,10 +6,8 @@ public class Trie {
     public void insert(String word){
         TrieNode node = root;
         for(char c: word.toCharArray()){
-            int index = c - 'a'; //a - 97 decimal value in the ASCII character (A-65)
-            if(node.children[index]==null)
-                node.children[index] = new TrieNode();
-            node = node.children[index];
+            node.children.putIfAbsent(c, new TrieNode());
+            node = node.children.get(c);
         }
         node.isEndOfWord = true;
     }
@@ -17,10 +15,9 @@ public class Trie {
     public boolean search(String word){
         TrieNode node = root;
         for(char c: word.toCharArray()){
-            int index = c - 'a';
-            if(node.children[index]==null)
-                node.children[index] = new TrieNode();
-            node = node.children[index];
+            if(!node.children.containsKey(c))
+                return false;
+            node = node.children.get(c);
         }
         return node.isEndOfWord;
     }
@@ -28,10 +25,9 @@ public class Trie {
     public boolean startsWith(String prefix){
         TrieNode node = root;
         for(char c: prefix.toCharArray()){
-            int index = c - 'a';
-            if(node.children[index]==null)
+            if(!node.children.containsKey(c))
                 return false;
-            node = node.children[index];
+            node = node.children.get(c);
         }
         return true;
     }

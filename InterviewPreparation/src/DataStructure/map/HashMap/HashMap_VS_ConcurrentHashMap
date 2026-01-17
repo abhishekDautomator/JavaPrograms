@@ -4,13 +4,16 @@ data structure that allows constant-time performance for get() and put() in the 
 
 📌 Internal Implementation:
 Buckets and Hashing:
-It uses an array of buckets, where each bucket is a linked list or a tree (after threshold). The hash code of the key determines the bucket index.
+It uses an array of buckets, where each bucket is a linked list or a tree (after threshold).
+The hash code of the key determines the bucket index.
 
 Handling Collisions:
-Initially uses a linked list, but if the number of entries in a bucket exceeds 8, it switches to a red-black tree for better performance (O(log n)).
+Initially uses a linked list, but if the number of entries in a bucket exceeds 8, it switches to a
+red-black tree for better performance (O(log n)).
 
 Resizing:
-When the number of entries exceeds capacity * loadFactor, the map resizes (typically doubling the array size), which rehashes all entries — a costly operation.
+When the number of entries exceeds capacity * loadFactor, the map resizes (typically doubling the array
+size), which rehashes all entries — a costly operation.
 
 Nulls:
 Allows one null key and multiple null values.

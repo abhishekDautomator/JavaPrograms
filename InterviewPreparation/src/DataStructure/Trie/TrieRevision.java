@@ -6,10 +6,8 @@ public class TrieRevision {
     public void insert(String word){
         TrieNode node = root;
         for(char c: word.toCharArray()){
-            int index = c - 'a';
-            if(node.children[index]==null)
-                node.children[index] = new TrieNode();
-            node = node.children[index];
+            node.children.putIfAbsent(c, new TrieNode());
+            node = node.children.get(c);
         }
         node.isEndOfWord = true;
     }
@@ -17,21 +15,18 @@ public class TrieRevision {
     public boolean search(String word){
         TrieNode node = root;
         for(char c: word.toCharArray()){
-            int index = c-'a';
-            if(node.children[index]==null)
-                node.children[index] = new TrieNode();
-            node = node.children[index];
+            node.children.putIfAbsent(c, new TrieNode());
+            node = node.children.get(c);
         }
         return node.isEndOfWord;
     }
 
-    public boolean startsWith(String word){
+    public boolean startsWith(String prefix){
         TrieNode node = root;
-        for(char c: word.toCharArray()){
-            int index = c-'a';
-            if(node.children[index]==null)
+        for(char c: prefix.toCharArray()){
+            if(!node.children.containsKey(c))
                 return false;
-            node = node.children[index];
+            node = node.children.get(c);
         }
         return true;
     }

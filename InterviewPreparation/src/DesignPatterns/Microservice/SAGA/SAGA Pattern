@@ -1,9 +1,14 @@
-**The Saga pattern in microservices is a design approach for handling distributed transactions by breaking them into smaller, independent steps, each with its own compensating action in case of failure.** It ensures data consistency across services without relying on traditional two-phase commit protocols, which are often unsuitable for microservice architectures.
+**The Saga pattern in microservices is a design approach for handling distributed
+transactions by breaking them into smaller, independent steps, each with its own
+compensating action in case of failure.** It ensures data consistency across services without
+relying on traditional two-phase commit protocols, which are often unsuitable for microservice
+architectures.
 
 ---
 
 ## 🌐 What is the Saga Pattern?
-- **Definition**: A Saga is a sequence of local transactions. Each transaction updates data within a single service and publishes an event or message to trigger the next step.
+- **Definition**: A Saga is a sequence of local transactions. Each transaction updates data within a single
+service and publishes an event or message to trigger the next step.
 - **Compensation**: If one step fails, previously executed steps are undone using compensating transactions.
 - **Goal**: Maintain **eventual consistency** across distributed services without locking resources.
 
@@ -19,8 +24,13 @@
 ## ⚙️ Saga Implementation Approaches
 | Approach | How it Works | Pros | Cons |
 |----------|--------------|------|------|
-| **Choreography** | Each service listens for events and reacts accordingly. No central coordinator. | Simple, decentralized, good for small workflows | Harder to manage complex flows, risk of cyclic dependencies |
-| **Orchestration** | A central orchestrator service tells each participant what to do next. | Clear control, easier debugging, good for complex flows | Adds a single point of control, potential bottleneck |
+| **Choreography** | Each service listens for events and reacts accordingly. No central coordinator.
+| Simple, decentralized, good for small workflows
+| Harder to manage complex flows, risk of cyclic dependencies |
+
+| **Orchestration** | A central orchestrator service tells each participant what to do next.
+| Clear control, easier debugging, good for complex flows
+| Adds a single point of control, potential bottleneck |
 
 ---
 
@@ -50,6 +60,10 @@ If **Payment fails**, the Saga triggers compensations:
 
 ---
 
-👉 Abhishek, since you’re preparing for **Senior Java Developer interviews**, you can frame Saga as a **resilience pattern** that complements your circuit breaker experience. For example, highlight how your Draft Microservice could integrate Saga for multi-step operations like draft creation, storage in Azure Blob, and metadata persistence in PostgreSQL—ensuring rollback if any step fails.
+👉 Abhishek, since you’re preparing for **Senior Java Developer interviews**, you can frame Saga as
+a **resilience pattern** that complements your circuit breaker experience. For example,
+highlight how your Draft Microservice could integrate Saga for multi-step operations like draft creation,
+storage in Azure Blob, and metadata persistence in PostgreSQL—ensuring rollback if any step fails.
 
-Would you like me to create a **diagrammatic flow** of Saga (both choreography and orchestration) so you can use it as a visual aid in interviews?
+Would you like me to create a **diagrammatic flow** of Saga (both choreography and orchestration) so you can
+use it as a visual aid in interviews?

@@ -63,6 +63,7 @@ behavior, including data corruption, infinite loops, and other concurrency issue
 
      Hashtable: A legacy class that provides thread-safe operations by synchronizing methods.
      However, it has performance overhead due to synchronization on every operation.
+
      ConcurrentHashMap: Part of the java.util.concurrent package, this class offers better concurrency
      support with fine-grained locking. It allows multiple threads to read and write without blocking the
      entire map, improving performance in multi-threaded environments.
